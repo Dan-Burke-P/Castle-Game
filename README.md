@@ -3,8 +3,8 @@
 ## Project Description
 
 The project I would like to do is a multiplayer strategy game. The goal of the game revolves around the simple concept of invading your opponent’s territory and destroying their castle. Although this goal seems simple it becomes complicated as you are your opponent will have access to an array of units and structures that will help to defend their given castle from the opponent’s attacks.
-
     It is a cross of a card game and a turn based strategy game, the units will move across the board similar to how chess works, where each turn the player will have the option to use their units energy to enact an action that reaches them towards their goal of taking over the enemy base. As well with the addition of a card system the players will be able to consume resources to play cards from a deck that they construct to alter the battlefield by summoning new units and structures to help further their goal.
+    
 ---
 The following diagram shows how the average turn for a player would go, this is just to help envisioning what the end project would feel and play like.
 [Diagram]: https://github.com/Dan-Burke-P/Castle-Game/blob/master/ReadmeFiles/Turn%20Flow!Turn%20Flow_1.png "Diagram turn flow"
