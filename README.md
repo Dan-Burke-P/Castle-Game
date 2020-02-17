@@ -7,11 +7,11 @@ The project I would like to do is a multiplayer strategy game. The goal of the g
     
 ---
 The following diagram shows how the average turn for a player would go, this is just to help envisioning what the end project would feel and play like.
-[Diagram]: ReadmeFiles/Turn%20Flow!Turn%20Flow_1.png "Diagram turn flow"
+![Diagram]: https://github.com/Dan-Burke-P/Castle-Game/blob/master/ReadmeFiles/Turn%20Flow!Turn%20Flow_1.png "Diagram turn flow"
 
 
 This diagram is an extension of the previous diagram exposing the actions taken when selecting a unit.
-[Diagram]: ReadmeFiles/Unit%20Actions!Unit%20Actions_2.png "Diagram turn flow 2"
+![Diagram]: https://github.com/Dan-Burke-P/Castle-Game/blob/master/ReadmeFiles/Unit%20Actions!Unit%20Actions_2.png "Diagram turn flow 2"
 
 ## my contribution
 
@@ -19,7 +19,7 @@ What I bring to the table with this project is an intermediate understanding of 
 
 ## High level UML
 This is a high level representation of the general code structure for the game, this is not set in stone but gives a gist of how the project could be laid out
-[Diagram]: ReadmeFiles/Main Program Model!Main_0.png "Diagram UML"
+![Diagram]: https://github.com/Dan-Burke-P/Castle-Game/blob/master/ReadmeFiles/Main Program Model!Main_0.png "Diagram UML"
 
 
 ## Educational Relevance 
