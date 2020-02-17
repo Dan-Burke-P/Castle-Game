@@ -19,7 +19,7 @@ What I bring to the table with this project is an intermediate understanding of 
 
 ## High level UML
 This is a high level representation of the general code structure for the game, this is not set in stone but gives a gist of how the project could be laid out
-![Diagram](https://github.com/Dan-Burke-P/Castle-Game/blob/master/ReadmeFiles/Main Program Model!Main_0.png)
+![Diagram](https://github.com/Dan-Burke-P/Castle-Game/blob/master/ReadmeFiles/Main%20Program%20Model!Main_0.png)
 
 
 ## Educational Relevance 
