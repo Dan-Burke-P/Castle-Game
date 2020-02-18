@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardName: 
   Cost: 0
+  PrefabCard: {fileID: 7838126661699882392, guid: f175496b5904696448d6fc20b600bfe9,
+    type: 3}

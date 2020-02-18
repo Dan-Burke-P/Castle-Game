@@ -20,7 +20,7 @@ public class HandUI : MonoBehaviour
     {
         center = rt.rect.width / 2;
         counter -= Time.deltaTime;
-        crd.anchorMin = new Vector2(50, center);
+        crd.anchoredPosition = new Vector2(center, 50);
         if(counter < 0)
         {
             counter = 1;
