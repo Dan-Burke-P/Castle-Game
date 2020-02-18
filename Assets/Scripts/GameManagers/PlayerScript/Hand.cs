@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Hand")]
+
 public class Hand : ScriptableObject
 {
     public int maxHandSize;
@@ -12,4 +13,5 @@ public class Hand : ScriptableObject
     {
         cards.Add(card);
     }
+
 }
