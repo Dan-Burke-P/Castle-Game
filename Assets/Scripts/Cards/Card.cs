@@ -11,6 +11,8 @@ public class Card : ScriptableObject
 
     public GameObject PrefabCard;
 
+
+
     public GameObject giveCard(GameObject player)
     {
         return Instantiate(PrefabCard);

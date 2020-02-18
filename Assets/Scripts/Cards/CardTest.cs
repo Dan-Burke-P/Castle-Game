@@ -6,6 +6,7 @@ public class CardTest : MonoBehaviour
 {
     public Card cd;
     public IBaseCard crdOBJ;
+    public Hand hn;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,5 +22,6 @@ public class CardTest : MonoBehaviour
     public void btnPrs()
     {
         crdOBJ.play();
+        hn.addCardToHand(cd);
     }
 }
