@@ -2,6 +2,8 @@
 
 ## Project Description
 
+### [Link to the git hub repository](https://github.com/Dan-Burke-P/Castle-Game/tree/master)
+
 The project I would like to do is a multiplayer strategy game. The goal of the game revolves around the simple concept of invading your opponent’s territory and destroying their castle. Although this goal seems simple it becomes complicated as you are your opponent will have access to an array of units and structures that will help to defend their given castle from the opponent’s attacks.
     It is a cross of a card game and a turn based strategy game, the units will move across the board similar to how chess works, where each turn the player will have the option to use their units energy to enact an action that reaches them towards their goal of taking over the enemy base. As well with the addition of a card system the players will be able to consume resources to play cards from a deck that they construct to alter the battlefield by summoning new units and structures to help further their goal.
     
@@ -49,3 +51,9 @@ The different tools used to make a game can vary greatly on the scope and goal o
 ...This is a free to use UML drawing program that allows for highly detailed diagrams and flow charts that are easily traversable to create higher detail then simple image diagrams.
 6. JSON
 ...This is a way to serialize and pack data in a predetermined format and can be used to encode functionality of a program to make it easy to extend different elements and edit the stats of individual objects
+
+## Development Guides
+
+### [Creating new cards](https://github.com/Dan-Burke-P/Castle-Game/blob/Feature-Guides/FeatureGuides/Adding-Cards.md)
+
+
