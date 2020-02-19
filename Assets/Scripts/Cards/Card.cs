@@ -3,19 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName="ScriptableObjects/Card")]
-public class Card : ScriptableObject
+public abstract class Card : ScriptableObject
 {
-    public string CardName;
+    public string title { get; set; }
+    public CardType type { get; set; }
 
-    public int Cost;
-
-    public GameObject PrefabCard;
-
-
-
-    public GameObject giveCard(GameObject player)
-    {
-        return Instantiate(PrefabCard);
-    }
+    public abstract void play();
 
 }

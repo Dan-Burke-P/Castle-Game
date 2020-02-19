@@ -2,19 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName="ScriptableObjects/Soldier")]
-public class CRD_SU_soldier :  Card
+public class CRD_SU_siege : Card
 {
-    
-    public int cost;
-    
-    public CRD_SU_soldier()
+    public CRD_SU_siege()
     {
-        title = "Create Soldier";
+        title = "Siege";
         type = CardType.Unit;
     }
-    
-    
+
     public override void play()
     {
         Debug.Log($"Playing {title}");
