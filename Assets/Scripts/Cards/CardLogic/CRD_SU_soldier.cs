@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu(menuName="ScriptableObjects/Soldier")]
 public class CRD_SU_soldier :  Card
 {
-    
+    public UnityEvent ue;
     public int cost;
     
     public CRD_SU_soldier()

@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class HandUI : MonoBehaviour
 {
     float counter = 1;
-    public List<RectTransform> crd;
+    public List<RectTransform> crd = new List<RectTransform>();
     float center;
     public RectTransform rt;
 
@@ -26,7 +26,7 @@ public class HandUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        DisplayHand();
     }
 
 
@@ -59,9 +59,9 @@ public class HandUI : MonoBehaviour
     [ContextMenu("Display Hand")]
     public void DisplayHand()
     {
-        if (plyr.cards.Count > 0)
+        if (crd.Count > 0)
         {
-            int divs = (int)(rt.rect.width / plyr.cards.Count);
+            int divs = (int)(rt.rect.width / crd.Count);
             divs = (int)rt.rect.width / divs;
             for (int i = 0; i < divs; i++)
             {
