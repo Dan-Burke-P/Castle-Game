@@ -13,5 +13,6 @@ public class Hand : ScriptableObject
     {
         cards.Add(card);
     }
+    
 
 }

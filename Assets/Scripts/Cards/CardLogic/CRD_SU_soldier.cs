@@ -19,4 +19,6 @@ public class CRD_SU_soldier :  Card
     {
         Debug.Log($"Playing {title}");
     }
+    
+
 }

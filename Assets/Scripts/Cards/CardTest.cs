@@ -31,4 +31,9 @@ public class CardTest : MonoBehaviour
     {
         siegeTest.play();
     }
+
+    public void testPrint()
+    {
+        Debug.Log("Test Print");
+    }
 }
