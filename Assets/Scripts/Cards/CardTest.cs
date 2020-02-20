@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CardTest : MonoBehaviour
 {
@@ -9,6 +10,14 @@ public class CardTest : MonoBehaviour
     public Card siegeTest;
 
     public Hand testHand;
+
+    private UnityAction<string, object> ua;
+    public EventListener el;
+
+    private void Start()
+    {
+        el.registerAction(testPrint);
+    }
 
     public void testAddSoldier()
     {
@@ -32,7 +41,7 @@ public class CardTest : MonoBehaviour
         siegeTest.play();
     }
 
-    public void testPrint()
+    private void testPrint(Dictionary<string, object> o)
     {
         Debug.Log("Test Print");
     }

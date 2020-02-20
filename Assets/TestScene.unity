@@ -969,6 +969,8 @@ GameObject:
   - component: {fileID: 1187130196}
   - component: {fileID: 1187130195}
   - component: {fileID: 1187130194}
+  - component: {fileID: 1187130198}
+  - component: {fileID: 1187130197}
   m_Layer: 5
   m_Name: Test add soldier
   m_TagString: Untagged
@@ -1050,6 +1052,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1187130197}
+        m_MethodName: raiseEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1187130195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1086,6 +1099,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1187130192}
   m_CullTransparentMesh: 0
+--- !u!114 &1187130197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1187130192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36557c48b8b64684caeb08b5c432478e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  er: {fileID: 1187130198}
+--- !u!114 &1187130198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1187130192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6ff4392ab3037347a0c821b448c0a4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 6834b1ea6036ef2459777c39b2e16218, type: 2}
 --- !u!1 &1313067002
 GameObject:
   m_ObjectHideFlags: 0
@@ -1536,6 +1575,7 @@ GameObject:
   - component: {fileID: 1594218356}
   - component: {fileID: 1594218355}
   - component: {fileID: 1594218358}
+  - component: {fileID: 1594218359}
   m_Layer: 5
   m_Name: Hand
   m_TagString: Untagged
@@ -1588,6 +1628,7 @@ MonoBehaviour:
   rt: {fileID: 1594218354}
   slots: []
   plyr: {fileID: 11400000, guid: f5d7d7f9de4449044b0f925c272f7bd3, type: 2}
+  addToHandEvent: {fileID: 1594218359}
 --- !u!114 &1594218356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1639,6 +1680,35 @@ MonoBehaviour:
   soldierTest: {fileID: 0}
   siegeTest: {fileID: 0}
   testHand: {fileID: 11400000, guid: f5d7d7f9de4449044b0f925c272f7bd3, type: 2}
+  el: {fileID: 1594218359}
+--- !u!114 &1594218359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594218353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a5e5b97184b1f3409a7cd09c21ce276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ue:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1594218358}
+        m_MethodName: testAddSoldier
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _event: {fileID: 11400000, guid: 6834b1ea6036ef2459777c39b2e16218, type: 2}
+  handled: 0
 --- !u!1 &1637557284
 GameObject:
   m_ObjectHideFlags: 0

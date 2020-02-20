@@ -6,8 +6,8 @@ public class EventRaiser : MonoBehaviour
 {
     public Event _event;
 
-    public void Raise()
+    public void Raise(Dictionary<string, object> d)
     {
-        _event.raise();
+        _event.raise(d);
     }
 }

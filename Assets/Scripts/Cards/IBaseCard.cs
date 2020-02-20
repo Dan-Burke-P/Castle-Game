@@ -9,4 +9,5 @@ public interface IBaseCard
 
     // Play the card 
     void play();
+    
 }

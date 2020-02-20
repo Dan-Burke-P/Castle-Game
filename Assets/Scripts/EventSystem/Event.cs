@@ -13,11 +13,14 @@ public class Event : ScriptableObject
     [SerializeField]
     private List<EventListener> _listeners;
 
-    public void raise()
+    public Dictionary<string, object> data;
+
+    public void raise(Dictionary<string, object> d)
     {
+        data = d;
         foreach (EventListener el in _listeners)
         {
-            el.onEvent();
+            el.onEvent(data);
         }
     }
 
