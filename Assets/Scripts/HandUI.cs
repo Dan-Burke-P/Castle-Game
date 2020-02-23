@@ -54,6 +54,7 @@ public class HandUI : MonoBehaviour
     void Start()
     {
         addToHandEvent.registerAction(addToHand);
+        plyr.init();
     }
     
     [ContextMenu("Display Hand")]

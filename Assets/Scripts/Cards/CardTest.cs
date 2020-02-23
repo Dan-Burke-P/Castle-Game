@@ -22,13 +22,13 @@ public class CardTest : MonoBehaviour
     public void testAddSoldier()
     {
         soldierTest = ScriptableObject.CreateInstance<CRD_SU_soldier>();
-        testHand.addCardToHand(soldierTest);
+        //testHand.addCardToHand(soldierTest);
     }
 
     public void testAddSiege()
     {
         siegeTest = ScriptableObject.CreateInstance<CRD_SU_siege>();
-        testHand.addCardToHand(siegeTest);
+        //testHand.addCardToHand(siegeTest);
     }
 
     public void testPlaySoldier()

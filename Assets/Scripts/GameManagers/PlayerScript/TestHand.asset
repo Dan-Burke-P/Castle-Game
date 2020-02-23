@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHandSize: 0
   cards: []
+  addToHand: {fileID: 0}
+  removeFromHand: {fileID: 0}
