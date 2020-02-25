@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BoardPiece : MonoBehaviour
 {
+
+    public float x = 0, y = 0;
+
+    public Transform t;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +17,6 @@ public class BoardPiece : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        x += 0.001f;
     }
 }
