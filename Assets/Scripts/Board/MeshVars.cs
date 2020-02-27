@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -9,13 +10,23 @@ using UnityEngine.UIElements;
 public class MeshVars : ScriptableObject
 {
     
-    public Vector3[] verts;
-    public Vector2[] UV;
-    public TriGroup[] triGroups;
-
-    public void buildTris()
+    public List<Vector3> verts;
+    public List<Vector3> normals;
+    public List<Vector2> UV;
+    public List<TriGroup> triGroups;
+    
+    public int[] buildTris()    
     {
+        List<int> ret = new List<int>();
+
+        foreach (TriGroup tg in triGroups)
+        {
+            ret.Add(tg.first);
+            ret.Add(tg.second);
+            ret.Add(tg.third);
+        }
         
+        return ret.ToArray();
     }
 }
 
@@ -28,11 +39,18 @@ public struct TriGroup
     public int second;
     public int third;
 
+    public TriGroup(int i, int j, int k)
+    {
+        first = i;
+        second = j;
+        third = k;
+    }
     public int[] toArr()
     {
         var ret = new[] {first, second, third};
         return ret;
     }
+    
 }
 
 
