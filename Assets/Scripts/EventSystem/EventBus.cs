@@ -30,7 +30,7 @@ public class RegisteredEvent
     public int registerTarget(string targetName, UnityAction<Dictionary<string, object>> action){
 
         EventTargets et;
-        Debug.Log("Event ${eventName} is having ${targetName} attempting to register as a target");
+        Debug.Log($"Event {eventName} is having {targetName} attempting to register as a target");
         if (subTargets.TryGetValue(targetName, out et)){
             // We succeeded in finding the event target specified 
             et.addCallback(action);
@@ -50,12 +50,13 @@ public class RegisteredEvent
     public int RaiseTarget(string trg, Dictionary<string, object> prms){
         
         EventTargets et;
-
         if (subTargets.TryGetValue(trg, out et)){
-            // We succeeded in finding the event target specified 
+            // We succeeded in finding the event target specified
+            Debug.Log($"Raising Target: {trg}"); 
             et.invoke(prms);
             return 0;
         }
+        Debug.Log($"Failed to find Target: {trg} in Event: {eventName}");
 
         return -1; 
     }
@@ -70,11 +71,12 @@ public class EventTargets
     private UnityAction<Dictionary<string, object>> callStack;
 
     public void addCallback(UnityAction<Dictionary<string, object>> ua){
-        Debug.Log("${targetName} is registering a new event callback");
+        Debug.Log($"{targetName} is registering a new event callback");
         callStack += ua;
     }
 
     public void invoke(Dictionary<string, object> prms){
+        Debug.Log($"Invoking action for target: {targetName}");
         callStack(prms);
     }
 }
@@ -150,12 +152,15 @@ public class EventBus
         
         // Try to find the registered event
         RegisteredEvent re = findRegisteredEvent(ed.eventName);
+        
         if (re.eventName.Equals("INVALID-EVENT")){
             // If we get an invalid event back just exit badly
+            Debug.Log($"Event: {ed.eventName} Targeting: {ed.eventTarget} Failed to find event");
             return -1;
         }
 
-        re.RaiseTarget(ed.eventName, prm);
+        Debug.Log($"Event: {ed.eventName} Targeting: {ed.eventTarget} found event and is raising target");
+        re.RaiseTarget(ed.eventTarget, prm);
 
         return 0;
     }
