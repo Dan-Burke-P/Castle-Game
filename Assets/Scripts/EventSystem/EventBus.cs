@@ -24,7 +24,9 @@ public class EventBus
     }
 
     public Dictionary<string ,RegisteredEvent> registeredEvents = new Dictionary<string, RegisteredEvent>();
-
+    public bool initialized = false;
+    
+    
     public bool checkEventExists(string ename){
         return registeredEvents.ContainsKey(ename);
     }
@@ -44,13 +46,11 @@ public class EventBus
         RegisteredEvent re = findRegisteredEvent(ed.eventName);
 
         if (re.eventName.Equals("INVALID-EVENT")){
+            Debug.LogError($"Failed to find event {ed.eventName}");
             return -1;
         }
 
         re.registerTarget(ed.eventTarget, ed.action);
-        
-        
-        
         return 0;
     }
 
@@ -82,4 +82,13 @@ public class EventBus
 
         return 0;
     }
+
+    public void printEventList(){
+        string str = "";
+        foreach (string s in registeredEvents.Keys){
+            str += $"{s} ,";
+        }
+        Debug.Log("Events registered: " + str);
+    }
+    
 }

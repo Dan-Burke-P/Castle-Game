@@ -39,4 +39,16 @@ public class EventTester : MonoBehaviour
         // Register the new event so it will listen
         EventBus.Instance().RegisterEvent(ed);
     }
+
+    public void TEST_raiseMoveUnit(){
+        EventDefinition ed = new EventDefinition();
+        ed.eventName = "MoveUnit";
+        ed.eventTarget = "MoveTargetUnit";
+        
+        Dictionary<string, object> prms = new Dictionary<string, object>();
+        prms.Add("x", 5f);
+        prms.Add("y", 5f);
+        
+        EventBus.Instance().raiseEvent(ed, prms);
+    }
 }

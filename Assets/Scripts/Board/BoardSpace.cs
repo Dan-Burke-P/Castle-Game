@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BoardSpace : MonoBehaviour
 {
-    public List<BoardPiece> pieces;
+    public GameObject unitTemplate;
+    public List<SO_BaseUnit> unitData = new List<SO_BaseUnit>();
     public int boardWidth = 5, boardHeight = 5;
     // Start is called before the first frame update
     void Start()
@@ -15,18 +16,18 @@ public class BoardSpace : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (pieces != null)
-        {
-            // We have pieces in our board space so render them
-            foreach (BoardPiece bp in pieces)
-            {
-                bp.t.localPosition = new Vector3(bp.x,bp.y,5);
-            }
-        }
+
     }
 
-    void addGamepiece(BoardPiece piece)
-    {
-        pieces.Add(piece);
+    void addGamepiece(Dictionary<string, object> prms){
+        object tmp;
+
+        prms.TryGetValue("unitData", out tmp);
+        
+        SO_BaseUnit unitSO = tmp as SO_BaseUnit;
+        
+        unitData.Add(unitSO);
+
+        Instantiate(unitTemplate);
     }
 }

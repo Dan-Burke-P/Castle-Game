@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-
-
-
 // Defines an actual event
 public class EventDefinition
 {

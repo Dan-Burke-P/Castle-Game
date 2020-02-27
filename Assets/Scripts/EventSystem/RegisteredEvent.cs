@@ -18,6 +18,7 @@ public class RegisteredEvent
 
     public int registerTarget(string targetName, UnityAction<Dictionary<string, object>> action){
 
+        Debug.Log("Adding target to action");
         EventTargets et;
         if (subTargets.TryGetValue(targetName, out et)){
             // We succeeded in finding the event target specified 
@@ -26,6 +27,7 @@ public class RegisteredEvent
         }
         else{
             // We didn't find the target so make a new one and register it to this event
+            Debug.Log("Didn't find target so adding new target");
             et = new EventTargets();
             et.targetName = targetName;
             et.addCallback(action);
