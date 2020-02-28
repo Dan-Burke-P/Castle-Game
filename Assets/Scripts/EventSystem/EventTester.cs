@@ -51,4 +51,16 @@ public class EventTester : MonoBehaviour
         
         EventBus.Instance().raiseEvent(ed, prms);
     }
+
+    public void TEST_raiseAddUnit(){
+        EventDefinition ed = new EventDefinition();
+        ed.eventName = "AddUnitToBoard";
+        ed.eventTarget = "addBaseUnit";
+        
+        Dictionary<string, object> prms = new Dictionary<string, object>();
+        BaseUnit bs = UnitDB.UNCR_Soldier();
+        prms.Add("unitData", bs);
+
+        EventBus.Instance().raiseEvent(ed, prms);
+    }
 }

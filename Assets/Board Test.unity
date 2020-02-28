@@ -170,9 +170,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitTemplate: {fileID: 566620772628620449, guid: b5fc5562465bfb44da05d0e29ca48151,
     type: 3}
-  unitData: []
   boardWidth: 5
   boardHeight: 5
+  latestUID: 0
 --- !u!23 &102633378
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -766,7 +766,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 45.7}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &706108235
@@ -825,7 +825,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 706108235}
-        m_MethodName: TEST_raiseMoveUnit
+        m_MethodName: TEST_raiseAddUnit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1420,7 +1420,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Move Unit!
+  m_Text: 'Test add unit
 
 '
 --- !u!222 &1458098448
@@ -1442,6 +1442,7 @@ GameObject:
   - component: {fileID: 1938633895}
   - component: {fileID: 1938633894}
   - component: {fileID: 1938633893}
+  - component: {fileID: 1938633896}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1507,13 +1508,28 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1938633892}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.2492954, y: -0, z: -0, w: 0.9684275}
+  m_LocalPosition: {x: 6.15, y: 3.98, z: -17.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 28.872002, y: 0, z: 0}
+--- !u!114 &1938633896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938633892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a46cd51754cb43741a36e355ed728da8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedUnit: {fileID: 0}
+  slctMat: {fileID: 0}
+  rstColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &8043849720176654423
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1529,12 +1545,12 @@ PrefabInstance:
     - target: {fileID: 4350736201548686078, guid: b5fc5562465bfb44da05d0e29ca48151,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 5.79
       objectReference: {fileID: 0}
     - target: {fileID: 4350736201548686078, guid: b5fc5562465bfb44da05d0e29ca48151,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 7.1
       objectReference: {fileID: 0}
     - target: {fileID: 4350736201548686078, guid: b5fc5562465bfb44da05d0e29ca48151,
         type: 3}
@@ -1581,6 +1597,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8043849719643472707, guid: b5fc5562465bfb44da05d0e29ca48151,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 049f9586c27799a4eaf3848cac78808e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5fc5562465bfb44da05d0e29ca48151, type: 3}
 --- !u!4 &8043849720176654424 stripped

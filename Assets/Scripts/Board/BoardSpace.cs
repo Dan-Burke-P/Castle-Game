@@ -5,18 +5,23 @@ using UnityEngine;
 public class BoardSpace : MonoBehaviour
 {
     public GameObject unitTemplate;
-    public List<SO_BaseUnit> unitData = new List<SO_BaseUnit>();
     public int boardWidth = 5, boardHeight = 5;
+    public Dictionary<int, BaseUnit> unitData = new Dictionary<int, BaseUnit>();
+
+    public int latestUID = 0;
     // Start is called before the first frame update
     void Start()
     {
-        
+        EventDefinition ed = new EventDefinition();
+        ed.eventName = "AddUnitToBoard";
+        ed.eventTarget = "addBaseUnit";
+        ed.action = addGamepiece;
+        EventBus.Instance().RegisterEvent(ed);
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
+    void Update(){
+        
     }
 
     void addGamepiece(Dictionary<string, object> prms){
@@ -24,10 +29,12 @@ public class BoardSpace : MonoBehaviour
 
         prms.TryGetValue("unitData", out tmp);
         
-        SO_BaseUnit unitSO = tmp as SO_BaseUnit;
+        BaseUnit unitSO = tmp as BaseUnit;
         
-        unitData.Add(unitSO);
+        unitSO.obj = Instantiate(unitTemplate);
+        
+        unitData.Add(latestUID, unitSO);
+        latestUID++;
 
-        Instantiate(unitTemplate);
     }
 }

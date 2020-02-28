@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SO_BaseUnit : MonoBehaviour
-{
-    
+public class UnitHandler : MonoBehaviour{
+    public BaseUnit unitData;
 }
