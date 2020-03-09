@@ -2,9 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 // Handles the user input and dispatches events based on what the player is doing
-public class InputHandler : MonoBehaviour{
+public class InputHandler : MonoBehaviour {
+    
+    private int _gbLayerMask = 1 << 8;
     
     // The unit currently selected
     public GameObject selectedUnit;
@@ -18,6 +21,8 @@ public class InputHandler : MonoBehaviour{
 
     // The Board Space for the input handler to get data from
     public BoardSpace bs;
+
+    public Text label;
     
     // Start is called before the first frame update
     void Start()
@@ -29,7 +34,7 @@ public class InputHandler : MonoBehaviour{
     void Update()
     {
         RaycastHit hit;
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100)){
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, _gbLayerMask)){
             if (hit.transform.tag.Equals("GameBoard")){
                 Vector3 selectionLocation = new Vector3();
 
@@ -39,10 +44,23 @@ public class InputHandler : MonoBehaviour{
               
                 selectionIndicator.position = selectionLocation;
 
-//                BaseUnit tmp = bs.getPieceAtLoc((int)Math.Floor(hit.point.x), (int)Math.Floor(hit.point.z));
-//                if (tmp != null){
-//                    Debug.Log(tmp.name);
-//                }
+                if (Input.GetMouseButtonDown(0)) {
+                    int xtrg, ytrg;
+                    xtrg = (int) Math.Floor(hit.point.x);
+                    ytrg = (int)Math.Abs(Math.Floor(hit.point.z));
+                    
+                    Debug.Log(xtrg + " " + ytrg);
+                    
+                    BaseUnit tmp = bs.getPieceAtLoc(xtrg, ytrg);
+                    if (tmp != null) {
+                        label.text = tmp.unitName;
+                    }
+                    else {
+                        label.text = "none";
+                    }
+                }
+                
+                
             }        
             else{
                 

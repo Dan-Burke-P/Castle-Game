@@ -107,7 +107,10 @@ public class TestBoardGeneration : MonoBehaviour {
             Debug.LogError("Get Unit At Pos expected a unit back but got a null return");
         }
         else {
-            Debug.Log(from_2_3.ToString());
+            if (!from_2_3.ToString().Equals("{Name: Soldier, Pos: (2,3)}")) {
+                _passed = false;
+                Debug.Log("Get Unit At Pos expected a certain unit back but got the wrong data");
+            }
         }
 
         if (from_3_3 != null) {

@@ -64,7 +64,9 @@ public class EventTester : MonoBehaviour
         bs.yPos = 3;
         
         prms.Add("unitData", bs);
-
+        prms.Add("x", 4);
+        prms.Add("y", 3);
+        
         EventBus.Instance().raiseEvent(ed, prms);
     }
 }

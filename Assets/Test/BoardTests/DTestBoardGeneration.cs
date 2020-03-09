@@ -19,7 +19,7 @@ public static class DTestBoardGeneration {
         "{Coords: ( 0 , 0 )}{Coords: ( 1 , 0 )}{Coords: ( 2 , 0 )}{Coords: ( 3 , 0 )}\n" +
         "{Coords: ( 0 , 1 )}{Coords: ( 1 , 1 )}{Coords: ( 2 , 1 )}{Coords: ( 3 , 1 )}\n" +
         "{Coords: ( 0 , 2 )}{Coords: ( 1 , 2 )}{Coords: ( 2 , 2 )}{Coords: ( 3 , 2 )}\n" + 
-        "{Coords: ( 0 , 3 )}{Coords: ( 1 , 3 )}{Coords: ( 2 , 3 ), Unit: (  (UNIT_Soldier) )}{Coords: ( 3 , 3 )}\n";
+        "{Coords: ( 0 , 3 )}{Coords: ( 1 , 3 )}{Coords: ( 2 , 3 ), Unit: (Soldier)}{Coords: ( 3 , 3 )}\n";
 
     
 }

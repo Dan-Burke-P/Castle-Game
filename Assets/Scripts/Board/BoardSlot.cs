@@ -34,7 +34,7 @@ public class BoardSlot {
   ret += "{Coords: ( " + x + " , " + y + " )";
 
   if (unit != null) {
-   ret += ", Unit: ( " + unit.ToString() + " )";
+   ret += ", Unit: (" + unit.unitName + ")";
   }
 
   ret += "}";
