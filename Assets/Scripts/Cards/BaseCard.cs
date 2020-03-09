@@ -12,5 +12,5 @@ public class BaseCard: MonoBehaviour
         cardData = c;
         gameObject.name = c.title;
     }
-    
+
 }

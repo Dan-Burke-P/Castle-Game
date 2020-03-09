@@ -2,17 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseUnit : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
+public abstract class BaseUnit : ScriptableObject{
+    
+    public string unitName = "Error Instantiated as a Base Unit";
+    public int xPos, yPos;
+
+    public GameObject obj;
+    public Transform tranform;
+    
+    public void move(int x, int y){
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    public override string ToString(){
+        string ret = "";
+
+        ret += "{Name: " + unitName + ", Pos: (" + xPos + "," + yPos + ")}";
         
+        return ret;
     }
 }
