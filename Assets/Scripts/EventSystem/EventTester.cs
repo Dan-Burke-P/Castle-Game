@@ -59,6 +59,10 @@ public class EventTester : MonoBehaviour
         
         Dictionary<string, object> prms = new Dictionary<string, object>();
         BaseUnit bs = UnitDB.UNCR_Soldier();
+
+        bs.xPos = 4;
+        bs.yPos = 3;
+        
         prms.Add("unitData", bs);
 
         EventBus.Instance().raiseEvent(ed, prms);
