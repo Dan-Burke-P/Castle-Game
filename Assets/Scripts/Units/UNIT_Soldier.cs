@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UNIT_Soldier : BaseUnit
-{
-    
+public class UNIT_Soldier : BaseUnit {
+
+    public UNIT_Soldier(){
+        unitName = "Soldier";
+    }
 }

@@ -14,4 +14,11 @@ public abstract class BaseUnit : ScriptableObject{
         
     }
 
+    public override string ToString(){
+        string ret = "";
+
+        ret += "{Name: " + unitName + ", Pos: (" + xPos + "," + yPos + ")}";
+        
+        return ret;
+    }
 }

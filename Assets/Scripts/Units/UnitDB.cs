@@ -10,8 +10,6 @@ public static class UnitDB{
     
     public static BaseUnit UNCR_Soldier(){
         BaseUnit bs = ScriptableObject.CreateInstance<UNIT_Soldier>();
-        //Object.Instantiate(uTmplt);
-
         return bs;
     }
 }

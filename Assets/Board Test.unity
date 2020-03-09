@@ -1648,7 +1648,7 @@ MonoBehaviour:
   selectionIndicator: {fileID: 1546662287}
   slctMat: {fileID: 0}
   rstColor: {r: 0, g: 0, b: 0, a: 0}
-  bs: {fileID: 0}
+  bs: {fileID: 102633377}
 --- !u!43 &2024843843
 Mesh:
   m_ObjectHideFlags: 0

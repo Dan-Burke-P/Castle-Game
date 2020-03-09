@@ -39,10 +39,10 @@ public class InputHandler : MonoBehaviour{
               
                 selectionIndicator.position = selectionLocation;
 
-                BaseUnit tmp = bs.getPieceAtLoc((int)Math.Floor(hit.point.x), (int)Math.Floor(hit.point.z));
-                if (tmp != null){
-                    Debug.Log(tmp.name);
-                }
+//                BaseUnit tmp = bs.getPieceAtLoc((int)Math.Floor(hit.point.x), (int)Math.Floor(hit.point.z));
+//                if (tmp != null){
+//                    Debug.Log(tmp.name);
+//                }
             }        
             else{
                 
