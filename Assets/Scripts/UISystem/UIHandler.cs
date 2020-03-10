@@ -17,22 +17,21 @@ using UnityEngine;
  */
 public class UIHandler : MonoBehaviour
 {
+    
+    EventDefinition displayUnitED = new EventDefinition("displayUnitUI", "displayUnitUI", 0);
+    
+    private void OnEnable(){
+        // TODO add events for rendering different things
+        displayUnitED.action = displayUnitData;
+        EventBus.Instance().RegisterEvent(displayUnitED);
+
+    }
 
     /*
      * Takes in a unit and displays it's data on the UI
      */
-    public void displayUnitData(BaseUnit data){
-        
+    private void displayUnitData(Dictionary<string, object> prms){
+        Debug.Log("Display unit data invoked");
     }
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

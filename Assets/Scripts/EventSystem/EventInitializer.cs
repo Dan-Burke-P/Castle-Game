@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-
+/// <summary>
+/// This class serves as a containing class that is responsible for initializing the
+/// event bus with all the proper starting data
+/// </summary>
 public static class EventInitializer
 {
     // Add event names here they will all be initialized when game master awakes
@@ -12,7 +15,8 @@ public static class EventInitializer
         "AddUnitToBoard",
         "SelectUnit",
         "RemoveUnitFromBoard",
-        "MoveUnit"
+        "MoveUnit",
+        "displayUnitUI"
     };
 
     public static void initEvents(){
