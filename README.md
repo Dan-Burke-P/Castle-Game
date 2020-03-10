@@ -1,5 +1,11 @@
 # Castle-Game
 
+
+## Development Guides
+
+### [First Time Setup Guide](https://github.com/Dan-Burke-P/Castle-Game/blob/master/FeatureGuides/Starting-Development.md)
+### [Creating new cards](https://github.com/Dan-Burke-P/Castle-Game/blob/Feature-Guides/FeatureGuides/Adding-Cards.md)
+
 ## Project Description
 
 ### [Link to the git hub repository](https://github.com/Dan-Burke-P/Castle-Game/tree/master)
@@ -51,9 +57,3 @@ The different tools used to make a game can vary greatly on the scope and goal o
 ...This is a free to use UML drawing program that allows for highly detailed diagrams and flow charts that are easily traversable to create higher detail then simple image diagrams.
 6. JSON
 ...This is a way to serialize and pack data in a predetermined format and can be used to encode functionality of a program to make it easy to extend different elements and edit the stats of individual objects
-
-## Development Guides
-
-### [Creating new cards](https://github.com/Dan-Burke-P/Castle-Game/blob/Feature-Guides/FeatureGuides/Adding-Cards.md)
-
-
