@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 102633379}
   - component: {fileID: 102633378}
   - component: {fileID: 102633381}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Board
   m_TagString: GameBoard
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 102633375}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8043849720176654424}
@@ -1606,13 +1606,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1938633892}
-  m_LocalRotation: {x: 0.60092056, y: -0, z: -0, w: 0.7993088}
-  m_LocalPosition: {x: 6.15, y: 11.27, z: -13.24}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 6.18, y: 19.1, z: -8.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 73.872, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &1938633896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1630,6 +1630,7 @@ MonoBehaviour:
   slctMat: {fileID: 0}
   rstColor: {r: 0, g: 0, b: 0, a: 0}
   bs: {fileID: 102633377}
+  label: {fileID: 879917758}
 --- !u!43 &2024843843
 Mesh:
   m_ObjectHideFlags: 0
