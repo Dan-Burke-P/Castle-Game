@@ -1,21 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using EventSystem;
 using UnityEngine;
 using UnityEngine.Events;
 
 
 // Holds all events registered to a given name
-public class RegisteredEvent
-{
-    // Constructor
-    public RegisteredEvent(string en){
-        eventName = en;
-    }
-    
-    public string eventName {get;}
+public class SystemEventList {
+
+    public SysTarget systemTarget;
     
     private Dictionary<string, EventTargets> subTargets = new Dictionary<string, EventTargets>();
 
+    // Constructor
+    public SystemEventList(SysTarget ST){
+        systemTarget = ST;
+    }
+ 
     public int registerTarget(string targetName, UnityAction<Dictionary<string, object>> action){
 
         Debug.Log("Adding target to action");
