@@ -15,6 +15,7 @@ public class UIUnitSystem : MonoBehaviour {
     private string _unitName;
 
     public Text nameText;
+    
     /// <summary>
     /// displayUnitUI is the final point of the unit data in the UI system,
     /// it will bring up and display the relevant data in the passed unit object
@@ -28,6 +29,8 @@ public class UIUnitSystem : MonoBehaviour {
         // TODO add a way for the unit to dynamically supply stats that might be variable but keep updated in real time
 
         _unitName = data.unitName;
+        
+        renderUI();
 
     }
 

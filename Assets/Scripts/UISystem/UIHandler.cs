@@ -20,6 +20,8 @@ public class UIHandler : MonoBehaviour
     
     EventDefinition displayUnitED = new EventDefinition("displayUnitUI", "displayUnitUI", 0);
     
+    public UIUnitSystem unitUI;
+    
     private void OnEnable(){
         // TODO add events for rendering different things
         displayUnitED.action = displayUnitData;
@@ -27,11 +29,28 @@ public class UIHandler : MonoBehaviour
 
     }
 
-    /*
-     * Takes in a unit and displays it's data on the UI
-     */
+    /// <summary>
+    /// Event function for taking a units data and passing it to the UIUnitSystem
+    /// </summary>
+    /// <param name="prms">
+    /// Event Parameter Dictionary
+    /// "unitData" - BaseUnit - The data we want to display
+    /// </param>
     private void displayUnitData(Dictionary<string, object> prms){
         Debug.Log("Display unit data invoked");
+
+        object tmp;
+        
+        if(!prms.TryGetValue("unitData", out tmp))
+        {
+            Debug.LogError("displayUnitData was invoked missing unit data parameter");
+            return;
+        }
+
+        var unitData = tmp as BaseUnit;
+        
+        unitUI.displayUnitUI(unitData);
+        
     }
     
 }
