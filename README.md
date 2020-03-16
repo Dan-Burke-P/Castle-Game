@@ -3,8 +3,8 @@
 
 ## Development Guides
 
-### [First Time Setup Guide](https://github.com/Dan-Burke-P/Castle-Game/blob/master/FeatureGuides/Starting-Development.md)
-### [Creating new cards](https://github.com/Dan-Burke-P/Castle-Game/blob/Feature-Guides/FeatureGuides/Adding-Cards.md)
+### [First Time Setup Guide](Documentation/FeatureGuides/Starting-Development.md)
+### [Creating new cards](Documentation/Feature-Guides/FeatureGuides/Adding-Cards.md)
 
 ## Project Description
 
