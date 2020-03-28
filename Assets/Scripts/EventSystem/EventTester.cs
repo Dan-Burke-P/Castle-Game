@@ -13,8 +13,8 @@ public class EventTester : MonoBehaviour
     
     public void TEST_RaiseEvent(){
         EventDefinition ed = new EventDefinition();
-        ed.eventName = "RaiseTestEvent";
-        ed.eventTarget = "testAction";
+        ed.systemName = "RaiseTestEvent";
+        ed.target = "testAction";
 
         EventBus.Instance().raiseEvent(ed, new Dictionary<string, object>());
     }
@@ -32,8 +32,8 @@ public class EventTester : MonoBehaviour
         
         // Create a new event definition to invoke our test function
         EventDefinition ed = new EventDefinition();
-        ed.eventName = "RaiseTestEvent";
-        ed.eventTarget = "testAction";
+        ed.systemName = "RaiseTestEvent";
+        ed.target = "testAction";
         ed.action = testAction;
         
         // Register the new event so it will listen
@@ -42,8 +42,8 @@ public class EventTester : MonoBehaviour
 
     public void TEST_raiseMoveUnit(){
         EventDefinition ed = new EventDefinition();
-        ed.eventName = "MoveUnit";
-        ed.eventTarget = "MoveTargetUnit";
+        ed.systemName = "MoveUnit";
+        ed.target = "MoveTargetUnit";
         
         Dictionary<string, object> prms = new Dictionary<string, object>();
         prms.Add("x", 5f);
@@ -54,8 +54,8 @@ public class EventTester : MonoBehaviour
 
     public void TEST_raiseAddUnit(){
         EventDefinition ed = new EventDefinition();
-        ed.eventName = "AddUnitToBoard";
-        ed.eventTarget = "addBaseUnit";
+        ed.systemName = "AddUnitToBoard";
+        ed.target = "addBaseUnit";
         
         Dictionary<string, object> prms = new Dictionary<string, object>();
         BaseUnit bs = UnitDB.UNCR_Soldier();
