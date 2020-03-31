@@ -45,7 +45,7 @@ public class RegisteredEvent
             et.invoke(prms);
             return 0;
         }
-        Debug.LogError($"Failed to find Target: {trg} in Event: {eventName}");
+        Debug.LogError($"(JARED ADDED THIS LINE)Failed to find Target: {trg} in Event: {eventName}");
 
         return -1; 
     }
