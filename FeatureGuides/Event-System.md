@@ -29,7 +29,9 @@ EventDefinition eventDefinition = new EventDefinition(SysTargets.TargetSystem, "
 eventDefinition.register(callBackFunction);
 
 // At some other point any code can call it
-eventDefinition.raise(ID, this);
+eventDefinition.raise(ID, this, new Dictionary<string, object> {
+	"Param1", paramObject
+	});
 
 // Before you remove the object deregister it form the event system
 eventDefinition.deregister();
