@@ -10,13 +10,17 @@ public class EventTargets
 {
     public string targetName;
 
-    private UnityAction<Dictionary<string, object>> callStack;
+    private UnityAction<Dictionary<string, object>, int, object> callStack;
 
-    public void addCallback(UnityAction<Dictionary<string, object>> ua){
+    public void addCallback(UnityAction<Dictionary<string, object>, int, object> ua){
         callStack += ua;
     }
 
-    public void invoke(Dictionary<string, object> prms){
-        callStack(prms);
+    public void invoke(Dictionary<string, object> prms, int ID, object cllr){
+        callStack(prms, ID, cllr);
+    }
+
+    public override string ToString(){
+        return targetName;
     }
 }
