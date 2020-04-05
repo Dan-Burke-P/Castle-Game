@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e7fdcb50cb8a984dbecea7aaa71a60e, type: 3}
   m_Name: TestEvent
   m_EditorClassIdentifier: 
-  sysTarget: 0
-  target: 
+  sysTarget: 3
+  target: TestTarget3
