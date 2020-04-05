@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EventSystem;
 
 
 /*
@@ -18,8 +19,8 @@ using UnityEngine;
 public class UIHandler : MonoBehaviour
 {
     
-    EventDefinition displayUnitED = new EventDefinition("displayUnitUI", "displayUnitUI", 0);
-    
+    EventDefinition displayUnitED = new EventDefinition(SysTarget.Board, "displayUnitUI", 0);
+    /*
     public UIUnitSystem unitUI;
     
     private void OnEnable(){
@@ -27,7 +28,7 @@ public class UIHandler : MonoBehaviour
         displayUnitED.action = displayUnitData;
         EventBus.Instance().RegisterEvent(displayUnitED);
 
-    }
+    }*/
 
     /// <summary>
     /// Event function for taking a units data and passing it to the UIUnitSystem
@@ -36,7 +37,7 @@ public class UIHandler : MonoBehaviour
     /// Event Parameter Dictionary
     /// "unitData" - BaseUnit - The data we want to display
     /// </param>
-    private void displayUnitData(Dictionary<string, object> prms){
+    /*private void displayUnitData(Dictionary<string, object> prms){
         Debug.Log("Display unit data invoked");
 
         object tmp;
@@ -52,5 +53,5 @@ public class UIHandler : MonoBehaviour
         unitUI.displayUnitUI(unitData);
         
     }
-    
+*/    
 }

@@ -20,7 +20,7 @@ public class Event : ScriptableObject
         data = d;
         foreach (EventListener el in _listeners)
         {
-            el.onEvent(data);
+            
         }
     }
 

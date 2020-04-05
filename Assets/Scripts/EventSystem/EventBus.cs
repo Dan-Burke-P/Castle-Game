@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,20 +8,20 @@ namespace EventSystem {
         
     public class EventBus
     {
+        
         // Use singleton design so we can centralize how we register events to a single back bone component
         private static EventBus _instance;
 
         /// <summary>
         /// A dictionary defining our system event lists keyed to their enums
         /// </summary>
-        public Dictionary<SysTarget ,SystemEventList> SystemEvents 
-            = new Dictionary<SysTarget, SystemEventList>();
+        public Dictionary<SysTarget ,SystemEventList> SystemEvents = new Dictionary<SysTarget, SystemEventList>();   
         
         /// <summary>
         /// Tracker to check that the event system is initialized before using it
         /// </summary>
         public bool initialized = false;
-
+        
         // Make sure we private the constructor to avoid other instances being made errantly 
         private EventBus(){
             _initSystemList();
@@ -30,7 +31,11 @@ namespace EventSystem {
         /// Initialize our SystemList 
         /// </summary>
         private void _initSystemList(){
-            
+            // Iterate through each member of our enum
+            foreach (SysTarget st in Enum.GetValues(typeof(SysTarget))){
+                SystemEventList tmp = new SystemEventList(st);
+                SystemEvents.Add(st, tmp);
+            }
         }
         public static EventBus Instance(){
             if (_instance == null){
@@ -41,31 +46,19 @@ namespace EventSystem {
                 return _instance;
             }
         }
-        
-        public bool checkEventExists(string ename){
-            return registeredEvents.ContainsKey(ename);
-        }
-    
-        public SystemEventList findSystem(SysTarget sys){
-            // Storage variable for the return from the search
-            SystemEventList sysEventList;
-            if (registeredEvents.TryGetValue(eventName, out sysEventList)){
-                return re;
-            }
-            return new SystemEventList("INVALID-EVENT");
-        }
-        
-        
-        
-        public int RegisterEvent(EventDefinition ed){
-            SystemEventList re = findRegisteredEvent(ed.sysTarget);
-    
-            if (re.eventName.Equals("INVALID-EVENT")){
-                Debug.LogError($"Failed to find event {ed.sysTarget}");
-                return -1;
-            }
-    
-            re.registerTarget(ed.target, ed.action);
+
+        /// <summary>
+        /// Registers an event to the event system 
+        /// </summary>
+        /// <param name="ed">
+        /// The event definition we want to associate with the event 
+        /// </param>
+        /// <param name="action">
+        /// The action we want to attach to the event definition 
+        /// </param>
+        /// <returns></returns>
+        public int RegisterEvent(EventDefinition ed, UnityAction<Dictionary<string, object>, int, object> action){
+            SystemEvents[ed.sysTarget].registerTarget(ed.target, action);
             return 0;
         }
     
@@ -114,27 +107,28 @@ namespace EventSystem {
         /// </returns>
         public int raiseEvent(SysTarget sys,string trg,int ID,
             object caller ,Dictionary<string, object> prm){
+
+            SystemEvents[sys].RaiseTarget(trg, ID, caller, prm);
             
-            // Try to find the registered system
-            SystemEventList SEL = findSystem(sys);
-            
-            if (re.eventName.Equals("INVALID-EVENT")){
-                // If we get an invalid event back just exit badly
-                Debug.LogError($"Event: {ed.systemName} Targeting: {ed.target} Failed to find event");
-                return -1;
-            }
-            re.RaiseTarget(ed.target, prm);
-    
             return 0;
         }
-    
-        public void printEventList(){
-            string str = "";
-            foreach (string s in registeredEvents.Keys){
-                str += $"{s} ,";
+
+        /// <summary>
+        /// For debug purposes, create a string representation of the event system
+        /// </summary>
+        /// <returns></returns>
+        public string getEventSystemString(){
+
+            string ret = "";
+
+            foreach (SystemEventList se in SystemEvents.Values){
+                ret += se.ToString();
+                ret += "\n";
             }
-            Debug.Log("Events registered: " + str);
+            
+            return ret;
+
+
         }
-        
     }   
 }

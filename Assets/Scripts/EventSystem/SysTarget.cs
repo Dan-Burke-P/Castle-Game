@@ -4,8 +4,9 @@ namespace EventSystem {
     /// Enum definition for defining the systems we want to be able to target
     /// </summary>
     public enum SysTarget {
-        UI,
-        Board,
-        Player
+        UI,        // UI system
+        Board,     // Game board system
+        Player,    // Player manager system
+        Test       // Test System for ensuring functionality 
     }
 }
