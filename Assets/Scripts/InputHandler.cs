@@ -1,4 +1,5 @@
-﻿using System;
+﻿/*
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,9 @@ using UnityEngine.UI;
 
 // Handles the user input and dispatches events based on what the player is doing
 public class InputHandler : MonoBehaviour {
+    
+    
+    EventDefinition displayUnitUI = new EventDefinition("displayUnitUI", "displayUnitUI", 0);
     
     private int _gbLayerMask = 1 << 8;
     
@@ -48,24 +52,15 @@ public class InputHandler : MonoBehaviour {
                     int xtrg, ytrg;
                     xtrg = (int) Math.Floor(hit.point.x);
                     ytrg = (int)Math.Abs(Math.Floor(hit.point.z));
-                    
-                    Debug.Log(xtrg + " " + ytrg);
-                    
+        
                     BaseUnit tmp = bs.getPieceAtLoc(xtrg, ytrg);
                     if (tmp != null) {
-                        label.text = tmp.unitName;
-                    }
-                    else {
-                        label.text = "none";
+                        EventBus.Instance().raiseEvent(displayUnitUI, new Dictionary<string, object> {
+                            {"unitData", tmp}
+                        });
                     }
                 }
-                
-                
-            }        
-            else{
-                
-            }
-        
+            }  
         }
         else{
             
@@ -108,3 +103,4 @@ public class InputHandler : MonoBehaviour {
         
     }
 }
+*/

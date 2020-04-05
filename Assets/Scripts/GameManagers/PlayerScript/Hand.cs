@@ -9,14 +9,14 @@ public class Hand : ScriptableObject
     public int maxHandSize;
     public List<Card> cards;
 
-    public EventListener addToHand;
-    public EventListener removeFromHand;
+    //public EventListener addToHand;
+    //public EventListener removeFromHand;
 
 
     public void init()
     {
         cards.Clear();
-        addToHand.registerAction(addCardToHand);
+        //addToHand.registerAction(addCardToHand);
     }
 
     public void addCardToHand(Dictionary<string, object> varg)
