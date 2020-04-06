@@ -7,6 +7,7 @@ namespace EventSystem {
         UI,        // UI system
         Board,     // Game board system
         Player,    // Player manager system
-        Test       // Test System for ensuring functionality 
+        Test,      // Test System for ensuring functionality 
+        Unit       // Unit system 
     }
 }

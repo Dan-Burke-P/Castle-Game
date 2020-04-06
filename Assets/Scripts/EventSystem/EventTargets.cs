@@ -16,6 +16,12 @@ public class EventTargets
         callStack += ua;
     }
 
+    public void removeCallBack(UnityAction<Dictionary<string, object>, int, object> ua){
+        callStack -= ua;
+    }
+
+
+    
     public void invoke(Dictionary<string, object> prms, int ID, object cllr){
         callStack(prms, ID, cllr);
     }

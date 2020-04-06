@@ -1,15 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using EventSystem;
 using UnityEngine;
 using UnityEngine.UI;
 using EventSystem;
 public class EventTestDriver : MonoBehaviour{
-    
-    
-    
-    public Text ESPrintOut;
 
+    public Text ESPrintOut;
+    public GameObject go;
     public EventDefSO def;
     // Start is called before the first frame update
     void Start()
@@ -48,10 +47,42 @@ public class EventTestDriver : MonoBehaviour{
     public void raiseEventSO(){
         EventDefinition tmp = new EventDefinition(def.sysTarget, def.target, this);
         
-        tmp.raise(0, new Dictionary<string, object>{});
+        tmp.raise(0, new Dictionary<string, object>{
+            {"x", 5},
+            {"y", 3}
+        });
     }
+    
+    /// <summary>
+    /// Expected params
+    /// "x" : x-cord
+    /// "y" : y-cord
+    /// </summary>
+    /// <param name="prms"></param>
+    /// <param name="ID"></param>
+    /// <param name="caller"></param>
     public void testFunction(Dictionary<string, object> prms, int ID, object caller){
         Debug.Log("Test Function Is Called by: " + caller.ToString() + " With ID: " + ID);
+
+        object x;
+        object y;
+        
+        if (!prms.TryGetValue("x", out x)){
+            Debug.LogError("Message did not contain x parameter in dictionary");
+            return;
+        }
+        
+        if (!prms.TryGetValue("y", out y)){
+            Debug.LogError("Message did not contain y parameter in dictionary");
+            return;
+        }
+
+        int xCord = x is int ? (int) x : 0;
+        int yCord = y is int ? (int) y : 0;
+        
+        Debug.Log(x);
+        
+        go.transform.localPosition = new Vector3(xCord, yCord, 0);
     }
     
 }
