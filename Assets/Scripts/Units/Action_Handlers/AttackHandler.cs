@@ -1,10 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EventSystem;
 
 public class AttackHandler : MonoBehaviour
 {
-	public static void handleAttack(BaseUnit attacker, BaseUnit defender) {
+	
+	public void Start() {
+		EventDefinition attackEvent = new EventDefinition(SysTarget.Unit, "UnitAttack");
+		attackEvent.register(handleAttack);
+	}
+
+	public void handleAttack(Dictionary<string, object> Params, int ID, object Caller) {
+		BaseUnit attacker, defender;
+		Params.TryGetValue("attacker", out attacker as BaseUnit);
+		Params.TryGetValue("defender", out defender as BaseUnit);
+		
 		// Damage calculation
 		defender.HP -= calculateDamage(attacker, defender);
 		
