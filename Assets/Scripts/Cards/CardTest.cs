@@ -12,11 +12,11 @@ public class CardTest : MonoBehaviour
     public Hand testHand;
 
     private UnityAction<string, object> ua;
-    public EventListener el;
+    //public EventListener el;
 
     private void Start()
     {
-        el.registerAction(testPrint);
+        //el.registerAction(testPrint);
     }
 
     public void testAddSoldier()
