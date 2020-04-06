@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{17D34C55-E60C-5B4B-2F51-0752C2711DE9}</ProjectGuid>
+    <ProjectGuid>{6AE47D86-FD0B-652D-F514-F133FA6E48F3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -87,11 +87,13 @@
      <Compile Include="Assets\Scripts\GameManagers\PlayerScript\Player.cs" />
      <Compile Include="Assets\Scripts\HandUI.cs" />
      <Compile Include="Assets\Scripts\InputHandler.cs" />
+     <Compile Include="Assets\Scripts\MainMenuHandler.cs" />
      <Compile Include="Assets\Scripts\NetworkSystem\NetClient.cs" />
      <Compile Include="Assets\Scripts\NetworkSystem\NetConn.cs" />
      <Compile Include="Assets\Scripts\NetworkSystem\NetServer.cs" />
      <Compile Include="Assets\Scripts\NetworkSystem\NetworkEnums.cs" />
      <Compile Include="Assets\Scripts\NetworkSystem\PrintWrapper.cs" />
+     <Compile Include="Assets\Scripts\NetworkSystem\TSqueue.cs" />
      <Compile Include="Assets\Scripts\UISystem\UIHandler.cs" />
      <Compile Include="Assets\Scripts\UISystem\UIUnitSystem.cs" />
      <Compile Include="Assets\Scripts\Units\BaseUnit.cs" />
@@ -101,33 +103,34 @@
      <Compile Include="Assets\Test\BoardTests\TestBoardGeneration.cs" />
      <Compile Include="Assets\Test\EventSystemTests\EventTestDriver.cs" />
      <Compile Include="Assets\Test\NetworkSystemTests\NetTestDriver.cs" />
+     <Compile Include="Assets\Test\NetworkSystemTests\TSqueueTesting\TSqueueTestDriver.cs" />
      <Compile Include="Assets\UnitHandler.cs" />
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>F:/Game Dev/Castle-Game/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
- <HintPath>F:/Game Dev/Castle-Game/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>F:/Game Dev/Castle-Game/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>F:/Game Dev/Castle-Game/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>F:/Game Dev/Castle-Game/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>F:/Game Dev/Castle-Game/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
- <HintPath>F:/Game Dev/Castle-Game/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>F:/Game Dev/Castle-Game/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>F:/Game Dev/Castle-Game/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.1f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

@@ -2,9 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using NetworkSystem;
+using UnityEngine.UI;
+
 public class NetTestDriver : MonoBehaviour{
     
     public PrintWrapper pw;
+
+    public InputField input;
+
+    public Text output;
+    
+    private NetConn test;
     // Start is called before the first frame update
     void Start()
     {
@@ -12,9 +20,13 @@ public class NetTestDriver : MonoBehaviour{
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update(){
+        if (test != null){
+            string tmp;
+            if (test.getMessage(out tmp)){
+                output.text += tmp + "\n";
+            }
+        }
     }
 
     /// <summary>
@@ -22,12 +34,18 @@ public class NetTestDriver : MonoBehaviour{
     /// </summary>
     public void setHost(){
         Debug.Log("Setting as host!");
-        NetConn test = new NetConn(pw ,"localhost", 33, mode.HOST);
+        test = new NetConn(pw ,"localhost", 12345, mode.HOST);
     }
 
 
     public void setClient(){
         Debug.Log("Setting as client!");
-        NetConn test = new NetConn(pw ,"localhost", 33, mode.CLIENT);
+        test = new NetConn(pw ,"localhost", 12345, mode.CLIENT);
+    }
+
+    public void sendMessageS(){
+        string message = input.text;
+        input.text = "";
+        test.sendMessage(message);
     }
 }

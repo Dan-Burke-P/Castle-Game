@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
@@ -19,8 +20,8 @@ namespace NetworkSystem{
         private Thread clientReceiveThread;
 
         private NetServer _server;
-        
-        
+        private NetClient _client;
+
 
         private PrintWrapper pw;
         /// <summary>
@@ -49,9 +50,12 @@ namespace NetworkSystem{
             if (netMode == mode.HOST){
                 _server = new NetServer(IP, port);
                 _server.setPWrp(pw);
+                _server.StartServer();
             }
             else{
-                _initClient();
+                _client = new NetClient(IP, port);
+                _client.setPWrp(pw);
+                _client.startConnection();
             }
         }
         
@@ -76,8 +80,34 @@ namespace NetworkSystem{
 
         }
 
+
+        public void sendMessage(string S){
+            Debug.Log($"Sending message: {S}");
+
+            if (netMode == mode.HOST){
+                _server.sendString(S);
+            }
+
+            if (netMode == mode.CLIENT){
+                _client.sendMessage(S);
+            }
+        }
+        
         public bool endConnection(){
             return true;
+        }
+
+        public bool getMessage(out string msg){
+            bool status = false;
+            if (netMode == mode.HOST){
+                status = _server.getMessage(out msg);
+            }else if (netMode == mode.CLIENT){
+                status = _client.getMessage(out msg);
+            }
+            else{
+                msg = "";
+            }
+            return status;
         }
     }
 }
