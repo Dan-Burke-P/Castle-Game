@@ -12,8 +12,7 @@ public static class EventInitializer
         "AddUnitToBoard",
         "SelectUnit",
         "RemoveUnitFromBoard",
-        "MoveUnit",
-        "AddCardToHand"
+        "MoveUnit"
     };
 
     public static void initEvents(){
