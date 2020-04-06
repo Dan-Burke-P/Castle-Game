@@ -5,7 +5,9 @@ using System.Threading;
 
 namespace NetworkSystem{
     public class NetClient{
-
+        
+        private callBack cb;
+        
         private string _IP;
         private int _port;
 
@@ -49,6 +51,18 @@ namespace NetworkSystem{
                 printS(e.ToString());
             }
         }
+        
+        public void startConnection(callBack _cb){
+            try{
+                cb = _cb;
+                cThread = new Thread(new ThreadStart(clientThread));
+                cThread.IsBackground = true;
+                cThread.Start();
+            }
+            catch (Exception e){
+                printS(e.ToString());
+            }
+        }
 
         public void stopConnection(){
             
@@ -57,6 +71,7 @@ namespace NetworkSystem{
         private void clientThread(){
             try{
                 socketConnection = new TcpClient("localhost", _port);
+                cb?.Invoke("Connected to host");
                 Byte[] bytes = new byte[1024];
                 while (true){
                     using (NetworkStream stream = socketConnection.GetStream()){

@@ -12,6 +12,12 @@ using System.Threading;
 namespace NetworkSystem{
     
     /// <summary>
+    /// Call back for the connection attempt to notify the calling user the status of the connection
+    /// </summary>
+    /// <param name="s">The message that will be delivered by netconn</param>
+    public delegate void callBack(string s);
+    
+    /// <summary>
     /// The basic network connection interface
     /// </summary>
     public class NetConn{
@@ -51,6 +57,58 @@ namespace NetworkSystem{
                 _server = new NetServer(IP, port);
                 _server.setPWrp(pw);
                 _server.StartServer();
+            }
+            else{
+                _client = new NetClient(IP, port);
+                _client.setPWrp(pw);
+                _client.startConnection();
+            }
+        }
+        
+        public NetConn( string _IP, int _PORT, mode _MODE){
+            netMode = _MODE;
+            IP = _IP;
+            port = _PORT;
+
+            if (netMode == mode.HOST){
+                _server = new NetServer(IP, port);
+                _server.setPWrp(pw);
+                _server.StartServer();
+            }
+            else{
+                _client = new NetClient(IP, port);
+                _client.setPWrp(pw);
+                _client.startConnection();
+            }
+        }
+        
+        public NetConn(callBack cb, string _IP, int _PORT, mode _MODE){
+            netMode = _MODE;
+            IP = _IP;
+            port = _PORT;
+
+            if (netMode == mode.HOST){
+                _server = new NetServer(IP, port);
+                _server.setPWrp(pw);
+                _server.StartServer(cb);
+            }
+            else{
+                _client = new NetClient(IP, port);
+                _client.setPWrp(pw);
+                _client.startConnection();
+            }
+        }
+        
+        public NetConn(PrintWrapper _PW, callBack cb, string _IP, int _PORT, mode _MODE){
+            netMode = _MODE;
+            IP = _IP;
+            port = _PORT;
+            pw = _PW;
+            
+            if (netMode == mode.HOST){
+                _server = new NetServer(IP, port);
+                _server.setPWrp(pw);
+                _server.StartServer(cb);
             }
             else{
                 _client = new NetClient(IP, port);

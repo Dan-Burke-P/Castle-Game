@@ -74,6 +74,7 @@
      <Compile Include="Assets\Scripts\Cards\CardType.cs" />
      <Compile Include="Assets\Scripts\Cards\IBaseCard.cs" />
      <Compile Include="Assets\Scripts\Cards\Test.cs" />
+     <Compile Include="Assets\Scripts\EscapeReset.cs" />
      <Compile Include="Assets\Scripts\EventSystem\Event.cs" />
      <Compile Include="Assets\Scripts\EventSystem\EventBus.cs" />
      <Compile Include="Assets\Scripts\EventSystem\EventDefSO.cs" />
@@ -104,6 +105,7 @@
      <Compile Include="Assets\Test\EventSystemTests\EventTestDriver.cs" />
      <Compile Include="Assets\Test\NetworkSystemTests\NetTestDriver.cs" />
      <Compile Include="Assets\Test\NetworkSystemTests\TSqueueTesting\TSqueueTestDriver.cs" />
+     <Compile Include="Assets\Test\NetworkSystemTests\TicTacNETDEMO\TicTacTestGM.cs" />
      <Compile Include="Assets\UnitHandler.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

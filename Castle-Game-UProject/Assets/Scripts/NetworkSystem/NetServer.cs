@@ -18,12 +18,13 @@ namespace NetworkSystem{
         private int _port;
 
         private PrintWrapper _pw;
-        
+
+        private callBack cb;
         public NetServer(string IP, int PORT){
             _IP = IP;
             _port = PORT;
         }
-
+   
         /// <summary>
         /// Set a print wrapper
         /// </summary>
@@ -43,6 +44,14 @@ namespace NetworkSystem{
         }
         
         public void StartServer(){
+            sThread = new Thread(new ThreadStart(serverThread));
+            sThread.IsBackground = true;
+            sThread.Start();
+        }
+        
+        public void StartServer(callBack _cb){
+            
+            cb = _cb;
             sThread = new Thread(new ThreadStart(serverThread));
             sThread.IsBackground = true;
             sThread.Start();
@@ -76,7 +85,11 @@ namespace NetworkSystem{
                 _tcpListener.Start();
                 _tcpClient = _tcpListener.AcceptTcpClient();
                 NetworkStream stream = _tcpClient.GetStream();
+                
+                cb?.Invoke("Client Connected");
+                
                 Byte[] bytes = new byte[1024];
+                
                 while (true){
                     int length;
                     while ((length = stream.Read(bytes, 0, bytes.Length)) > 0){
