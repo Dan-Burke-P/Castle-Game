@@ -133,38 +133,37 @@ namespace NetworkSystem{
             }
             catch (Exception e)
             {
-                Debug.Log(e.ToString());
+                pw.print(e.ToString());
             }
 
         }
 
-
-        public void sendMessage(string S){
-            Debug.Log($"Sending message: {S}");
+        public void sendNetPacket(NetPacket np){
+            pw.print("Sending packet stream...");
 
             if (netMode == mode.HOST){
-                _server.sendString(S);
+                _server.sendNetPacket(np);
             }
 
             if (netMode == mode.CLIENT){
-                _client.sendMessage(S);
+                _client.sendNetPacket(np);
             }
         }
         
         public bool endConnection(){
             return true;
         }
+        
 
-        public bool getMessage(out string msg){
+        public bool getNetPacket(out NetPacket np){
             bool status = false;
-            if (netMode == mode.HOST){
-                status = _server.getMessage(out msg);
-            }else if (netMode == mode.CLIENT){
-                status = _client.getMessage(out msg);
+            if (netMode == mode.CLIENT){
+                status = _client.getPacket(out np);
             }
             else{
-                msg = "";
+                np = null;
             }
+
             return status;
         }
     }

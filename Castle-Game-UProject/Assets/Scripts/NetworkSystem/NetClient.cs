@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Net.Sockets;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 
@@ -14,7 +16,7 @@ namespace NetworkSystem{
         private TcpClient socketConnection;
         private Thread cThread;
 
-        private TSqueue<string> _squeue = new TSqueue<string>();
+        private TSqueue<NetPacket> _squeue = new TSqueue<NetPacket>();
 
         private PrintWrapper _pw;
         
@@ -72,17 +74,17 @@ namespace NetworkSystem{
             try{
                 socketConnection = new TcpClient("localhost", _port);
                 cb?.Invoke("Connected to host");
-                Byte[] bytes = new byte[1024];
+                NetworkStream stream = socketConnection.GetStream();
+                
+                Byte[] bytes = new byte[4];
                 while (true){
-                    using (NetworkStream stream = socketConnection.GetStream()){
-                        int length;
-                        while ((length = stream.Read(bytes, 0, bytes.Length)) != 0){
-                            var incommingData = new byte[length];
-                            Array.Copy(bytes, 0, incommingData, 0, length);
-                            string serverMessage = Encoding.ASCII.GetString(incommingData);
-                            printS(serverMessage);
-                            _squeue.enqueue(serverMessage);
-                        }
+                    int length;
+                    
+                    // If we have data attempt to read the first 4 bytes to get the size of the whole packet we will be reading
+                    if (stream.DataAvailable){
+                        stream.Read(bytes, 0, 4);
+                        length = BitConverter.ToInt32(bytes, 0);
+                        printS(length.ToString());
                     }
                 }
             }
@@ -91,7 +93,7 @@ namespace NetworkSystem{
             }
         }
 
-        public void sendMessage(string s){
+        public void sendNetPacket(NetPacket np){
             if (socketConnection == null){
                 return;
             }
@@ -99,8 +101,8 @@ namespace NetworkSystem{
             try{
                 NetworkStream stream = socketConnection.GetStream();
                 if (stream.CanWrite){
-                    byte[] messageBArr = Encoding.ASCII.GetBytes(s);
-                    stream.Write(messageBArr, 0, messageBArr.Length);
+                    // First write the size of the packet we want to send
+                    stream.Write(BitConverter.GetBytes(np.size),0,4);
                 }
             }
             catch (SocketException e){
@@ -108,7 +110,19 @@ namespace NetworkSystem{
             }
         }
         
-        public bool getMessage(out string msg){
+        public bool getPacket(out NetPacket np){
+            NetPacket ret;
+            if (_squeue.tryDequeue(out ret)){
+                printS("Found network packet in queue");
+                np = ret;
+                return true;
+            }
+
+            np = null;
+            return false;
+        }
+        
+        /*public bool getMessage(out string msg){
             string ret;
             if (_squeue.tryDequeue(out ret)){
                 printS("Found return string: " + ret);
@@ -118,6 +132,6 @@ namespace NetworkSystem{
 
             msg = "";
             return false;
-        }
+        }*/
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 
@@ -12,7 +14,7 @@ namespace NetworkSystem{
         private TcpClient _tcpClient;
         private Thread sThread;
         
-        private TSqueue<string> _squeue = new TSqueue<string>();
+        private TSqueue<NetPacket> _squeue = new TSqueue<NetPacket>();
         
         private string _IP;
         private int _port;
@@ -88,16 +90,14 @@ namespace NetworkSystem{
                 
                 cb?.Invoke("Client Connected");
                 
-                Byte[] bytes = new byte[1024];
-                
+                Byte[] bytes = new byte[4];
                 while (true){
                     int length;
-                    while ((length = stream.Read(bytes, 0, bytes.Length)) > 0){
-                        var incomingData = new byte[length];
-                        Array.Copy(bytes, 0, incomingData, 0, length);
-                        string clientMessage = Encoding.ASCII.GetString(incomingData);
-                        printS(clientMessage);
-                        _squeue.enqueue(clientMessage);
+                    if (stream.DataAvailable){
+                        // Read the first 4 bytes
+                        stream.Read(bytes, 0, 4);
+                        length = BitConverter.ToInt32(bytes, 0);
+                        printS(length.ToString());
                     }
                 }
                 
@@ -106,17 +106,22 @@ namespace NetworkSystem{
                 printS(e.ToString());
             }
         }
-
-        public bool getMessage(out string msg){
-            string ret;
-            if (_squeue.tryDequeue(out ret)){
-                printS("Found return string: " + ret);
-                msg = ret;
-                return true;
+        
+        public void sendNetPacket(NetPacket np){
+            if (_tcpClient == null){
+                return;
             }
 
-            msg = "";
-            return false;
+            try{
+                NetworkStream stream = _tcpClient.GetStream();
+                if (stream.CanWrite){
+                    // First write the size of the packet we want to send
+                    stream.Write(BitConverter.GetBytes(np.size),0,4);
+                }
+            }
+            catch (SocketException e){
+                printS(e.ToString());
+            }
         }
         
     }

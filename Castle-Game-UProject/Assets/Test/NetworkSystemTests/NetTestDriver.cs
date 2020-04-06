@@ -22,9 +22,9 @@ public class NetTestDriver : MonoBehaviour{
     // Update is called once per frame
     void Update(){
         if (test != null){
-            string tmp;
-            if (test.getMessage(out tmp)){
-                output.text += tmp + "\n";
+            NetPacket tmp;
+            if (test.getNetPacket(out tmp)){
+                output.text += tmp.data + "\n";
             }
         }
     }
@@ -44,8 +44,10 @@ public class NetTestDriver : MonoBehaviour{
     }
 
     public void sendMessageS(){
-        string message = input.text;
+        NetPacket np = new NetPacket();
+        np.data = 5;
+        np.size = 4;
         input.text = "";
-        test.sendMessage(message);
+        test.sendNetPacket(np);
     }
 }

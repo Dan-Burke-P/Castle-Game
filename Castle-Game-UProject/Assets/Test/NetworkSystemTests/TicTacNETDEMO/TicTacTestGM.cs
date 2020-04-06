@@ -7,6 +7,7 @@ using UnityEngine.UI;
 namespace NetworkSystemTests.TicTacNETDEMO{
     public class TicTacTestGM : MonoBehaviour{
 
+        public GameObject XP_GO, OP_GO;
 
         public GameObject[] sprites;
 
@@ -24,7 +25,7 @@ namespace NetworkSystemTests.TicTacNETDEMO{
         
         public enum pieceType{
             XPIECE,
-            YPIECE,
+            OPIECE,
             EMPTY
         }
         
@@ -34,6 +35,9 @@ namespace NetworkSystemTests.TicTacNETDEMO{
 
         public GameObject connectionsPanel;
 
+        public Transform crossBar;
+        
+        
         private NetConn nc;
 
         /// <summary>
@@ -46,6 +50,8 @@ namespace NetworkSystemTests.TicTacNETDEMO{
         /// show how this lines up to the actual grid
         /// </summary>
         private pieceType[] board = new pieceType[9];
+        
+        private bool[] boardSet = new bool[9];
         /*
          Game board relation to array
          add one to these to get the board readout
@@ -59,11 +65,13 @@ namespace NetworkSystemTests.TicTacNETDEMO{
 
         private void OnEnable(){
             _resetBoard();
+            
         }
 
         private void _resetBoard(){
             for (int i = 0; i < board.Length; i++){
                 board[i] = pieceType.EMPTY;
+                boardSet[i] = false;
             }
 
             for (int i = 0; i < sprites.Length; i++){
@@ -72,9 +80,14 @@ namespace NetworkSystemTests.TicTacNETDEMO{
         }
 
         public void input(int num){
-            Debug.Log($"Input detected as: {num}");
             // Hide the pressed numbers sprite
             sprites[num].SetActive(false);
+
+            board[num - 1] = pieceType.XPIECE;
+            
+            updateBoardUI();
+            
+            checkWin();
         }
         
         public void play(int pos){
@@ -83,15 +96,92 @@ namespace NetworkSystemTests.TicTacNETDEMO{
 
         public void updateBoardUI(){
             for (int i = 0; i < board.Length; i++){
-                if (board[i] == pieceType.XPIECE){
+                if (board[i] == pieceType.XPIECE && !boardSet[i]){
+                    
+                    GameObject tmp = Instantiate(XP_GO);
+                    tmp.transform.position = pieceSlots[i];
+                    boardSet[i] = true;
+
+                }else if (board[i] == pieceType.OPIECE){
                     
                 }
-                board[i] = pieceType.EMPTY;
             }
         }
 
-        public void checkWin(){
+        public pieceType checkWin(){
+            for (int i = 0; i < 3; i++){
+                int horzBase = i * 3;
+                if (checkThreeMatch(horzBase, horzBase + 1, horzBase + 2)){
+                    crossBar.position = pieceSlots[horzBase + 1];
+                    crossBar.Rotate(Vector3.back, 90f);
+                    if (board[horzBase] == pieceType.XPIECE){
+                        Debug.Log("The cross player wins!");
+                        return pieceType.XPIECE;
+                    }
+                    else{
+                        Debug.Log("The Naughts player wins!");
+                        return pieceType.OPIECE;
+                    }
+                }
+
+                if (checkThreeMatch(i, i + 3, i + 6)){
+                    crossBar.position = pieceSlots[horzBase + 3];
+                    if (board[i] == pieceType.XPIECE){
+                        Debug.Log("The cross player wins!");
+                        return pieceType.XPIECE;
+                    }
+                    else{
+                        Debug.Log("The Naughts player wins!");
+                        return pieceType.OPIECE;
+                    }
+                }
+            }
+
+            if (checkThreeMatch(0, 4, 8)){
+                crossBar.position = pieceSlots[4];
+                crossBar.Rotate(Vector3.back, 45f);
+                if (board[0] == pieceType.XPIECE){
+                    Debug.Log("The cross player wins!");
+                    return pieceType.XPIECE;
+                }
+                else{
+                    Debug.Log("The Naughts player wins!");
+                    return pieceType.OPIECE;
+                }
+            }
             
+            if (checkThreeMatch(2, 4, 6)){
+                crossBar.position = pieceSlots[4];
+                crossBar.Rotate(Vector3.back, -45f);
+                if (board[2] == pieceType.XPIECE){
+                    Debug.Log("The cross player wins!");
+                    return pieceType.XPIECE;
+                }
+                else{
+                    Debug.Log("The Naughts player wins!");
+                    return pieceType.OPIECE;
+                }
+            }
+
+            return pieceType.EMPTY;
+        }
+
+        /// <summary>
+        /// Given 3 indices check if they all match and return the result
+        /// </summary>
+        /// <returns></returns>
+        public bool checkThreeMatch(int i, int j, int k){
+            
+            // Make sure we don't go out of bounds
+            if (i > 8 || j > 8 || k > 8){
+                return false;
+            }
+            // If any of the questioned slots are empty there is no possible match
+            if (board[i] == pieceType.EMPTY || board[j] == pieceType.EMPTY || board[k] == pieceType.EMPTY){
+                return false;
+            }
+            // if the first equals the second and third then they are all equal
+            return board[i] == board[j] && board[i] == board[j];
         }
         
         public void becomeHost(){
