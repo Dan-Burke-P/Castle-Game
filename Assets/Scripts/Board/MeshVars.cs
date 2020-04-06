@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
-using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
+
+#if UNITY_EDITOR
+using UnityEditor;
+using UnityEditor.UIElements;
+#endif
 
 [CreateAssetMenu(menuName="Board/Mesh Vars")]
 public class MeshVars : ScriptableObject
@@ -54,6 +57,8 @@ public struct TriGroup
 }
 
 
+#if UNITY_EDITOR
+
 [CustomPropertyDrawer(typeof(TriGroup))]
 public class MeshVarUIE: PropertyDrawer
 {
@@ -102,3 +107,5 @@ public class MeshVarUIE: PropertyDrawer
         EditorGUI.EndProperty();
     }
 }
+
+#endif

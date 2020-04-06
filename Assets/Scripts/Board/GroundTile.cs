@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.UIElements;
 using UnityEngine;
 
+#if UNITY_EDITOR
+using UnityEditor.UIElements;
 [ExecuteInEditMode]
+#endif
 public class GroundTile : MonoBehaviour
 {
     public float sideLen = 1;

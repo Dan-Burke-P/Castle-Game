@@ -15,7 +15,11 @@ public class TestBoardGeneration : MonoBehaviour {
         if (testBoardSpace == null) {
             Debug.LogError("Test Board Space was not attached to the test script!");
             Application.Quit();
-            EditorApplication.ExitPlaymode();
+            
+            #if UNITY_EDITOR
+            EditorApplication.ExitPlaymode();      
+            #endif
+            
         }
     }
 
@@ -25,7 +29,11 @@ public class TestBoardGeneration : MonoBehaviour {
             
             
             Application.Quit();
-            EditorApplication.ExitPlaymode();
+            
+            #if UNITY_EDITOR
+            EditorApplication.ExitPlaymode();      
+            #endif
+            
             Destroy(this);
         }
     }
@@ -39,7 +47,7 @@ public class TestBoardGeneration : MonoBehaviour {
         bool _passed = true;
 
         // Going to make a way of masking failures to adequately communicate failed tests
-        int failStatus = 0;
+        //int failStatus = 0;
        
         if (!_testInitBoardSpace()) _passed = false;
 

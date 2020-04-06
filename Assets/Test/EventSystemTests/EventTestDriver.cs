@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using EventSystem;
 using UnityEngine;
 using UnityEngine.UI;
-using EventSystem;
 public class EventTestDriver : MonoBehaviour{
 
     public Text ESPrintOut;
