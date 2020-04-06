@@ -69,4 +69,21 @@ public class EventTester : MonoBehaviour
         
         EventBus.Instance().raiseEvent(ed, prms);
     }
+
+    public void TEST_raiseAddCardToHand()
+    {
+        EventDefinition ed = new EventDefinition();
+        ed.eventName = "AddCardToHand";
+        ed.eventTarget = "playerHand";
+
+        Card c = ScriptableObject.CreateInstance<CRD_SU_soldier>();
+
+        Dictionary<string, object> prms = new Dictionary<string, object>();
+
+        prms.Add("card", c);
+
+        hand.addCardToHand(prms);
+        
+        EventBus.Instance().raiseEvent(ed, prms);
+    }
 }
