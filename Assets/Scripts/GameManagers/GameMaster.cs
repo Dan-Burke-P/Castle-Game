@@ -6,7 +6,7 @@ public class GameMaster : MonoBehaviour
 {
     void Awake(){
         // First thing we do is register all of the event types we will be using
-        EventInitializer.initEvents();
+        //EventInitializer.initEvents();
     }
 
     // Start is called before the first frame update

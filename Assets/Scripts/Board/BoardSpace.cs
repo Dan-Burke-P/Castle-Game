@@ -42,11 +42,11 @@ public class BoardSpace : MonoBehaviour
         // Initialize the board space
         _initBoardSpace();
         
-        EventDefinition ed = new EventDefinition();
-        ed.eventName = "AddUnitToBoard";
-        ed.eventTarget = "addBaseUnit";
-        ed.action = addGamepiece;
-        EventBus.Instance().RegisterEvent(ed);
+        //EventDefinition ed = new EventDefinition();
+        // ed.systemName = "AddUnitToBoard";
+        // ed.target = "addBaseUnit";
+        // ed.action = addGamepiece;
+        //EventBus.Instance().RegisterEvent(ed);
 
         initialized = true;
     }
