@@ -18,9 +18,9 @@ namespace NetworkSystem{
         private TcpClient socketConnection;
         private Thread clientReceiveThread;
 
-        private TcpListener tcpLister;
-        private Thread tcpListenerThread;
-        private TcpClient connectedTcpClient;
+        private NetServer _server;
+        
+        
 
         private PrintWrapper pw;
         /// <summary>
@@ -47,48 +47,11 @@ namespace NetworkSystem{
             pw = _PW;
             
             if (netMode == mode.HOST){
-                _initHost();
+                _server = new NetServer(IP, port);
+                _server.setPWrp(pw);
             }
             else{
                 _initClient();
-            }
-        }
-
-        private void _initHost(){
-            pw.print("Starting as host...");
-            tcpListenerThread = new Thread(new ThreadStart(listenForConnection));
-            tcpListenerThread.IsBackground = true;
-            tcpListenerThread.Start();
-            
-        } // End _initHost()
-
-        private void listenForConnection(){
-            try{
-                tcpLister = new TcpListener(IPAddress.Any, port);
-                pw.print("Listening for connection...");
-                tcpLister.Start();
-                Byte[] bytes = new byte[1024];
-                while (true){
-                    using (connectedTcpClient = tcpLister.AcceptTcpClient()){
-                        using (NetworkStream stream = connectedTcpClient.GetStream()){
-                            int length;
-
-                            while ((length = stream.Read(bytes, 0, bytes.Length)) > 0){
-                                var incomingData = new byte[length];
-                                Array.Copy(bytes, 0, incomingData, 0, length);
-                                string clientMessage = Encoding.ASCII.GetString(incomingData);
-                                pw.print(clientMessage);
-                                tcpLister.Stop();
-                                break;
-                            }
-                        }
-                    }
-                    break;
-                }
-                
-            }
-            catch (SocketException e){
-                pw.print(e.ToString());
             }
         }
         
