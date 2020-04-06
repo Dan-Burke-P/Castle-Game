@@ -15,7 +15,11 @@ public class UNIT_Ranged : BaseUnit {
 	public override void attack(BaseUnit targetUnit) {
 		int dist = System.Math.Abs(targetUnit.xPos - xPos) + System.Math.Abs(targetUnit.yPos - yPos);
 		if(dist <= AP) {
-			// raise event to be handled by attack handler
+			this.attackHandler = new AttackHandler();
+			this.attackHandler.attackEvent.raise(0, this, new Dictionary<string, object> {
+											{"Attacker", this},
+											{"Defentder", targetUnit}
+											});
 			AP--;;
 		}
 	}

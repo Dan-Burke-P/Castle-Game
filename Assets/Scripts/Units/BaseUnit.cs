@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseUnit : ScriptableObject{
+public abstract class BaseUnit : ScriptableObject {
     
     public string unitName = "Error Instantiated as a Base Unit";
 	public UnitType unitType = UnitType.Soldier;
@@ -21,14 +21,24 @@ public abstract class BaseUnit : ScriptableObject{
 	public float vsMedic = 1.0f;
 	
     public int xPos, yPos;
+	
+	public AttackHandler attackHandler;
+	public MovementHandler movementHandler;
 
     public GameObject obj;
     public Transform transform;
+	
+	
     
     public void move(int x, int y){
 		int dist = System.Math.Abs(x - xPos) + System.Math.Abs(y - yPos);
         if (dist <= AP /* && there IS NOT a unit on target tile */){
-			// raise event to be handled by movement handler
+			movementHandler = new MovementHandler();
+			movementHandler.moveEvent.raise(0, this, new Dictionary<string, object> {
+												{"Unit", this},
+												{"x", x},
+												{"y", y}
+												});
 			AP -= dist;
 		}
     }
@@ -36,7 +46,11 @@ public abstract class BaseUnit : ScriptableObject{
 	public virtual void attack(BaseUnit targetUnit) {
 		int dist = System.Math.Abs(targetUnit.xPos - xPos) + System.Math.Abs(targetUnit.yPos - yPos);
 		if(dist <= AP) {
-			// raise event to be handled by attack handler
+			attackHandler = new AttackHandler();
+			attackHandler.attackEvent.raise(0, this, new Dictionary<string, object> {
+											{"Attacker", this},
+											{"Defentder", targetUnit}
+											});
 			AP -= dist;
 		}
 	}

@@ -5,16 +5,19 @@ using EventSystem;
 
 public class AttackHandler : MonoBehaviour
 {
+	public EventDefinition attackEvent;
 	
 	public void Start() {
-		EventDefinition attackEvent = new EventDefinition(SysTarget.Unit, "UnitAttack");
+		attackEvent = new EventDefinition(SysTarget.Unit, "UnitAttack", this);
 		attackEvent.register(handleAttack);
-	}
+	} 
 
 	public void handleAttack(Dictionary<string, object> Params, int ID, object Caller) {
-		BaseUnit attacker, defender;
-		Params.TryGetValue("attacker", out attacker as BaseUnit);
-		Params.TryGetValue("defender", out defender as BaseUnit);
+		object attackerObj, defenderObj;
+		Params.TryGetValue("Attacker", out attackerObj);
+		BaseUnit attacker = attackerObj as BaseUnit;
+		Params.TryGetValue("Defender", out defenderObj);
+		BaseUnit defender = defenderObj as BaseUnit;
 		
 		// Damage calculation
 		defender.HP -= calculateDamage(attacker, defender);
