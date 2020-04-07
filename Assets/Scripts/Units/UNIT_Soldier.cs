@@ -9,7 +9,8 @@ public class UNIT_Soldier : BaseUnit {
      * initialize any new fields we are adding that are specific to this unit
      * 
      */
-    public UNIT_Soldier(){
+    public UNIT_Soldier() {
         unitName = "Soldier";
+		vsSiege = 1.4f;
     }
 }
