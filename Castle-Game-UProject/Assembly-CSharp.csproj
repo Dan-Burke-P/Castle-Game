@@ -74,6 +74,7 @@
      <Compile Include="Assets\Scripts\Cards\CardType.cs" />
      <Compile Include="Assets\Scripts\Cards\IBaseCard.cs" />
      <Compile Include="Assets\Scripts\Cards\Test.cs" />
+     <Compile Include="Assets\Scripts\EscapeReset.cs" />
      <Compile Include="Assets\Scripts\EventSystem\Event.cs" />
      <Compile Include="Assets\Scripts\EventSystem\EventBus.cs" />
      <Compile Include="Assets\Scripts\EventSystem\EventDefSO.cs" />
@@ -91,9 +92,15 @@
      <Compile Include="Assets\Scripts\GameManagers\PlayerScript\Player.cs" />
      <Compile Include="Assets\Scripts\HandUI.cs" />
      <Compile Include="Assets\Scripts\InputHandler.cs" />
+     <Compile Include="Assets\Scripts\MainMenuHandler.cs" />
+     <Compile Include="Assets\Scripts\NetworkSystem\NetClient.cs" />
+     <Compile Include="Assets\Scripts\NetworkSystem\NetCommand.cs" />
      <Compile Include="Assets\Scripts\NetworkSystem\NetConn.cs" />
+     <Compile Include="Assets\Scripts\NetworkSystem\NetPacket.cs" />
+     <Compile Include="Assets\Scripts\NetworkSystem\NetServer.cs" />
      <Compile Include="Assets\Scripts\NetworkSystem\NetworkEnums.cs" />
      <Compile Include="Assets\Scripts\NetworkSystem\PrintWrapper.cs" />
+     <Compile Include="Assets\Scripts\NetworkSystem\TSqueue.cs" />
      <Compile Include="Assets\Scripts\UISystem\UIHandler.cs" />
      <Compile Include="Assets\Scripts\UISystem\UIUnitSystem.cs" />
      <Compile Include="Assets\Scripts\Units\Action_Handlers\AttackHandler.cs" />
@@ -110,6 +117,8 @@
      <Compile Include="Assets\Test\BoardTests\TestBoardGeneration.cs" />
      <Compile Include="Assets\Test\EventSystemTests\EventTestDriver.cs" />
      <Compile Include="Assets\Test\NetworkSystemTests\NetTestDriver.cs" />
+     <Compile Include="Assets\Test\NetworkSystemTests\TSqueueTesting\TSqueueTestDriver.cs" />
+     <Compile Include="Assets\Test\NetworkSystemTests\TicTacNETDEMO\TicTacTestGM.cs" />
      <Compile Include="Assets\UnitHandler.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

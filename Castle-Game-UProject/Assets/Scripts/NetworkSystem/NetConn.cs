@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
@@ -11,6 +12,12 @@ using System.Threading;
 namespace NetworkSystem{
     
     /// <summary>
+    /// Call back for the connection attempt to notify the calling user the status of the connection
+    /// </summary>
+    /// <param name="s">The message that will be delivered by netconn</param>
+    public delegate void callBack(string s);
+    
+    /// <summary>
     /// The basic network connection interface
     /// </summary>
     public class NetConn{
@@ -18,9 +25,9 @@ namespace NetworkSystem{
         private TcpClient socketConnection;
         private Thread clientReceiveThread;
 
-        private TcpListener tcpLister;
-        private Thread tcpListenerThread;
-        private TcpClient connectedTcpClient;
+        private NetServer _server;
+        private NetClient _client;
+
 
         private PrintWrapper pw;
         /// <summary>
@@ -47,48 +54,66 @@ namespace NetworkSystem{
             pw = _PW;
             
             if (netMode == mode.HOST){
-                _initHost();
+                _server = new NetServer(IP, port);
+                _server.setPWrp(pw);
+                _server.StartServer();
             }
             else{
-                _initClient();
+                _client = new NetClient(IP, port);
+                _client.setPWrp(pw);
+                _client.startConnection();
             }
         }
+        
+        public NetConn( string _IP, int _PORT, mode _MODE){
+            netMode = _MODE;
+            IP = _IP;
+            port = _PORT;
 
-        private void _initHost(){
-            pw.print("Starting as host...");
-            tcpListenerThread = new Thread(new ThreadStart(listenForConnection));
-            tcpListenerThread.IsBackground = true;
-            tcpListenerThread.Start();
-            
-        } // End _initHost()
-
-        private void listenForConnection(){
-            try{
-                tcpLister = new TcpListener(IPAddress.Any, port);
-                pw.print("Listening for connection...");
-                tcpLister.Start();
-                Byte[] bytes = new byte[1024];
-                while (true){
-                    using (connectedTcpClient = tcpLister.AcceptTcpClient()){
-                        using (NetworkStream stream = connectedTcpClient.GetStream()){
-                            int length;
-
-                            while ((length = stream.Read(bytes, 0, bytes.Length)) > 0){
-                                var incomingData = new byte[length];
-                                Array.Copy(bytes, 0, incomingData, 0, length);
-                                string clientMessage = Encoding.ASCII.GetString(incomingData);
-                                pw.print(clientMessage);
-                                tcpLister.Stop();
-                                break;
-                            }
-                        }
-                    }
-                    break;
-                }
-                
+            if (netMode == mode.HOST){
+                _server = new NetServer(IP, port);
+                _server.setPWrp(pw);
+                _server.StartServer();
             }
-            catch (SocketException e){
-                pw.print(e.ToString());
+            else{
+                _client = new NetClient(IP, port);
+                _client.setPWrp(pw);
+                _client.startConnection();
+            }
+        }
+        
+        public NetConn(callBack cb, string _IP, int _PORT, mode _MODE){
+            netMode = _MODE;
+            IP = _IP;
+            port = _PORT;
+
+            if (netMode == mode.HOST){
+                _server = new NetServer(IP, port);
+                _server.setPWrp(pw);
+                _server.StartServer(cb);
+            }
+            else{
+                _client = new NetClient(IP, port);
+                _client.setPWrp(pw);
+                _client.startConnection();
+            }
+        }
+        
+        public NetConn(PrintWrapper _PW, callBack cb, string _IP, int _PORT, mode _MODE){
+            netMode = _MODE;
+            IP = _IP;
+            port = _PORT;
+            pw = _PW;
+            
+            if (netMode == mode.HOST){
+                _server = new NetServer(IP, port);
+                _server.setPWrp(pw);
+                _server.StartServer(cb);
+            }
+            else{
+                _client = new NetClient(IP, port);
+                _client.setPWrp(pw);
+                _client.startConnection();
             }
         }
         
@@ -108,13 +133,38 @@ namespace NetworkSystem{
             }
             catch (Exception e)
             {
-                Debug.Log(e.ToString());
+                pw.print(e.ToString());
             }
 
         }
 
+        public void sendNetPacket(NetPacket np){
+            pw.print("Sending packet stream...");
+
+            if (netMode == mode.HOST){
+                _server.sendNetPacket(np);
+            }
+
+            if (netMode == mode.CLIENT){
+                _client.sendNetPacket(np);
+            }
+        }
+        
         public bool endConnection(){
             return true;
+        }
+        
+
+        public bool getNetPacket(out NetPacket np){
+            bool status = false;
+            if (netMode == mode.CLIENT){
+                status = _client.getPacket(out np);
+            }
+            else{
+                status = _server.getPacket(out np);
+            }
+
+            return status;
         }
     }
 }
