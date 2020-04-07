@@ -6,11 +6,11 @@ In this section I will give a quick overview of what a [Component-Based Design](
 
 Without a component based system we would end up having to strongly link all of are different parts of the program together. Since they are strongly linked this would mean that refactoring and changing a system would be a large undertaking as every system that relies on or interacts with that system would have to have it's code modified to adapt to a new interface or the deprecation of an interface that is being replaced with something more effecient. This would leave a quandry of having to decide if the time investment to refactor a system is worth any sort of benefit that the refactoring will have. This is shown by the diagram of a strongly linked system below.
 
-![Strongly Linked Systems](Component-System-Design-Overview/Strongly-Linked-Systems.jpg)
+![Strongly Linked Systems](res/Component-System-Design-Overview/Strongly-Linked-Systems.jpg)
 
 As we can see from even a simple system, if we strongly link every piece of data and system we end up with a mess of dependencies that reduce reliability and increase frustration in debugging and modifying code. Now we will take the opposite approach to try and solve these issues and introduce a diagram that shows an application built using loosely coupled systems in a proper component-based design.  
 
-![Loosely Linked Systems](Component-System-Design-Overview/Loosely-Linked-Event-System.jpg)   
+![Loosely Linked Systems](res/Component-System-Design-Overview/Loosely-Linked-Event-System.jpg)   
 
 Now I am sure looking at this for the first time you are thinking "How the hell is this a better system...", But if you take the time to really look at what is happening you will notice something special that routing data like this using events does. Instead of a system relying on another system it just does it's job until a new event arrives for it to handle. This means that we can have many discrete Systems that have their responsibilities factored in such a way that they are only ever concerned with doing one things. This makes finding issues arrising in a given system a much more trivial task. As well this means that, since a system just waits for a message to be sent via the event bus, it doesn't matter if we replace all of the code at a system as long as it listens for the events it needs to! This is great for reliability and maintaining a system when it grows up to be bigger.  
 
