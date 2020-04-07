@@ -62,23 +62,6 @@ namespace NetworkSystem{
         public void CloseServer(){
 
         }
-
-        public void sendString(string s){
-            if (_tcpClient == null){
-                return;
-            }
-
-            try{
-                NetworkStream stream = _tcpClient.GetStream();
-                if (stream.CanWrite){
-                    byte[] messageBArr = Encoding.ASCII.GetBytes(s);
-                    stream.Write(messageBArr, 0, messageBArr.Length);
-                }
-            }
-            catch (SocketException e){
-                printS(e.ToString());
-            }
-        }
         
         private void serverThread(){
             try{
@@ -90,14 +73,15 @@ namespace NetworkSystem{
                 
                 cb?.Invoke("Client Connected");
                 
-                Byte[] bytes = new byte[4];
+                Byte[] bytes = new byte[16];
                 while (true){
                     int length;
                     if (stream.DataAvailable){
-                        // Read the first 4 bytes
-                        stream.Read(bytes, 0, 4);
-                        length = BitConverter.ToInt32(bytes, 0);
-                        printS(length.ToString());
+                        stream.Read(bytes, 0, 16);
+                        NetPacket np = new NetPacket();
+                        np.setHeaderFromBArr(bytes);
+                        _squeue.enqueue(np);
+                        printS(np.ToString());
                     }
                 }
                 
@@ -116,12 +100,24 @@ namespace NetworkSystem{
                 NetworkStream stream = _tcpClient.GetStream();
                 if (stream.CanWrite){
                     // First write the size of the packet we want to send
-                    stream.Write(BitConverter.GetBytes(np.size),0,4);
+                    stream.Write(np.getHeaderBArr(),0,16);
                 }
             }
             catch (SocketException e){
                 printS(e.ToString());
             }
+        }
+        
+        public bool getPacket(out NetPacket np){
+            NetPacket ret;
+            if (_squeue.tryDequeue(out ret)){
+                printS("Found network packet in queue");
+                np = ret;
+                return true;
+            }
+
+            np = null;
+            return false;
         }
         
     }

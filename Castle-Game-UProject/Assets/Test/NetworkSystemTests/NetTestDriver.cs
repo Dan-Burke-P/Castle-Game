@@ -45,8 +45,7 @@ public class NetTestDriver : MonoBehaviour{
 
     public void sendMessageS(){
         NetPacket np = new NetPacket();
-        np.data = 5;
-        np.size = 4;
+        
         input.text = "";
         test.sendNetPacket(np);
     }

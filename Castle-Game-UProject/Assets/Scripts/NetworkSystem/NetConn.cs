@@ -161,7 +161,7 @@ namespace NetworkSystem{
                 status = _client.getPacket(out np);
             }
             else{
-                np = null;
+                status = _server.getPacket(out np);
             }
 
             return status;

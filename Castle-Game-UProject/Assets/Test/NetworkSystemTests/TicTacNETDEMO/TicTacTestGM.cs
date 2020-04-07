@@ -44,6 +44,11 @@ namespace NetworkSystemTests.TicTacNETDEMO{
         /// We will slice player 1 and 2 apart by who is host and who is client
         /// </summary>
         private bool isHostTurn = true;
+
+        private bool isHost;
+
+        private pieceType playerType;
+        private pieceType enemyType;
         
         /// <summary>
         /// This is the array that will virtualize the board, the visualization below
@@ -80,18 +85,57 @@ namespace NetworkSystemTests.TicTacNETDEMO{
         }
 
         public void input(int num){
-            // Hide the pressed numbers sprite
-            sprites[num].SetActive(false);
+            if (isHost && isHostTurn){
+                // If you are the host and it is your turn
+                play(num);
+            }
 
-            board[num - 1] = pieceType.XPIECE;
+            if (!isHost && !isHostTurn){
+                // If you are not the host and it is not host turn its your turn
+                play(num);
+            }
+            
+        }
+
+        public void playNet(NetPacket _np){
+            
+            int pos = _np._header.placeHolder1;
+            // Hide the pressed numbers sprite
+            Debug.LogError($"Net player has taken their turn: {pos}");
+            sprites[pos].SetActive(false);
+            
+            board[pos - 1] = enemyType;
+          
+            updateBoardUI();
+            
+            checkWin();
+            
+            // We have done the client side stuff now it is time to send a network message
+            
+            isHostTurn = !isHostTurn;
+            
+            
+        }
+        public void play(int pos){
+            // Hide the pressed numbers sprite
+            sprites[pos].SetActive(false);
+            Debug.LogError($"Player Play Pos: {pos}");
+            board[pos - 1] = playerType;
             
             updateBoardUI();
             
             checkWin();
-        }
-        
-        public void play(int pos){
             
+            // We have done the client side stuff now it is time to send a network message
+            NetPacket np = new NetPacket();
+            np._header = new NetPacket.header();
+            np._header.size = 4;
+            np._header.placeHolder1 = pos;
+            np._header.placeHolder2 = pos;
+            np._header.placeHolder3 = pos;
+            nc.sendNetPacket(np);
+            
+            isHostTurn = !isHostTurn;
         }
 
         public void updateBoardUI(){
@@ -102,8 +146,12 @@ namespace NetworkSystemTests.TicTacNETDEMO{
                     tmp.transform.position = pieceSlots[i];
                     boardSet[i] = true;
 
-                }else if (board[i] == pieceType.OPIECE){
-                    
+                }
+                
+                if (board[i] == pieceType.OPIECE && !boardSet[i]){
+                    GameObject tmp = Instantiate(OP_GO);
+                    tmp.transform.position = pieceSlots[i];
+                    boardSet[i] = true;
                 }
             }
         }
@@ -181,7 +229,7 @@ namespace NetworkSystemTests.TicTacNETDEMO{
                 return false;
             }
             // if the first equals the second and third then they are all equal
-            return board[i] == board[j] && board[i] == board[j];
+            return board[i] == board[j] && board[i] == board[k];
         }
         
         public void becomeHost(){
@@ -189,22 +237,34 @@ namespace NetworkSystemTests.TicTacNETDEMO{
             nc = new NetConn(pw, onConnectCB,"localhost", 12345, mode.HOST);
             hostStatus.gameObject.SetActive(true);
             hostStatus.text = "Waiting for connection...";
+            isHost = true;
+            playerType = pieceType.XPIECE;
+            enemyType = pieceType.OPIECE;
         }
 
         public void becomeClient(){
             connectionsPanel.SetActive(false);
-            nc = new NetConn(onConnectCB,"localhost", 12345, mode.CLIENT);
+            nc = new NetConn(pw ,onConnectCB,"localhost", 12345, mode.CLIENT);
             hostStatus.gameObject.SetActive(true);
             hostStatus.text = "Attempting to connect...";
+            isHost = false;
+            playerType = pieceType.OPIECE;
+            enemyType = pieceType.XPIECE;
         }
 
         public void onConnectCB(string s){
             Debug.Log(s);
-            hostStatus.text = s;
         }
 
 
         private void Update(){
+
+            if (nc != null){
+                NetPacket tmp;
+                if (nc.getNetPacket(out tmp)){
+                    playNet(tmp);
+                }
+            }
             // Horrible way of handling it but this is just a demo so it is not 
             // important how ugly and dumb this code is
             if (Input.GetKeyDown(KeyCode.Keypad0)){

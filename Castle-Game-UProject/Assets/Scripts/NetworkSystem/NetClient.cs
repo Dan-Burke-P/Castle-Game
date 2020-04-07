@@ -76,15 +76,17 @@ namespace NetworkSystem{
                 cb?.Invoke("Connected to host");
                 NetworkStream stream = socketConnection.GetStream();
                 
-                Byte[] bytes = new byte[4];
+                Byte[] bytes = new byte[16];
                 while (true){
                     int length;
                     
                     // If we have data attempt to read the first 4 bytes to get the size of the whole packet we will be reading
                     if (stream.DataAvailable){
-                        stream.Read(bytes, 0, 4);
-                        length = BitConverter.ToInt32(bytes, 0);
-                        printS(length.ToString());
+                        stream.Read(bytes, 0, 16);
+                        NetPacket np = new NetPacket();
+                        np.setHeaderFromBArr(bytes);
+                        _squeue.enqueue(np);
+                        printS(np.ToString());
                     }
                 }
             }
@@ -102,7 +104,7 @@ namespace NetworkSystem{
                 NetworkStream stream = socketConnection.GetStream();
                 if (stream.CanWrite){
                     // First write the size of the packet we want to send
-                    stream.Write(BitConverter.GetBytes(np.size),0,4);
+                    stream.Write(np.getHeaderBArr(),0,16);
                 }
             }
             catch (SocketException e){

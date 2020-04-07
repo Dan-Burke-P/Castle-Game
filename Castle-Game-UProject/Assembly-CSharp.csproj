@@ -90,6 +90,7 @@
      <Compile Include="Assets\Scripts\InputHandler.cs" />
      <Compile Include="Assets\Scripts\MainMenuHandler.cs" />
      <Compile Include="Assets\Scripts\NetworkSystem\NetClient.cs" />
+     <Compile Include="Assets\Scripts\NetworkSystem\NetCommand.cs" />
      <Compile Include="Assets\Scripts\NetworkSystem\NetConn.cs" />
      <Compile Include="Assets\Scripts\NetworkSystem\NetPacket.cs" />
      <Compile Include="Assets\Scripts\NetworkSystem\NetServer.cs" />
