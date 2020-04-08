@@ -1,0 +1,29 @@
+### Jared Persona:
+
+## James likes card games
+
+James has been playing card games for much of his life, and really considering the strategy in them. Mostly card games like MTG or Hearthstone, James enjoys games that are of short to medium length where the game itself is entirely determined by how the player's have chosen to play. Synergies between cards and combinations of techniques turn James' simple card games into a wonderland of creative opportunity. When James begins to play 'Castle-Game' he gets excited, because it incorporates what he already loved from his favorite card games, but also includes a more friendly enviornment for those who aren't willing to spend hundreds of dollars collecting cards. As well, James views this as a way to lure more of his friends into the card-game world and wishes to play with them.
+
+### Johnathan's Persona: 
+
+## Casual Carl
+
+Carl is a 30-year old gentleman who is running out of things to do while self-isolating and has decided to rediscover his love of gaming. In the past, Carl has enjoyed fantasy role-playing games such as the Legend of Zelda series and D&D, but now he wants to try something more strategic. This is his first real taste of the strategy genre, but he is willing to learn how this new game works if the game helps him figure things out. Above all else, Carl wants a way to relieve himself from the dreariness of his daily life, so he would like to feel immersed in a world that's completely different from his own.   
+
+### Anh Tran's Persona
+
+!(Persona)[Personas-res/Persona-AnhTran.png]  
+
+
+### Phil's Persona   
+
+## Persona for Castle Game
+
+Let's describe a potential player, who we'll call "Bill." Bill is a longtime fan of the 4X genre of games. He's been playing Sid Meyer's games since Civilization IV was brand new. He has a passing interest in TCG games such as Magic: The Gathering and Hearthstone, but very little experience with MOBA style games, though he understands the concepts behind the basic gameplay. Bill enjoys strategic combat, but sometimes wants a shorter experience compared to the marathon games of Civilization that he has committed entire days to in the past. Bill's platform of choice is a Windows PC.   
+
+
+### Dan's Persona   
+
+## The modifier  
+
+Most games have their fair share of community effort put into to touching up or creating new content. This is usually done by a dedicated group of people who have no other goal then to create something new out of the resources provided by the game. This player has been creating modified versions of games since the early day of games like Warcraft 3. He has spent many hours in the modding tools developing whole new game modes for him and his friends to play. Coming to Castle-Game he finds that all of the code is available and quickly begins adding content that suites the game for his group of friends.
