@@ -61,6 +61,11 @@ namespace EventSystem {
             SystemEvents[ed.sysTarget].registerTarget(ed.target, action);
             return 0;
         }
+
+        public int DeRegisterEvent(EventDefinition ed, UnityAction<Dictionary<string, object>, int, object> action){
+            SystemEvents[ed.sysTarget].deregisterEvent(ed.target, action);
+            return 0;
+        }
     
         /// <summary>
         /// Create a new system and store it in our system dictionary

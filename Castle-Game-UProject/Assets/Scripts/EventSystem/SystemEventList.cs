@@ -60,10 +60,28 @@ namespace EventSystem{
             return -1; 
         }
 
+        public int deregisterEvent(string targetName, UnityAction<Dictionary<string, object>, int, object>  action){
+            Debug.Log("Removing target from action");
+            EventTargets et;
+            if (subTargets.TryGetValue(targetName, out et)){
+                // We succeeded in finding the event target specified 
+                et.removeCallBack(action);
+                if (et.getEventCount() < 1){
+                    subTargets.Remove(targetName);
+                }
+                return 0;
+            }
+            else{
+                // We didn't find the target so make a new one and register it to this event
+                Debug.Log("Didn't find target to remove");
+                return 1;
+            }
+        }
+
         public override string ToString(){
             string ret = systemTarget.ToString() + "{\n";
             foreach (EventTargets et in subTargets.Values){
-                ret += et.ToString();
+                ret += et.ToString() + " | EventCount: " + et.getEventCount();
                 ret += "\n";
             }
 

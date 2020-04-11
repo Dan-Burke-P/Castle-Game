@@ -79,5 +79,9 @@ namespace EventSystem {
         public void register(UnityAction<Dictionary<string, object>, int, object> action){
             EventBus.Instance().RegisterEvent(this, action);
         }
+
+        public void deregister(UnityAction<Dictionary<string, object>, int, object> action){
+            EventBus.Instance().DeRegisterEvent(this, action);
+        }
     }
 }
