@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a6cde8cb50ad9f4aabc413a459bdfff, type: 3}
-  m_Name: New DATA Card UI
+  m_Name: CARDUIDATA
   m_EditorClassIdentifier: 
-  title: 
-  cost: 0
-  cardText: 
+  title: 'Spawn soldier '
+  cost: 40
+  cardText: Spawn a sturdy soldier who will follow the kings orders to the bitter
+    end
+  renderedObject: {fileID: 0}

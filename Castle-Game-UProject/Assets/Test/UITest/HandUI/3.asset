@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a6cde8cb50ad9f4aabc413a459bdfff, type: 3}
   m_Name: 3
   m_EditorClassIdentifier: 
-  title: 
-  cost: 0
-  cardText: 
+  title: nooo
+  cost: 42
+  cardText: some more text
   renderedObject: {fileID: 0}
