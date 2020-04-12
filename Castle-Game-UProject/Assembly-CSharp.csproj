@@ -107,6 +107,7 @@
      <Compile Include="Assets\Scripts\UISystem\HandUI.cs" />
      <Compile Include="Assets\Scripts\UISystem\LayoutTools\GridLayout.cs" />
      <Compile Include="Assets\Scripts\UISystem\MenuPanelControllers\PauseMenuController.cs" />
+     <Compile Include="Assets\Scripts\UISystem\PromptObjectController.cs" />
      <Compile Include="Assets\Scripts\UISystem\RadialProgBar.cs" />
      <Compile Include="Assets\Scripts\UISystem\UIHandler.cs" />
      <Compile Include="Assets\Scripts\UISystem\UnitActionData.cs" />

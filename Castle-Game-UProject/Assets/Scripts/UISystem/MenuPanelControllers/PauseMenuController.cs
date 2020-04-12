@@ -6,6 +6,7 @@ public class PauseMenuController : MonoBehaviour{
 
     public GameObject pauseMenu;
 
+    public PromptObjectController poc;
     // Update is called once per frame
     void Update()
     {
@@ -25,5 +26,19 @@ public class PauseMenuController : MonoBehaviour{
     public void openPauseMenu(){
         hidePanels();
         pauseMenu.SetActive(true);
+    }
+
+    // These are a collection of end point functions for buttons //
+
+    public void buttonExitGame(){
+        poc.getResponse(exitGame, doNotExitGame, "Are you sure you want to exit to desktop?");
+    }
+
+    public void exitGame(){
+        Debug.Log("Exit game confirmed");
+    }
+
+    public void doNotExitGame(){
+        Debug.Log("Not exiting game");
     }
 }
