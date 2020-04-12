@@ -10,8 +10,9 @@ public abstract class BaseUnit : ScriptableObject {
 	public int RNG = 1;
 	public float HP = 100;
 	public float ATK = 50;
-	public float DEF = 15;
-	public float CRIT = 0.15f;
+	public float DEF = 25;
+	public float CRIT = 1.35f;
+	public float LUCK = 0.15f;
 	public float ACC = 0.95f;
 	public float CTR = 0.3f;
 	public float vsSoldier = 1.0f;
@@ -21,37 +22,32 @@ public abstract class BaseUnit : ScriptableObject {
 	public float vsMedic = 1.0f;
 	
     public int xPos, yPos;
-	
-	public AttackHandler attackHandler;
-	public MovementHandler movementHandler;
 
     public GameObject obj;
     public Transform transform;
 	
 	
     
-    public void move(int x, int y){
+    public void move(UnitObject unit, int x, int y){
 		int dist = System.Math.Abs(x - xPos) + System.Math.Abs(y - yPos);
-        if (dist <= AP /* && there IS NOT a unit on target tile */){
-			movementHandler = new MovementHandler();
-			movementHandler.moveEvent.raise(0, this, new Dictionary<string, object> {
-												{"Unit", this},
+        if (dist <= unit.AP /* && there IS NOT a unit on target tile */){
+			UnitRegistry.movementHandler.moveEvent.raise(0, this, new Dictionary<string, object> {
+												{"Unit", unit},
 												{"x", x},
 												{"y", y}
 												});
-			AP -= dist;
+			unit.AP -= dist;
 		}
     }
 	
-	public virtual void attack(BaseUnit targetUnit) {
-		int dist = System.Math.Abs(targetUnit.xPos - xPos) + System.Math.Abs(targetUnit.yPos - yPos);
-		if(dist <= AP) {
-			attackHandler = new AttackHandler();
-			attackHandler.attackEvent.raise(0, this, new Dictionary<string, object> {
-											{"Attacker", this},
-											{"Defentder", targetUnit}
+	public virtual void attack(UnitObject attacker, UnitObject defender) {
+		int dist = System.Math.Abs(defender.xPos - attacker.xPos) + System.Math.Abs(defender.yPos - attacker.yPos);
+		if(dist <= attacker.AP) {
+			UnitRegistry.attackHandler.attackEvent.raise(0, this, new Dictionary<string, object> {
+											{"Attacker", attacker},
+											{"Defender", defender}
 											});
-			AP -= dist;
+			attacker.AP -= dist;
 		}
 	}
 
