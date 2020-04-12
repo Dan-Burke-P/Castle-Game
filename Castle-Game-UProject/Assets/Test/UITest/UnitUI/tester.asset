@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: tester
   m_EditorClassIdentifier: 
   unitTitle: untitled
-  maxHealth: 100
-  currentHealth: 100
+  maxHealth: 101
+  currentHealth: 57
   maxActionPoints: 500
   currentActionPoints: 110
+  displayObject: {fileID: 7290442473843198792, guid: bb261e51701f3534e8bb4ab45476f52b,
+    type: 3}
   actionList:
   - {fileID: 11400000, guid: c72823541ca58264ab6399608909ecb9, type: 2}
   - {fileID: 11400000, guid: c72823541ca58264ab6399608909ecb9, type: 2}
