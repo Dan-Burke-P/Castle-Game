@@ -43,6 +43,13 @@ public class EventTestDriver : MonoBehaviour{
         updateReadOut();
     }
 
+    public void removeEventSO(){
+        EventDefinition tmp = new EventDefinition(def.sysTarget, def.target, this);
+        
+        tmp.deregister(testFunction);
+        updateReadOut();
+    }
+
     public void raiseEventSO(){
         EventDefinition tmp = new EventDefinition(def.sysTarget, def.target, this);
         
@@ -80,8 +87,6 @@ public class EventTestDriver : MonoBehaviour{
         int yCord = y is int ? (int) y : 0;
         
         Debug.Log(x);
-        
-        go.transform.localPosition = new Vector3(xCord, yCord, 0);
     }
     
 }
