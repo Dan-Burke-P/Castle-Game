@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenuAttribute(fileName="Medic", menuName="Unit/Medic")]
 public class UNIT_Medic : BaseUnit
 {
 	

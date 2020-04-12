@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using EventSystem;
 
-public class MovementHandler : MonoBehaviour
+public class MovementHandler
 {	
 
 	public EventDefinition moveEvent;
 
-	public void Start() {
+	public MovementHandler() {
 		moveEvent = new EventDefinition(SysTarget.Unit, "UnitMovement", this);
 		moveEvent.register(handleMovement);
 	}
@@ -17,10 +17,11 @@ public class MovementHandler : MonoBehaviour
 		object unitObj;
 		object ox, oy;
 		Params.TryGetValue("Unit", out unitObj);
-		BaseUnit unit = unitObj as BaseUnit;
+		UnitObject unit = unitObj as UnitObject;
 		Params.TryGetValue("x", out ox);
 		Params.TryGetValue("y", out oy);
 		unit.xPos = (ox is int ? (int) ox : 0);
 		unit.yPos = (oy is int ? (int) oy : 0);
+		Debug.Log("Coordinates are x=" + unit.xPos + ", y=" + unit.yPos + ".");
 	}
 }
