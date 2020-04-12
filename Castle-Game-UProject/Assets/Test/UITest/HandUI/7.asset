@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62308a4559a54672ae1bba2db42e520e, type: 3}
-  m_Name: TestActionData
+  m_Script: {fileID: 11500000, guid: 0a6cde8cb50ad9f4aabc413a459bdfff, type: 3}
+  m_Name: 7
   m_EditorClassIdentifier: 
-  actionTitle: Move
-  apCost: 5
+  title: 4
+  cost: 4
+  cardText: 4
+  renderedObject: {fileID: 0}
