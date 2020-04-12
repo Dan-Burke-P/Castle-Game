@@ -90,7 +90,6 @@
      <Compile Include="Assets\Scripts\GameManagers\PlayerScript\HandCounterScript.cs" />
      <Compile Include="Assets\Scripts\GameManagers\PlayerScript\HandTestDriver.cs" />
      <Compile Include="Assets\Scripts\GameManagers\PlayerScript\Player.cs" />
-     <Compile Include="Assets\Scripts\HandUI.cs" />
      <Compile Include="Assets\Scripts\InputHandler.cs" />
      <Compile Include="Assets\Scripts\MainMenuHandler.cs" />
      <Compile Include="Assets\Scripts\NetworkSystem\NetClient.cs" />
@@ -101,6 +100,11 @@
      <Compile Include="Assets\Scripts\NetworkSystem\NetworkEnums.cs" />
      <Compile Include="Assets\Scripts\NetworkSystem\PrintWrapper.cs" />
      <Compile Include="Assets\Scripts\NetworkSystem\TSqueue.cs" />
+     <Compile Include="Assets\Scripts\UISystem\CardObjectDisplay.cs" />
+     <Compile Include="Assets\Scripts\UISystem\ClosablePanel.cs" />
+     <Compile Include="Assets\Scripts\UISystem\DATACardUI.cs" />
+     <Compile Include="Assets\Scripts\UISystem\DATAHandUI.cs" />
+     <Compile Include="Assets\Scripts\UISystem\HandUI.cs" />
      <Compile Include="Assets\Scripts\UISystem\LayoutTools\GridLayout.cs" />
      <Compile Include="Assets\Scripts\UISystem\UIHandler.cs" />
      <Compile Include="Assets\Scripts\UISystem\UnitActionData.cs" />
