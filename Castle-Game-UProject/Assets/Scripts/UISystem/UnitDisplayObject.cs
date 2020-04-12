@@ -5,15 +5,17 @@ using UnityEngine;
 
 public class UnitDisplayObject : MonoBehaviour{
     
-    public UnitUIData content;
+    public BaseUnit content;
 
+    public Transform root;
+    
     public Transform unitMeshParent;
     public GameObject unitDisplayObject;
 
     public RadialProgBar rpb;
+    
 
-
-    public void setContent(UnitUIData uid){
+    public void setContent(BaseUnit uid){
         content = uid;
         setContent();
     }
@@ -26,11 +28,13 @@ public class UnitDisplayObject : MonoBehaviour{
             unitDisplayObject = Instantiate(content.displayObject, unitMeshParent, false);
         }
 
-        rpb.max = content.maxHealth;
+        rpb.max = content.maxHP;
     }
     public void display(){
-        rpb.max = content.maxHealth;
-        rpb.setCurrent(content.currentHealth);
+        rpb.max = content.maxHP;
+        rpb.setCurrent(content.currHP);
+        
+        root.localPosition = new Vector3(content.xPos,content.yPos,0);
     }
 
     private void Start(){

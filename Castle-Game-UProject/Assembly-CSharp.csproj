@@ -117,18 +117,23 @@
      <Compile Include="Assets\Scripts\UISystem\UIHandler.cs" />
      <Compile Include="Assets\Scripts\UISystem\UnitActionData.cs" />
      <Compile Include="Assets\Scripts\UISystem\UnitActionDisplay.cs" />
+     <Compile Include="Assets\Scripts\UISystem\UnitDisplayGroup.cs" />
      <Compile Include="Assets\Scripts\UISystem\UnitDisplayObject.cs" />
      <Compile Include="Assets\Scripts\UISystem\UnitUIData.cs" />
      <Compile Include="Assets\Scripts\UISystem\UnitUIPanel.cs" />
      <Compile Include="Assets\Scripts\Units\Action_Handlers\AttackHandler.cs" />
      <Compile Include="Assets\Scripts\Units\Action_Handlers\MovementHandler.cs" />
      <Compile Include="Assets\Scripts\Units\BaseUnit.cs" />
+     <Compile Include="Assets\Scripts\Units\Coord.cs" />
+     <Compile Include="Assets\Scripts\Units\PositionTracker.cs" />
      <Compile Include="Assets\Scripts\Units\UNIT_Cavalry.cs" />
      <Compile Include="Assets\Scripts\Units\UNIT_Medic.cs" />
      <Compile Include="Assets\Scripts\Units\UNIT_Ranged.cs" />
      <Compile Include="Assets\Scripts\Units\UNIT_Siege.cs" />
      <Compile Include="Assets\Scripts\Units\UNIT_Soldier.cs" />
      <Compile Include="Assets\Scripts\Units\UnitDB.cs" />
+     <Compile Include="Assets\Scripts\Units\UnitObject.cs" />
+     <Compile Include="Assets\Scripts\Units\UnitRegistry.cs" />
      <Compile Include="Assets\Scripts\Units\UnitType.cs" />
      <Compile Include="Assets\Test\BoardTests\DTestBoardGeneration.cs" />
      <Compile Include="Assets\Test\BoardTests\TestBoardGeneration.cs" />
@@ -140,9 +145,6 @@
      <Compile Include="Assets\UnitHandler.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
- </Reference>
- <Reference Include="com.unity.multiplayer-hlapi.Editor">
- <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
  <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
@@ -159,14 +161,23 @@
  <Reference Include="Unity.CollabProxy.Editor">
  <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
+ <Reference Include="Unity.Rider.Editor">
+ <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.TextMeshPro">
+ <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.UI">
+ <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="com.unity.multiplayer-hlapi.Editor">
+ <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
+ </Reference>
  <Reference Include="com.unity.multiplayer-weaver.Editor">
  <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.XR.LegacyInputHelpers">
  <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Rider.Editor">
- <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Sprite.Editor">
  <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
@@ -180,14 +191,8 @@
  <Reference Include="UnityEngine.SpatialTracking">
  <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
  </Reference>
- <Reference Include="Unity.TextMeshPro">
- <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
- </Reference>
  <Reference Include="UnityEditor.XR.LegacyInputHelpers">
  <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.UI">
- <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="com.unity.multiplayer-hlapi.Runtime">
  <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
