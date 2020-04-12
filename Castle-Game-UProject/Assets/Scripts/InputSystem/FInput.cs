@@ -131,7 +131,7 @@ namespace Assets.Scripts.InputSystem
                 else if (Input.GetKeyUp(keysToPoll[i]))
                     ActivateCallback("KUp:" + keysToPoll[i].ToString());
             }
-            
+
             //run through all buttons to poll for input events
             for (int i = 0; i < buttonsToPoll.Count; i++)
             {
