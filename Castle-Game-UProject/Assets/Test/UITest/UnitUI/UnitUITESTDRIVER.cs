@@ -12,7 +12,7 @@ public class UnitUITESTDRIVER : MonoBehaviour{
     // Start is called before the first frame update
     void Start()
     {
-        testPanel.displayUnitUI(UIData);
+        //testPanel.displayUnitUI(UIData);
     }
 
     // Update is called once per frame
