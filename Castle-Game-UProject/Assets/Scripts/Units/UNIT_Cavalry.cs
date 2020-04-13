@@ -8,7 +8,8 @@ public class UNIT_Cavalry : BaseUnit {
 	public UNIT_Cavalry() {
 		unitType = UnitType.Cavalry;
 		unitName = "Cavalry";
-		AP = 3;
+		maxAP = 3;
+		currAP = 3;
 		vsRanged = 1.5f;
 	}
 }

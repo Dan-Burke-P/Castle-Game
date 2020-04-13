@@ -6,8 +6,10 @@ using UnityEngine.Serialization;
 public abstract class BaseUnit : ScriptableObject {
     
     public string unitName = "Error Instantiated as a Base Unit";
+	public int ID;
 	public UnitType unitType = UnitType.Soldier;
-	public int AP = 2;
+	public int maxAP = 2;
+	public int currAP = 2;
 	public int RNG = 1;
 	public float maxHP = 100;
 	public float currHP = 100;
@@ -30,26 +32,26 @@ public abstract class BaseUnit : ScriptableObject {
 	
 	
     
-    public void move(UnitObject unit, int x, int y){
-		int dist = System.Math.Abs(x - xPos) + System.Math.Abs(y - yPos);
-        if (dist <= unit.AP /* && there IS NOT a unit on target tile */){
-			UnitRegistry.movementHandler.moveEvent.raise(0, this, new Dictionary<string, object> {
-												{"Unit", unit},
-												{"x", x},
-												{"y", y}
+    public void move(Vector2Int coordinates){
+		int dist = System.Math.Abs(coordinates.x - this.xPos) + System.Math.Abs(coordinates.y - this.yPos);
+        if (dist <= this.currAP /* && there IS NOT a unit on target tile */){
+			MovementHandler.Instance().moveEvent.raise(0, this, new Dictionary<string, object> {
+												{"Unit", this},
+												{"x", coordinates.x},
+												{"y", coordinates.y}
 												});
-			unit.AP -= dist;
+			this.currAP -= dist;
 		}
     }
 	
-	public virtual void attack(UnitObject attacker, UnitObject defender) {
-		int dist = System.Math.Abs(defender.xPos - attacker.xPos) + System.Math.Abs(defender.yPos - attacker.yPos);
-		if(dist <= attacker.AP) {
-			UnitRegistry.attackHandler.attackEvent.raise(0, this, new Dictionary<string, object> {
-											{"Attacker", attacker},
+	public virtual void attack(BaseUnit defender) {
+		int dist = System.Math.Abs(defender.xPos - this.xPos) + System.Math.Abs(defender.yPos - this.yPos);
+		if(dist <= this.currAP) {
+			AttackHandler.Instance().attackEvent.raise(0, this, new Dictionary<string, object> {
+											{"Attacker", this},
 											{"Defender", defender}
 											});
-			attacker.AP -= dist;
+			this.currAP -= dist;
 		}
 	}
 

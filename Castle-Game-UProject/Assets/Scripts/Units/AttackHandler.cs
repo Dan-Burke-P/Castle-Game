@@ -5,56 +5,62 @@ using EventSystem;
 
 public class AttackHandler
 {
+	private static readonly AttackHandler instance = new AttackHandler();
 	public EventDefinition attackEvent;
 	private static System.Random dice;
 	
 	public AttackHandler() {
 		attackEvent = new EventDefinition(SysTarget.Unit, "UnitAttack", this);
-		attackEvent.register(handleAttack);
+		attackEvent.register(HandleAttack);
 		dice = new System.Random();
-	} 
+	}
 
-	public void handleAttack(Dictionary<string, object> Params, int ID, object Caller) {
+	public static AttackHandler Instance()
+	{
+		return instance;
+	}
+
+	public void HandleAttack(Dictionary<string, object> Params, int ID, object Caller) {
 		object attackerObj, defenderObj;
 		Params.TryGetValue("Attacker", out attackerObj);
-		UnitObject attacker = attackerObj as UnitObject;
+		BaseUnit attacker = attackerObj as BaseUnit;
 		Params.TryGetValue("Defender", out defenderObj);
-		UnitObject defender = defenderObj as UnitObject;
+		BaseUnit defender = defenderObj as BaseUnit;
 		
 		// Damage calculation
 		Debug.Log(attacker.unitName + " makes an attack on " + defender.unitName + "...");
-		float damage = calculateDamage(attacker, defender);
+		float damage = CalculateDamage(attacker, defender);
 		Debug.Log(defender.unitName + " takes " + damage + " points of damage.");
-		if (damage > defender.HP) {
+		if (damage > defender.currHP) {
 			if(attacker.RNG == 1) {
-				UnitRegistry.movementHandler.moveEvent.raise(0, this, new Dictionary<string, object> {
+				MovementHandler.Instance().moveEvent.raise(0, this, new Dictionary<string, object> {
 												{"Unit", attacker},
 												{"x", defender.xPos},
 												{"y", defender.yPos}
 												});
 			}
 			Debug.Log(defender.unitName + " dies in battle.");
-			defender.HP = 0;
+			defender.currHP = 0;
 			return;
 		}
-		defender.HP -= damage;
+		defender.currHP -= damage;
 		
 		// Check to see if the defender gets a counter attack
 		int counterRoll = dice.Next(0,100);
 		if (counterRoll >= 100 - defender.CTR * 100) {
 			Debug.Log(defender.unitName + " makes a counter attack...");
-			damage = calculateDamage(defender, attacker);
-			attacker.HP -= damage;
+			damage = CalculateDamage(defender, attacker);
+			attacker.currHP -= damage;
 			Debug.Log(attacker.unitName + " takes " + damage + " points in damage.");
 		}
 		
-		if (attacker.HP <= 0) {
+		if (attacker.currHP <= 0) {
 			Debug.Log(attacker.unitName + " dies in battle.");
 			return;
 		}
 	}
 
-	private static float typeModifier(UnitObject caster, UnitObject target) {
+	private static float TypeModifier(BaseUnit caster, BaseUnit target) {
 		switch (target.unitType) {
 			case UnitType.Soldier:
 				return caster.vsSoldier;
@@ -71,7 +77,7 @@ public class AttackHandler
 		}
 	}
 	
-	private static float critMultiplier(UnitObject caster) {
+	private static float CritMultiplier(BaseUnit caster) {
 		int critRoll = dice.Next(0,100);
 		if (critRoll >= 100 - caster.LUCK * 100) {
 			Debug.Log("Critical Hit!");
@@ -84,8 +90,8 @@ public class AttackHandler
 		return 1.0f;
 	}
 	
-	private static float calculateDamage(UnitObject caster, UnitObject target) {
-		return (caster.ATK - target.DEF) * typeModifier(caster, target) * critMultiplier(caster);
+	private static float CalculateDamage(BaseUnit caster, BaseUnit target) {
+		return (caster.ATK - target.DEF) * TypeModifier(caster, target) * CritMultiplier(caster);
 	}
 
 }

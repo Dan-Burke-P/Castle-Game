@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e23e84375251214599cd6d194dadbb3, type: 3}
-  m_Name: Soldier
+  m_Name: Soldier 1
   m_EditorClassIdentifier: 
   unitName: Soldier
+  ID: 0
   unitType: 0
-  AP: 2
+  maxAP: 2
+  currAP: 2
   RNG: 1
   maxHP: 70.1
   currHP: 61.9
