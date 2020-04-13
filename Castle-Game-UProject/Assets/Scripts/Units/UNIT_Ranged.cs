@@ -13,14 +13,14 @@ public class UNIT_Ranged : BaseUnit {
 		vsSoldier = 1.5f;
 	}
 	
-	public override void attack(UnitObject attacker, UnitObject defender) {
-		int dist = System.Math.Abs(defender.xPos - attacker.xPos) + System.Math.Abs(defender.yPos - attacker.yPos);
+	public override void attack(BaseUnit defender) {
+		int dist = System.Math.Abs(defender.xPos - this.xPos) + System.Math.Abs(defender.yPos - this.yPos);
 		if(dist <= RNG) {
-			UnitRegistry.attackHandler.attackEvent.raise(0, this, new Dictionary<string, object> {
-											{"Attacker", attacker},
+			AttackHandler.Instance().attackEvent.raise(0, this, new Dictionary<string, object> {
+											{"Attacker", this},
 											{"Defender", defender}
 											});
-			attacker.AP--;
+			this.currAP--;
 		}
 	}
 }

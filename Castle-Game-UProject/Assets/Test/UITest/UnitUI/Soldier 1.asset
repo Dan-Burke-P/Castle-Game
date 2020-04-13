@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Soldier 1
   m_EditorClassIdentifier: 
   unitName: Soldier
+  ID: 0
   unitType: 0
-  AP: 2
+  maxAP: 2
+  currAP: 2
   RNG: 1
   maxHP: 70.1
   currHP: 61.9

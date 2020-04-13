@@ -96,7 +96,6 @@
      <Compile Include="Assets\Scripts\GameManagers\PlayerScript\HandTestDriver.cs" />
      <Compile Include="Assets\Scripts\GameManagers\PlayerScript\Player.cs" />
      <Compile Include="Assets\Scripts\InputHandler.cs" />
-     <Compile Include="Assets\Scripts\InputSystem\FInput.cs" />
      <Compile Include="Assets\Scripts\MainMenuHandler.cs" />
      <Compile Include="Assets\Scripts\NetworkSystem\NetClient.cs" />
      <Compile Include="Assets\Scripts\NetworkSystem\NetCommand.cs" />
@@ -112,7 +111,6 @@
      <Compile Include="Assets\Scripts\UISystem\DATAHandUI.cs" />
      <Compile Include="Assets\Scripts\UISystem\HandUI.cs" />
      <Compile Include="Assets\Scripts\UISystem\LayoutTools\GridLayout.cs" />
-     <Compile Include="Assets\Scripts\UISystem\MenuPanelControllers\DebugMenuController.cs" />
      <Compile Include="Assets\Scripts\UISystem\MenuPanelControllers\PauseMenuController.cs" />
      <Compile Include="Assets\Scripts\UISystem\PromptObjectController.cs" />
      <Compile Include="Assets\Scripts\UISystem\RadialProgBar.cs" />
@@ -140,7 +138,6 @@
      <Compile Include="Assets\Test\BoardTests\DTestBoardGeneration.cs" />
      <Compile Include="Assets\Test\BoardTests\TestBoardGeneration.cs" />
      <Compile Include="Assets\Test\EventSystemTests\EventTestDriver.cs" />
-     <Compile Include="Assets\Test\InputTest\InputTester.cs" />
      <Compile Include="Assets\Test\NetworkSystemTests\NetTestDriver.cs" />
      <Compile Include="Assets\Test\NetworkSystemTests\TSqueueTesting\TSqueueTestDriver.cs" />
      <Compile Include="Assets\Test\NetworkSystemTests\TicTacNETDEMO\TicTacTestGM.cs" />
