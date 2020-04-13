@@ -30,13 +30,13 @@ public class UnitDisplayGroup : MonoBehaviour{
         go.GetComponent<UnitDisplayObject>().setContent(_baseUnit);
         
     }
-    
-    
+
     // Start is called before the first frame update
     void Start()
     {
         EventDefinition ed = new EventDefinition(SysTarget.UI, "addUnitDisplayObject", this);
         ed.register(addDisplayObject);
+
     }
 
     // Update is called once per frame

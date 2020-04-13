@@ -16,8 +16,8 @@ MonoBehaviour:
   unitType: 0
   AP: 2
   RNG: 1
-  maxHP: 70.1
-  currHP: 61.9
+  maxHP: 100
+  currHP: 5
   ATK: 50
   DEF: 25
   CRIT: 1.35
