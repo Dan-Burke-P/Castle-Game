@@ -115,6 +115,7 @@
      <Compile Include="Assets\Scripts\UISystem\UIHandler.cs" />
      <Compile Include="Assets\Scripts\UISystem\UnitActionData.cs" />
      <Compile Include="Assets\Scripts\UISystem\UnitActionDisplay.cs" />
+     <Compile Include="Assets\Scripts\UISystem\UnitDisplayGroup.cs" />
      <Compile Include="Assets\Scripts\UISystem\UnitDisplayObject.cs" />
      <Compile Include="Assets\Scripts\UISystem\UnitUIData.cs" />
      <Compile Include="Assets\Scripts\UISystem\UnitUIPanel.cs" />
@@ -135,6 +136,7 @@
      <Compile Include="Assets\Test\BoardTests\DTestBoardGeneration.cs" />
      <Compile Include="Assets\Test\BoardTests\TestBoardGeneration.cs" />
      <Compile Include="Assets\Test\EventSystemTests\EventTestDriver.cs" />
+     <Compile Include="Assets\Test\InputTest\InputTester.cs" />
      <Compile Include="Assets\Test\NetworkSystemTests\NetTestDriver.cs" />
      <Compile Include="Assets\Test\NetworkSystemTests\TSqueueTesting\TSqueueTestDriver.cs" />
      <Compile Include="Assets\Test\NetworkSystemTests\TicTacNETDEMO\TicTacTestGM.cs" />

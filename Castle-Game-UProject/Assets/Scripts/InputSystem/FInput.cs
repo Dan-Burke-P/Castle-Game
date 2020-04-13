@@ -13,11 +13,30 @@ namespace Assets.Scripts.InputSystem
     {
         #region Members
 
+        private static FInput _instance;
         /// <summary>
         /// This is the static instance of this class, used to invoke the non-static methods and 
         /// maintain a single instance.
         /// </summary>
-        public static FInput Instance;
+        public static FInput Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    GameObject t = new GameObject();
+                    t.AddComponent<FInput>();
+                    _instance = t.GetComponent<FInput>();
+                }
+                return _instance;
+            }
+        }
+
+        /// <summary>
+        /// The tile the mouse is currently hovering over - updates every frame.
+        /// </summary>
+        public Vector2Int MouseOverTile = new Vector2Int();
+
 
         /// <summary>
         /// The callbackLookup Dictionary is given an event invocation code, and stores a UnityAction for
@@ -39,11 +58,12 @@ namespace Assets.Scripts.InputSystem
 
         #region Instantiation
         /// <summary>
-        /// Called by UnityEngine when the program starts, all this does here is instantiate the FInput class.
+        /// This function is called automatically by the unity system.  So if you attach this monobehaviour to a
+        /// GameObject before running the scene, the script will be instantiated.
         /// </summary>
         void Awake()
         {
-            Instance = new FInput();
+            _instance = this;
         }
 
         /// <summary>
@@ -142,6 +162,19 @@ namespace Assets.Scripts.InputSystem
                 else if (Input.GetButtonUp(buttonsToPoll[i]))
                     ActivateCallback("BUp:" + keysToPoll[i].ToString());
             }
+
+            //mouse picking (finding where the mouse intersects the board at)
+            //get a plane to represent the board (since it will always be a plane)
+            Plane board = new Plane(Vector3.up, 0);
+            //get a ray to represent the angle of the mouse if it were coming through the camera
+            Ray r = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //to store the distance to the board plane
+            float distance;
+            board.Raycast(r, out distance);
+            //calculate the intersect position in world space
+            Vector3 worldIntersect = r.origin + r.direction * distance;
+            //reformulate the world intersection point to be in tile coords
+            MouseOverTile = new Vector2Int((int)worldIntersect.x, (int)Math.Abs(worldIntersect.z));
         }
 
         #endregion Input Polling
