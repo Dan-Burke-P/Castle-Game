@@ -30,9 +30,3 @@ FeatureGuides/Starting-Development.html
 FeatureGuides/Adding-Cards.html
 README.html
 Castle-Game-UProject/ProjectSettings/ProjectVersion.txt
-Castle-Game-UProject/Assembly-CSharp.csproj
-Castle-Game-UProject/Assets/Scripts/Units/PositionTracker.cs.meta
-Castle-Game-UProject/Assets/Scripts/Units/UnitFactory.cs.meta
-Castle-Game-UProject/Assets/Scripts/Units/UnitObject.cs.meta
-Castle-Game-UProject/Assets/Scripts/Units/PositionTracker.cs.meta
-*.meta
