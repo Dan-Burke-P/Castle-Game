@@ -30,3 +30,6 @@ FeatureGuides/Starting-Development.html
 FeatureGuides/Adding-Cards.html
 README.html
 Castle-Game-UProject/ProjectSettings/ProjectVersion.txt
+
+*.meta
+*.csproj
