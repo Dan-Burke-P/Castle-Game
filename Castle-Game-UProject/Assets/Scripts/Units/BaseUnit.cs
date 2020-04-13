@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public abstract class BaseUnit : ScriptableObject {
     
@@ -8,7 +9,8 @@ public abstract class BaseUnit : ScriptableObject {
 	public UnitType unitType = UnitType.Soldier;
 	public int AP = 2;
 	public int RNG = 1;
-	public float HP = 100;
+	public float maxHP = 100;
+	public float currHP = 100;
 	public float ATK = 50;
 	public float DEF = 25;
 	public float CRIT = 1.35f;
@@ -23,8 +25,8 @@ public abstract class BaseUnit : ScriptableObject {
 	
     public int xPos, yPos;
 
-    public GameObject obj;
-    public Transform transform;
+    public GameObject displayObject;
+    //public Transform transform;
 	
 	
     

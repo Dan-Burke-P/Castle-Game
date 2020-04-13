@@ -21,7 +21,7 @@ public class UnitObject : MonoBehaviour
 		unitType = unit.unitType;
 		AP = unit.AP;
 		RNG = unit.RNG;
-		HP = unit.HP;
+		HP = unit.maxHP;
 		ATK = unit.ATK;
 		DEF = unit.DEF;
 		CRIT = unit.CRIT;

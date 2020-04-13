@@ -89,14 +89,14 @@ public class BoardSpace : MonoBehaviour
         if (unitSO != null) {
             unitSO.xPos = _x is int ? (int) _x : 0;
             unitSO.yPos = _y is int ? (int) _y : 0;
-            unitSO.obj = Instantiate(unitTemplate, this.transform, false);
+            //unitSO.obj = Instantiate(unitTemplate, this.transform, false);
 
             unitData.Add(latestUID, unitSO);
             latestUID++;
 
             _slots[unitSO.xPos, unitSO.yPos].unit = unitSO;
 
-            unitSO.obj.transform.localPosition = new Vector3(unitSO.xPos, unitSO.yPos,0);
+            //unitSO.obj.transform.localPosition = new Vector3(unitSO.xPos, unitSO.yPos,0);
         }
         else {
             Debug.LogError("addGamepiece ended up with a null unitSO");
