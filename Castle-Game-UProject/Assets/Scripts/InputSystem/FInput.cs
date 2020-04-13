@@ -91,10 +91,15 @@ namespace Assets.Scripts.InputSystem
         /// <param name="code">the code for the keyboard key you wish to poll</param>
         public void RegisterKeyToPoll(KeyCode code)
         {
-            if (!registeredKeys[code])
+            if (!registeredKeys.ContainsKey(code))
             {
+                registeredKeys.Add(code, true);
                 keysToPoll.Add(code);
+            }
+            else if (!registeredKeys[code])
+            {
                 registeredKeys[code] = true;
+                keysToPoll.Add(code);
             }
         }
 
@@ -105,10 +110,15 @@ namespace Assets.Scripts.InputSystem
         /// <param name="button">the string name of the button you wish to poll</param>
         public void RegisterButtonToPoll(string button)
         {
-            if (!registeredButtons[button])
+            if (!registeredButtons.ContainsKey(button))
             {
+                registeredButtons.Add(button, true);
                 buttonsToPoll.Add(button);
+            }
+            else if (!registeredButtons[button])
+            {
                 registeredButtons[button] = true;
+                buttonsToPoll.Add(button);
             }
         }
 
@@ -123,13 +133,22 @@ namespace Assets.Scripts.InputSystem
         /// </summary>
         /// <param name="key">The event key for the input event you wish to target</param>
         /// <param name="callback">The function to run when this event is triggered</param>
-        public void RegisterCallback(string key, UnityAction callback) => callbackLookup[key] += (callback);
+        public void RegisterCallback(string key, UnityAction callback)
+        {
+            if (!callbackLookup.ContainsKey(key))
+                callbackLookup.Add(key, callback);
+            else callbackLookup[key] += (callback);
+        }
 
         /// <summary>
         /// Invokes a callback (should it exist) for a specified event key.
         /// </summary>
         /// <param name="key">the event key to try and invoke</param>
-        public void ActivateCallback(string key) => callbackLookup[key]?.Invoke();
+        public void ActivateCallback(string key)
+        {
+            if (callbackLookup.ContainsKey(key))
+                callbackLookup[key].Invoke();
+        }
 
         #endregion Delegate Management
 
@@ -156,11 +175,11 @@ namespace Assets.Scripts.InputSystem
             for (int i = 0; i < buttonsToPoll.Count; i++)
             {
                 if (Input.GetButtonDown(buttonsToPoll[i]))
-                    ActivateCallback("BDown:" + keysToPoll[i].ToString());
+                    ActivateCallback("BDown:" + buttonsToPoll[i].ToString());
                 else if (Input.GetButton(buttonsToPoll[i]))
-                    ActivateCallback("BHold:" + keysToPoll[i].ToString());
+                    ActivateCallback("BHold:" + buttonsToPoll[i].ToString());
                 else if (Input.GetButtonUp(buttonsToPoll[i]))
-                    ActivateCallback("BUp:" + keysToPoll[i].ToString());
+                    ActivateCallback("BUp:" + buttonsToPoll[i].ToString());
             }
 
             //mouse picking (finding where the mouse intersects the board at)
