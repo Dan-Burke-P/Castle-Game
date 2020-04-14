@@ -12,7 +12,6 @@ obj/
 *.user
 *.unityproj
 *.booproj
-*.lock
 
 .DS_Store
 .DS_Store?
@@ -29,8 +28,3 @@ Assets/Plugins/Editor/JetBrains.meta
 FeatureGuides/Starting-Development.html
 FeatureGuides/Adding-Cards.html
 README.html
-Castle-Game-UProject/ProjectSettings/ProjectVersion.txt
-
-*.meta
-*.csproj
-Castle-Game-UProject/Assembly-CSharp.csproj
