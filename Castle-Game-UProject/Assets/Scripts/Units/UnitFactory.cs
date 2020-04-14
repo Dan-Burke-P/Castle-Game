@@ -11,13 +11,13 @@ public class UnitFactory
     {
         return instance;
     }
-    public void CreateUnit<UnitClass> (Vector2Int coordinates) where UnitClass : BaseUnit
+    public BaseUnit CreateUnit<UnitClass> (Vector2Int coordinates) where UnitClass : BaseUnit
     {
-        UnitClass unit = ScriptableObject.CreateInstance("BaseUnit") as UnitClass;
+        UnitClass unit = ScriptableObject.CreateInstance<UnitClass>();
         unit.ID = UnitRegistry.setID();
         unit.xPos = coordinates.x;
         unit.yPos = coordinates.y;
-        EventDefinition displayEvent = new EventDefinition(SysTarget.UI, "addUnitDisplayObject", this);
-        displayEvent.raise(unit.ID, this, new Dictionary<string, object> { {"BaseUnit", unit} });
+       
+        return unit;
     }
 }

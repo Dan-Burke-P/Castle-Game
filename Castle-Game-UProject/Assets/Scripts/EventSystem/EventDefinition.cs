@@ -41,6 +41,21 @@ namespace EventSystem {
         }
         
         /// <summary>
+        /// Used for constructing an event definition with passed parameters
+        /// </summary>
+        /// <param name="ST">
+        /// System we want to target
+        /// </param>
+        /// <param name="ET">
+        /// The target inside the event name
+        /// </param>
+        public EventDefinition(SysTarget ST, string ET){
+            sysTarget = ST;
+            target = ET;
+            caller = null;
+        }
+        
+        /// <summary>
         /// Raise the event defined by the definition 
         /// </summary>
         /// <param name="ID">

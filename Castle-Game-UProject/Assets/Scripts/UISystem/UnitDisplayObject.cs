@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UnitDisplayObject : MonoBehaviour{
+
+    public bool DEBUGshouldHighlight;
     
     public BaseUnit content;
 
@@ -11,7 +13,8 @@ public class UnitDisplayObject : MonoBehaviour{
     
     public Transform unitMeshParent;
     public GameObject unitDisplayObject;
-
+    public GameObject highlightObject;
+    
     public RadialProgBar rpb;
     
 
@@ -20,6 +23,7 @@ public class UnitDisplayObject : MonoBehaviour{
         setContent();
     }
     public void setContent(){
+        DEBUGshouldHighlight = true;
         if (!unitDisplayObject){
             unitDisplayObject = Instantiate(content.displayObject, unitMeshParent, false);
         }
@@ -33,8 +37,12 @@ public class UnitDisplayObject : MonoBehaviour{
     public void display(){
         rpb.max = content.maxHP;
         rpb.setCurrent(content.currHP);
-        
-        root.localPosition = new Vector3(content.xPos,content.yPos,0);
+        if (content.shouldHighlight){
+            highlightObject.SetActive(true);
+        }else if (!content.shouldHighlight){
+            highlightObject.SetActive(false);
+        }
+            root.localPosition = new Vector3(content.xPos,content.yPos,0);
     }
 
     private void Start(){

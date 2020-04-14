@@ -15,7 +15,7 @@ public class UnitDisplayGroup : MonoBehaviour{
     /// <param name="id"></param>
     /// <param name="caller"></param>
     public void addDisplayObject(Dictionary<string, object> prms, int id, object caller){
-        print("Adding display object to the game");
+        //print("Adding display object to the game");
         object tmp;
         
         if (!prms.TryGetValue("BaseUnit", out tmp)){
