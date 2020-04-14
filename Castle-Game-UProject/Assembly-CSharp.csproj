@@ -86,11 +86,7 @@
      <Compile Include="Assets\Scripts\EventSystem\SystemEventList.cs" />
      <Compile Include="Assets\Scripts\GameManagers\GameMaster.cs" />
      <Compile Include="Assets\Scripts\GameManagers\PlayerScript\Deck.cs" />
-     <Compile Include="Assets\Scripts\GameManagers\PlayerScript\DisplayCardScript.cs" />
      <Compile Include="Assets\Scripts\GameManagers\PlayerScript\Hand.cs" />
-     <Compile Include="Assets\Scripts\GameManagers\PlayerScript\HandButtonScript.cs" />
-     <Compile Include="Assets\Scripts\GameManagers\PlayerScript\HandCounterScript.cs" />
-     <Compile Include="Assets\Scripts\GameManagers\PlayerScript\HandTestDriver.cs" />
      <Compile Include="Assets\Scripts\GameManagers\PlayerScript\Player.cs" />
      <Compile Include="Assets\Scripts\InputHandler.cs" />
      <Compile Include="Assets\Scripts\InputSystem\FInput.cs" />
