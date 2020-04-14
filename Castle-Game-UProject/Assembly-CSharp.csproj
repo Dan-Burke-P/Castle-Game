@@ -76,6 +76,7 @@
      <Compile Include="Assets\Scripts\Cards\CardType.cs" />
      <Compile Include="Assets\Scripts\Cards\IBaseCard.cs" />
      <Compile Include="Assets\Scripts\Cards\Test.cs" />
+     <Compile Include="Assets\Scripts\DBUnitPrefabList.cs" />
      <Compile Include="Assets\Scripts\EscapeReset.cs" />
      <Compile Include="Assets\Scripts\EventSystem\Event.cs" />
      <Compile Include="Assets\Scripts\EventSystem\EventBus.cs" />
@@ -154,6 +155,15 @@
  <Reference Include="Unity.VSCode.Editor">
  <HintPath>Z:/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
+ <Reference Include="Unity.RenderPipelines.Core.Editor">
+ <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.RenderPipelines.Core.Runtime">
+ <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.VisualEffectGraph.Runtime">
+ <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.VisualEffectGraph.Runtime.dll</HintPath>
+ </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>Z:/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
@@ -166,6 +176,9 @@
  <Reference Include="Unity.CollabProxy.Editor">
 
  </Reference>
+ <Reference Include="Unity.RenderPipelines.HighDefinition.Runtime">
+ <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath>
+ </Reference>
  <Reference Include="com.unity.multiplayer-weaver.Editor">
  <HintPath>Z:/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll</HintPath>
  </Reference>
@@ -177,6 +190,12 @@
  </Reference>
  <Reference Include="Unity.Rider.Editor">
  <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+ <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.RenderPipelines.HighDefinition.Config.Runtime">
+ <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Config.Runtime.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Sprite.Editor">
  <HintPath>Z:/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
@@ -193,20 +212,33 @@
  <Reference Include="Unity.TextMeshPro">
  <HintPath>Z:/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
+
+ <Reference Include="Unity.VisualEffectGraph.Editor">
+ <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.VisualEffectGraph.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.ShaderGraph.Editor">
+ <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.RenderPipelines.HighDefinition.Editor">
+ <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+ <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+ </Reference>
+
  <Reference Include="Unity.TextMeshPro">
  <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.XR.LegacyInputHelpers">
- <HintPath>Z:/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.UI">
- <HintPath>Z:/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+
+ <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
+
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="com.unity.multiplayer-hlapi.Runtime">
- <HintPath>Z:/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
+ <HintPath>F:/Game Dev/Castle-Game/Castle-Game-UProject/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>D:/Unity Editors/2019.3.7f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

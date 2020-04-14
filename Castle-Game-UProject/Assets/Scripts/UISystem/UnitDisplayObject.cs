@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UnitDisplayObject : MonoBehaviour{
+
+    public bool DEBUGshouldHighlight;
     
     public BaseUnit content;
 
@@ -20,6 +22,7 @@ public class UnitDisplayObject : MonoBehaviour{
         setContent();
     }
     public void setContent(){
+        DEBUGshouldHighlight = true;
         if (!unitDisplayObject){
             unitDisplayObject = Instantiate(content.displayObject, unitMeshParent, false);
         }

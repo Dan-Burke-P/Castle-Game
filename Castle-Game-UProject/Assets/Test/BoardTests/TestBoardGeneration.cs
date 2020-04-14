@@ -85,8 +85,6 @@ public class TestBoardGeneration : MonoBehaviour {
         prm.Add("unitData", UnitDB.UNCR_Soldier());
         prm.Add("x", 2);
         prm.Add("y", 3);
-        
-        testBoardSpace.addGamepiece(prm);
 
         string result = testBoardSpace.ToString();
 

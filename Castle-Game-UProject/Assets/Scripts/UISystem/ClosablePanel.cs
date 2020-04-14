@@ -15,11 +15,10 @@ public class ClosablePanel : MonoBehaviour{
     // Start is called before the first frame update
     void Start(){
         r = rt.rect;
-        openToggle.onClick.AddListener(closePanel);
+        closePanel();
     }
 
-    public void closePanel(){
-        Debug.Log("Closing panel");     
+    public void closePanel(){   
         openToggle.onClick.RemoveAllListeners();
         openToggle.onClick.AddListener(openPanel);
         rt.anchoredPosition = new Vector2(0, closedPosition);
@@ -27,7 +26,6 @@ public class ClosablePanel : MonoBehaviour{
     }
 
     public void openPanel(){
-        Debug.Log("Opening panel");    
         openToggle.onClick.RemoveAllListeners();
         openToggle.onClick.AddListener(closePanel);
         rt.anchoredPosition = new Vector2(0, openPosition);

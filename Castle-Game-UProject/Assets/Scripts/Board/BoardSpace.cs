@@ -41,13 +41,6 @@ public class BoardSpace : MonoBehaviour
     {
         // Initialize the board space
         _initBoardSpace();
-        
-        //EventDefinition ed = new EventDefinition();
-        // ed.systemName = "AddUnitToBoard";
-        // ed.target = "addBaseUnit";
-        // ed.action = addGamepiece;
-        //EventBus.Instance().RegisterEvent(ed);
-
         initialized = true;
     }
 
@@ -56,61 +49,47 @@ public class BoardSpace : MonoBehaviour
         
     }
 
-    /*
-     * Event function for adding units to the board
-     *
-     * Expects key values:
-     * "unitData"    - int    - The baseUnit SO that represents the virtual unit
-     * "x"           - int    - The x location we want to place the unit at
-     * "y"           - int    - The y location we want to play the unit at
-     * 
-     */
-    public void addGamepiece(Dictionary<string, object> prms){
-        object tmp;
-
-        object _x, _y;
-        
-        if(!prms.TryGetValue("unitData", out tmp)) {
-            Debug.LogError("addGamepiece was raised without unit data");            
-            return;
-        }
-
-        if (!prms.TryGetValue("x", out _x)) {
-            Debug.LogError("addGamepiece was raised without x value");            
-            return;
-        }
-
-        if (!prms.TryGetValue("y", out _y)) {
-            Debug.LogError("addGamepiece was raised without y value");
-            return;
-        }
-        
-        BaseUnit unitSO = tmp as BaseUnit;
-        if (unitSO != null) {
-            unitSO.xPos = _x is int ? (int) _x : 0;
-            unitSO.yPos = _y is int ? (int) _y : 0;
-            //unitSO.obj = Instantiate(unitTemplate, this.transform, false);
-
-            unitData.Add(latestUID, unitSO);
-            latestUID++;
-
-            _slots[unitSO.xPos, unitSO.yPos].unit = unitSO;
-
-            //unitSO.obj.transform.localPosition = new Vector3(unitSO.xPos, unitSO.yPos,0);
-        }
-        else {
-            Debug.LogError("addGamepiece ended up with a null unitSO");
-        }
+    public BaseUnit getPieceAtLoc(Vector2 loc){
+        return getPieceAtLoc((int)loc.x, (int)loc.y);
     }
 
     public BaseUnit getPieceAtLoc(int x, int y){
 
-        if (x < boardWidth && y < boardHeight) {
+        if (x >= 0 && y >= 0 && x < boardWidth && y < boardHeight){
             BoardSlot bs = _slots[x, y];
             return bs.unit;
         }
         else{
             return null;
+        }
+    }
+
+    public void addUnitAt(BaseUnit bu, Vector2Int v2i){
+        addUnitAt(bu, v2i.x, v2i.y);
+    }
+    public void addUnitAt(BaseUnit unit, int x, int y){
+        BoardSlot bs;
+        if (x >= 0 && y >= 0 && x < boardWidth && y < boardHeight){
+             bs = _slots[x, y];
+        }
+        else{
+            Debug.Log("Add unit at location failed, the index was out of range");
+            return;
+        }
+
+        if (bs.unit){
+            Debug.Log("Unit currently in that location");
+        }
+        else{
+            // We need to check that the selection is in board boundry
+            print("Adding unit to the board");
+            bs.unit = unit;
+            unit.xPos = x;
+            unit.yPos = y;
+            
+            EventDefinition displayEvent = new EventDefinition(SysTarget.UI, "addUnitDisplayObject", this);
+            displayEvent.raise(unit.ID, this, new Dictionary<string, object> { {"BaseUnit", unit} });
+
         }
     }
 

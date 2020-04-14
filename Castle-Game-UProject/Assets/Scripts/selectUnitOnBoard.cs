@@ -1,0 +1,44 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using Assets.Scripts.InputSystem;
+using UnityEngine;
+
+public class selectUnitOnBoard : MonoBehaviour{
+    public BoardSpace BADBS;
+    public BaseUnit test;
+    public BaseUnit selection;
+    private void Start(){
+        print(FInput.Instance);
+        FInput.Instance.RegisterButtonToPoll("Fire1");
+        FInput.Instance.RegisterCallback("BDown:Fire1", clickCallBack);
+    }
+
+    public void clickCallBack(){ 
+        Vector2Int location = new Vector2Int(FInput.Instance.MouseOverTile.x, FInput.Instance.MouseOverTile.y);
+        print("Selected unit at : " + location);
+        
+        BaseUnit trg = BADBS.getPieceAtLoc(location);
+
+        if (trg){
+            if (selection){
+                selection.shouldHighlight = false;
+            }
+            selection = trg;
+            trg.shouldHighlight = true;
+        }
+        else{
+            if (selection){
+                selection.shouldHighlight = false;
+                selection = null;
+            }
+        }
+    }
+
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}
