@@ -57,8 +57,8 @@ namespace UISystem{
             healthBar.maxValue = selection.maxHP;
             healthBar.value = selection.currHP;
 
-            healthText.text = $"{selection.maxHP}/{selection.currHP}";
-            actionPointText.text = $"AP: {selection.AP}/{selection.AP}";
+            //healthText.text = $"{selection.maxHP}/{selection.currHP}";
+            //actionPointText.text = $"AP: {selection.AP}/{selection.AP}";
             
             updateActionList();
         }

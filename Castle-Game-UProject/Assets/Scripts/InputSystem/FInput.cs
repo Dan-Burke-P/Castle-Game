@@ -42,12 +42,12 @@ namespace Assets.Scripts.InputSystem
         /// The callbackLookup Dictionary is given an event invocation code, and stores a UnityAction for
         /// invocation.
         /// </summary>
-        private Dictionary<string, UnityAction> callbackLookup;
+        private Dictionary<string, List<Action>> callbackLookup;
 
         /// <summary>
         /// A dictionary to track whether or not a callback should be deregistered after a single call or not.
         /// </summary>
-        private Dictionary<Delegate, bool> deregesterCallbackOptionLookup;
+        private Dictionary<string, bool> deregesterCallbackOptionLookup;
 
         // The keysToPoll and buttonsToPoll lists contain all hard input that this class will poll for new
         // events on each frame.
@@ -82,8 +82,8 @@ namespace Assets.Scripts.InputSystem
             buttonsToPoll = new List<string>();
             registeredKeys = new Dictionary<KeyCode, bool>();
             registeredButtons = new Dictionary<string, bool>();
-            callbackLookup = new Dictionary<string, UnityAction>();
-            deregesterCallbackOptionLookup = new Dictionary<Delegate, bool>();
+            callbackLookup = new Dictionary<string, List<Action>>();
+            deregesterCallbackOptionLookup = new Dictionary<string, bool>();
         }
 
         #endregion Instantiation
@@ -140,17 +140,13 @@ namespace Assets.Scripts.InputSystem
         /// <param name="key">The event key for the input event you wish to target</param>
         /// <param name="auto_deregister">True if the function should only run one time</param>
         /// <param name="callback">The function to run when this event is triggered</param>
-        public void RegisterCallback(string key, bool auto_deregister, UnityAction callback)
+        public void RegisterCallback(string key, bool auto_deregister, Action callback)
         {
             if (!callbackLookup.ContainsKey(key))
-                callbackLookup.Add(key, callback);
-            else
-                callbackLookup[key] += callback;
+                callbackLookup.Add(key, new List<Action>());
+            callbackLookup[key].Add(callback);
 
-            Delegate[] invocationList = callback.GetInvocationList();
-
-            foreach (Delegate func in invocationList)
-                deregesterCallbackOptionLookup.Add(func, auto_deregister);
+            deregesterCallbackOptionLookup.Add(key + "|" + callback.GetHashCode().ToString(), auto_deregister);
         }
 
         /// <summary>
@@ -161,15 +157,18 @@ namespace Assets.Scripts.InputSystem
         {
             if (callbackLookup.ContainsKey(key))
             {
-                callbackLookup[key].Invoke();
-
-                Delegate[] invocationList = callbackLookup[key].GetInvocationList();
-
-                foreach (Delegate func in invocationList)
-                    if (deregesterCallbackOptionLookup[func])
-                        Delegate.Remove(callbackLookup[key], func);
+                List <Action> toRemove = new List<Action>();
+                foreach (Action cb in callbackLookup[key])
+                {
+                    cb.Invoke();
+                    if (deregesterCallbackOptionLookup[key + "|" + cb.GetHashCode().ToString()])
+                    {
+                        toRemove.Add(cb);
+                    }
+                }
+                foreach (Action a in toRemove)
+                    callbackLookup[key].Remove(a);
             }
-
         }
 
         #endregion Delegate Management

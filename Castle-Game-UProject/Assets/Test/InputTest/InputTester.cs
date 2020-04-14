@@ -7,26 +7,15 @@ namespace Assets.Scripts.InputSystem
     public class InputTester : MonoBehaviour
     {
 
-        private bool toggle = false;
-        private Vector2Int first, second;
-
         void Start()
         {
             Debug.Log(FInput.Instance);
             Debug.Log("Succesfully instantiated the input object, even though it didn't exist beforehand.");
 
             FInput.Instance.RegisterKeyToPoll(KeyCode.Space);
-            FInput.Instance.RegisterCallback("KDown:Space", false, () =>
+            FInput.Instance.RegisterCallback("KDown:Space", true, () =>
                 {
-                    if (!toggle)
-                    {
-                        first = FInput.Instance.MouseOverTile;
-                    }
-                    else
-                    {
-                        second = FInput.Instance.MouseOverTile;
-                    }
-                    toggle = !toggle;
+                    Debug.Log("The function ran");
                 }
             );
         }
