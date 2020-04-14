@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using GameManagers;
 using UnityEngine;
 
 public class DebugMenuController : MonoBehaviour{
@@ -7,10 +8,13 @@ public class DebugMenuController : MonoBehaviour{
 
     public GameObject UnitPanel;
     public GameObject CardPanel;
+    public GameObject PlayerDataPanel;
     public void hideAll(){
         UnitPanel.SetActive(false);
         CardPanel.SetActive(false);
+        PlayerDataPanel.SetActive(false);
     }
+    
     
     /*
      * The following functions are all used as end points for menu options in the debug panel
@@ -40,7 +44,7 @@ public class DebugMenuController : MonoBehaviour{
     /*
      * Defines functions for executing commands related to the add card debug options
      */
-    #region AddUnitPanelFunctions
+    #region AddCardPanelFunctions
 
     public void showCardSpawnMenu(){
         hideAll();
@@ -48,4 +52,26 @@ public class DebugMenuController : MonoBehaviour{
     }
 
     #endregion
+
+    /*
+     * Functions for the player data panel
+     */
+    #region PlayDataPanelFunctions
+
+    public void showPlayerDataPanel(){
+        hideAll();
+        PlayerDataPanel.SetActive(true);
+    }
+
+    public void changeActivePlayer(){
+        GameMaster.Instance.changeActivePlayer();
+        Debug.Log($"The active player is now: {GameMaster.Instance.getActivePlayer()}");
+    }
+
+    public void changePlayerTurn(){
+        GameMaster.Instance.changePlayerTurn();
+        Debug.Log($"The player turn is now: {GameMaster.Instance.getPlayerTurn()}");
+    }
+    #endregion
+    
 }

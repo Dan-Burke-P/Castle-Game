@@ -3,8 +3,9 @@
 namespace GameManagers{
     public class GameMaster : MonoBehaviour{
 
+         
         private int _playerTurn = 1;
-        
+        private int _activePlayer = 1;
         public PlayerManager player1;
         public PlayerManager player2;
 
@@ -26,6 +27,25 @@ namespace GameManagers{
 
         public static GameState state;
     
+        
+        private static GameMaster _instance;
+        /// <summary>
+        /// This is the static instance of this class, used to invoke the non-static methods and 
+        /// maintain a single instance.
+        /// </summary>
+        public static GameMaster Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    GameObject t = new GameObject();
+                    t.AddComponent<GameMaster>();
+                    _instance = t.GetComponent<GameMaster>();
+                }
+                return _instance;
+            }
+        }
         void Awake(){
         }
 
@@ -78,5 +98,27 @@ namespace GameManagers{
         }
 
         #endregion
+
+        public int getActivePlayer(){
+            return _activePlayer;
+        }
+
+        public int getPlayerTurn(){
+            return _playerTurn;
+        }
+
+        /// <summary>
+        /// Changes active player to that of the opposite player
+        /// </summary>
+        public void changeActivePlayer(){
+            _activePlayer = _activePlayer == 1 ? 2 : 1;
+        }
+
+        /// <summary>
+        /// Changes player turn to that of the other player
+        /// </summary>
+        public void changePlayerTurn(){
+            _playerTurn = _playerTurn == 1 ? 2 : 1;
+        }
     }
 }

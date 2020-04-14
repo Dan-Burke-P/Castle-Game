@@ -26,6 +26,7 @@ namespace UISystem{
 
         public Text actionPointText;
 
+        public Text ownerText;
         /// <summary>
         /// This is a temporary way of holding the link to the action UI objects
         /// in the final release this needs to be changed to a dynamic system that creates
@@ -46,6 +47,7 @@ namespace UISystem{
         public void displayUnitUI(BaseUnit bu){
             selection = bu;
             loadActionList();
+            ownerText.text = $"Owner: {bu.ownerID}";
             renderUI();
             showUI();
         }

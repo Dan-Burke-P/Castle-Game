@@ -6,8 +6,10 @@ using EventSystem;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public abstract class BaseUnit : ScriptableObject {
-    
+public abstract class BaseUnit : ScriptableObject{
+
+	public int ownerID;
+	
     public string unitName = "Error Instantiated as a Base Unit";
 	public int ID;
 	public UnitType unitType = UnitType.Soldier;

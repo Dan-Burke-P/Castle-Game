@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using EventSystem;
+using GameManagers;
 
 public class UnitFactory
 {
@@ -17,6 +18,7 @@ public class UnitFactory
         unit.ID = UnitRegistry.setID();
         unit.xPos = coordinates.x;
         unit.yPos = coordinates.y;
+        unit.ownerID = GameMaster.Instance.getActivePlayer();
        
         return unit;
     }
