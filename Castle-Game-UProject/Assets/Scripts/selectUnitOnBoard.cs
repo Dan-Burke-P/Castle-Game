@@ -19,31 +19,38 @@ public class selectUnitOnBoard : MonoBehaviour{
         FInput.Instance.RegisterCallback("BDown:Fire1",false, clickCallBack);
     }
 
-    public void clickCallBack(){ 
-        Vector2Int location = new Vector2Int(FInput.Instance.MouseOverTile.x, FInput.Instance.MouseOverTile.y);
-        //print("Selected unit at : " + location);
-        
-        BaseUnit trg = BADBS.getPieceAtLoc(location);
+    public void clickCallBack(){
 
-        if (trg){
-            if (selection){
-                selection.shouldHighlight = false;
-            }
-            selection = trg;
-            trg.shouldHighlight = true;
-            unitUIpanel.raise(0, this, new Dictionary<string, object>(){
-                {"BaseUnit", selection}
-            });
-        }
-        else{
-            if (selection){
-                selection.shouldHighlight = false;
-                selection = null;
+        if (!UIHOVERSTATUS.hovered){
+            // If we are not interacting with the UI
+            Vector2Int location = new Vector2Int(FInput.Instance.MouseOverTile.x, FInput.Instance.MouseOverTile.y);
+            //print("Selected unit at : " + location);
+        
+            BaseUnit trg = BADBS.getPieceAtLoc(location);
+
+            if (trg){
+                if (selection){
+                    selection.shouldHighlight = false;
+                }
+                selection = trg;
+                trg.shouldHighlight = true;
                 unitUIpanel.raise(0, this, new Dictionary<string, object>(){
                     {"BaseUnit", selection}
                 });
             }
+            else{
+                if (selection){
+                    if (!selection.moveMode){
+                        selection.shouldHighlight = false;
+                        selection = null;
+                        unitUIpanel.raise(0, this, new Dictionary<string, object>(){
+                            {"BaseUnit", selection}
+                        });
+                    }
+                }
+            }
         }
+        
     }
 
 

@@ -37,9 +37,9 @@ public class UnitDisplayObject : MonoBehaviour{
     public void display(){
         rpb.max = content.maxHP;
         rpb.setCurrent(content.currHP);
-        if (content.shouldHighlight && !highlightObject.activeInHierarchy){
+        if (content.shouldHighlight){
             highlightObject.SetActive(true);
-        }else if (!content.shouldHighlight && highlightObject.activeInHierarchy){
+        }else if (!content.shouldHighlight){
             highlightObject.SetActive(false);
         }
             root.localPosition = new Vector3(content.xPos,content.yPos,0);

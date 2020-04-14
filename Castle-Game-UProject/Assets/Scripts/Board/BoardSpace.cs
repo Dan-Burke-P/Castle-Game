@@ -92,8 +92,49 @@ public class BoardSpace : MonoBehaviour
             displayEvent.raise(unit.ID, this, new Dictionary<string, object> { {"BaseUnit", unit} });
 
         }
+
+        unit.boardSpace = this;
     }
 
+
+    public bool movePiece(Vector2Int from, Vector2Int to){
+        BoardSlot fSlot, toSlot;
+
+        fSlot = getSlot(from);
+        toSlot = getSlot(to);
+
+        if (fSlot == null || toSlot == null){
+            Debug.LogError("Warning tried to move from or to a slot that doesn't exist!");
+            return false;
+        }
+
+        if (!fSlot.unit){
+            Debug.LogError("Warning tried to move a piece that doesn't exist");
+            return false;
+        }
+
+        if (toSlot.unit){
+            Debug.LogError("Warning tried to move to a slot that contains a unit");
+            return false;
+        }
+
+        toSlot.unit = fSlot.unit;
+        fSlot.unit = null;
+
+        return true;
+    }
+
+
+    public BoardSlot getSlot(Vector2Int location){
+        if (location.x >= 0 && location.y >= 0 && location.x < boardWidth && location.y < boardHeight){
+            BoardSlot bs = _slots[location.x, location.y];
+            return bs;
+        }
+        else{
+            return null;
+        }
+    }
+    
     /*
      * Override the to string to we can properly parse and display the object for
      * debugging and testing

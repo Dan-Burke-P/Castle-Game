@@ -14,6 +14,7 @@ public class UNIT_Soldier : BaseUnit {
     
     private void OnEnable(){
         displayObject = Resources.Load("Prefabs/UnitDisplayObjects/SoldierDisplayObject") as GameObject;
-        //Debug.Log(displayObject);
+        
+        base._init();
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using EventSystem;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Networking.NetworkSystem;
 using UnityEngine.UI;
 
@@ -13,8 +14,8 @@ using UnityEngine.UI;
 namespace UISystem{
     public class UnitUIPanel : MonoBehaviour{
 
+        public bool hovered = false;
         public GameObject panelObject;
-
         
         private BaseUnit selection;
 
@@ -44,10 +45,24 @@ namespace UISystem{
         /// </param>
         public void displayUnitUI(BaseUnit bu){
             selection = bu;
+            loadActionList();
             renderUI();
             showUI();
         }
 
+        /// <summary>
+        /// Sets up buttons on the UI to be used to display and call actions in the system
+        /// </summary>
+        public void loadActionList(){
+            
+            for (int i = 0; i < selection.actions.Count; i++){
+                if (i > 3) break; // This is an incomplete method and this just serves to prevent errors until the method is improved
+                actionObjects[i].gameObject.SetActive(true);
+                actionObjects[i].setAction(selection.actions[i]);
+            }
+            
+        }
+        
         /// <summary>
         /// Enables and renders the unit UI section
         /// </summary>
@@ -57,24 +72,10 @@ namespace UISystem{
             healthBar.value = selection.currHP;
 
             healthText.text = $"{selection.maxHP}/{selection.currHP}";
-            actionPointText.text = $"AP: {selection.maxAP}/{selection.currAP}";
+            actionPointText.text = $"AP: {selection.currAP}/{selection.maxAP}";
             
-            updateActionList();
         }
 
-        /// <summary>
-        /// Updates the UI for the users action list
-        /// </summary>
-        public void updateActionList(){
-            /*
-            for (int i = 0; i < selection.actionList.Count; i++){
-                if (i > 3) break; // This is an incomplete method and this just serves to prevent errors until the method is improved
-                actionObjects[i].gameObject.SetActive(true);
-                actionObjects[i].setAction(selection.actionList[i]);
-            }
-            */
-        }
-        
         /// <summary>
         /// Hides the UI elements and suspends updating UI elements 
         /// </summary>
@@ -112,25 +113,29 @@ namespace UISystem{
         /// <param name="caller"></param>
         public void setUnitPanelData(Dictionary<string, object> prms, int ID, object caller){
             //print("Adding display object to the game");
-            object tmp;
+            if (!hovered){
+                object tmp;
         
-            if (!prms.TryGetValue("BaseUnit", out tmp)){
-                Debug.LogError("Message did not contain x parameter in dictionary");
-                return;
+                if (!prms.TryGetValue("BaseUnit", out tmp)){
+                    Debug.LogError("Message did not contain x parameter in dictionary");
+                    return;
+                }
+
+                BaseUnit _baseUnit = tmp as BaseUnit;
+
+                if (_baseUnit){
+                    displayUnitUI(_baseUnit);
+                }
+                else{
+                    hideUI();
+                }
             }
 
-            BaseUnit _baseUnit = tmp as BaseUnit;
-
-            if (_baseUnit){
-                displayUnitUI(_baseUnit);
-            }
-            else{
-                hideUI();
-            }
         }
         
 
         #endregion
+
         
     }
 }

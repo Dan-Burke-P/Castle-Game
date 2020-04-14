@@ -14,10 +14,19 @@ namespace UISystem{
         /// <summary>
         /// Set the action to the passed parameters
         /// </summary>
-        public void setAction(UnitActionData uad){
-            actionTitleText.text = uad.actionTitle;
-            apCostText.text = $"Cost: {uad.apCost}";
-            actionButton.onClick.AddListener(uad.onClick);
+        public void setAction(UnitTask ut){
+            
+            // Make sure nothing else is on the listener to avoid repeated usage
+            actionButton.onClick.RemoveAllListeners();
+            
+            // Set the display title
+            actionTitleText.text = ut.displayName;
+            
+            // Set the cost display of the action
+            apCostText.text = $"Cost: {ut.APcost}";
+            
+            // Set the onclick to call back to the function 
+            actionButton.onClick.AddListener(ut.ua);
         }
         
         
