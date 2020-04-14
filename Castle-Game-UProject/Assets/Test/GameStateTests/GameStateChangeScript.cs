@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using GameManagers;
 using UnityEngine;
 
 public class GameStateChangeScript : MonoBehaviour
