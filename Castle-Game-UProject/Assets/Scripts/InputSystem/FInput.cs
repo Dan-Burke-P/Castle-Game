@@ -44,6 +44,11 @@ namespace Assets.Scripts.InputSystem
         /// </summary>
         private Dictionary<string, UnityAction> callbackLookup;
 
+        /// <summary>
+        /// A dictionary to track whether or not a callback should be deregistered after a single call or not.
+        /// </summary>
+        private Dictionary<Delegate, bool> deregesterCallbackOptionLookup;
+
         // The keysToPoll and buttonsToPoll lists contain all hard input that this class will poll for new
         // events on each frame.
         private List<KeyCode> keysToPoll;
@@ -78,6 +83,7 @@ namespace Assets.Scripts.InputSystem
             registeredKeys = new Dictionary<KeyCode, bool>();
             registeredButtons = new Dictionary<string, bool>();
             callbackLookup = new Dictionary<string, UnityAction>();
+            deregesterCallbackOptionLookup = new Dictionary<Delegate, bool>();
         }
 
         #endregion Instantiation
@@ -132,12 +138,19 @@ namespace Assets.Scripts.InputSystem
         /// to your event key.
         /// </summary>
         /// <param name="key">The event key for the input event you wish to target</param>
+        /// <param name="auto_deregister">True if the function should only run one time</param>
         /// <param name="callback">The function to run when this event is triggered</param>
-        public void RegisterCallback(string key, UnityAction callback)
+        public void RegisterCallback(string key, bool auto_deregister, UnityAction callback)
         {
             if (!callbackLookup.ContainsKey(key))
                 callbackLookup.Add(key, callback);
-            else callbackLookup[key] += (callback);
+            else
+                callbackLookup[key] += callback;
+
+            Delegate[] invocationList = callback.GetInvocationList();
+
+            foreach (Delegate func in invocationList)
+                deregesterCallbackOptionLookup.Add(func, auto_deregister);
         }
 
         /// <summary>
@@ -147,7 +160,16 @@ namespace Assets.Scripts.InputSystem
         public void ActivateCallback(string key)
         {
             if (callbackLookup.ContainsKey(key))
+            {
                 callbackLookup[key].Invoke();
+
+                Delegate[] invocationList = callbackLookup[key].GetInvocationList();
+
+                foreach (Delegate func in invocationList)
+                    if (deregesterCallbackOptionLookup[func])
+                        Delegate.Remove(callbackLookup[key], func);
+            }
+
         }
 
         #endregion Delegate Management
