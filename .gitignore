@@ -31,7 +31,6 @@ FeatureGuides/Adding-Cards.html
 README.html
 Castle-Game-UProject/ProjectSettings/ProjectVersion.txt
 
-*.meta
 *.csproj
 Castle-Game-UProject/Assembly-CSharp.csproj
 Castle-Game-UProject/Assembly-CSharp.csproj

@@ -907,6 +907,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BoardUISystem
       objectReference: {fileID: 0}
+    - target: {fileID: 581197003866663650, guid: b04f45c8b6e849544b7379e9ddf5163b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 581197003866663656, guid: b04f45c8b6e849544b7379e9ddf5163b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -986,6 +991,10 @@ PrefabInstance:
       propertyPath: BADBS
       value: 
       objectReference: {fileID: 1333030322}
+    - target: {fileID: 1969603624, guid: 3b45d1037252e47458f1c88ddc4a24d8, type: 3}
+      propertyPath: hovered
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3317299851135498207, guid: 3b45d1037252e47458f1c88ddc4a24d8,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -1190,6 +1199,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317299852747048946, guid: 3b45d1037252e47458f1c88ddc4a24d8,
+        type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3317299852747048950, guid: 3b45d1037252e47458f1c88ddc4a24d8,
         type: 3}
