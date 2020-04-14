@@ -27,6 +27,8 @@ public abstract class BaseUnit : ScriptableObject {
 	
     public int xPos, yPos;
 
+    public bool shouldHighlight;
+    
     public GameObject displayObject;
     //public Transform transform;
 	

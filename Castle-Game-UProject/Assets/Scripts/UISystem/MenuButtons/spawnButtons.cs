@@ -12,27 +12,32 @@ public class spawnButtons : MonoBehaviour{
     /// <summary>
     /// Work around variable until deregistering of input is added
     /// </summary>
-    public bool spawning = false;
+    [SerializeField]
+    private bool spawningMode;
     private void Update(){
         
     }
 
-    public void spawnSoldier(){
-        FInput.Instance.RegisterCallback("BDown:Fire1", onClick);
-        spawning = true;
+    public void Start(){
+        // This is just a place holder until the input system gets refined more
+        FInput.Instance.RegisterCallback("BDown:Fire1",true, onClick);
+    }
 
+    public void spawnSoldier(){
+        spawningMode = true;
     }
 
     public void onClick(){
-
-        if (spawning){
+        if (spawningMode){
+            
+            //print("Spawning unit!");
             Vector2Int location = FInput.Instance.MouseOverTile;
             BaseUnit bu = UnitFactory.Instance().CreateUnit<UNIT_Soldier>(location);
             BADBS.addUnitAt(bu, location);
-            spawning = false;
-
+            spawningMode = false;
         }
-        
+
+            
     }
     
 

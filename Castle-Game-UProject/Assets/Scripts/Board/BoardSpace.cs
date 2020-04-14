@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using EventSystem;
 using UnityEngine;
 
 public class BoardSpace : MonoBehaviour
@@ -82,7 +83,7 @@ public class BoardSpace : MonoBehaviour
         }
         else{
             // We need to check that the selection is in board boundry
-            print("Adding unit to the board");
+            //print("Adding unit to the board");
             bs.unit = unit;
             unit.xPos = x;
             unit.yPos = y;

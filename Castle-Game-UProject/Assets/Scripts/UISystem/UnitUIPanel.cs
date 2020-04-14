@@ -45,8 +45,7 @@ namespace UISystem{
         public void displayUnitUI(BaseUnit bu){
             selection = bu;
             renderUI();
-            unitUIPanel.SetActive(true);
-            
+            showUI();
         }
 
         /// <summary>
@@ -58,7 +57,7 @@ namespace UISystem{
             healthBar.value = selection.currHP;
 
             healthText.text = $"{selection.maxHP}/{selection.currHP}";
-            actionPointText.text = $"AP: {selection.AP}/{selection.AP}";
+            actionPointText.text = $"AP: {selection.maxAP}/{selection.currAP}";
             
             updateActionList();
         }
@@ -83,6 +82,9 @@ namespace UISystem{
             panelObject.SetActive(false);
         }
 
+        /// <summary>
+        /// Shows the unit panel
+        /// </summary>
         public void showUI(){
             panelObject.SetActive(true);
         }
@@ -101,9 +103,15 @@ namespace UISystem{
 
         #region EventFunctions
 
-
+        /// <summary>
+        /// Event for when a unit needs to be displayed on a panel
+        /// if the passed unit parameter is null instead just hide the panel
+        /// </summary>
+        /// <param name="prms"></param>
+        /// <param name="ID"></param>
+        /// <param name="caller"></param>
         public void setUnitPanelData(Dictionary<string, object> prms, int ID, object caller){
-            print("Adding display object to the game");
+            //print("Adding display object to the game");
             object tmp;
         
             if (!prms.TryGetValue("BaseUnit", out tmp)){
@@ -113,7 +121,12 @@ namespace UISystem{
 
             BaseUnit _baseUnit = tmp as BaseUnit;
 
-            displayUnitUI(_baseUnit);
+            if (_baseUnit){
+                displayUnitUI(_baseUnit);
+            }
+            else{
+                hideUI();
+            }
         }
         
 
