@@ -140,6 +140,13 @@
      <Compile Include="Assets\Test\BoardTests\DTestBoardGeneration.cs" />
      <Compile Include="Assets\Test\BoardTests\TestBoardGeneration.cs" />
      <Compile Include="Assets\Test\EventSystemTests\EventTestDriver.cs" />
+     <Compile Include="Assets\Test\GameStateTests\GameStateChangeScript.cs" />
+     <Compile Include="Assets\Test\GameStateTests\GameStateDisplayScript.cs" />
+     <Compile Include="Assets\Test\GameStateTests\GameStateTestDriver.cs" />
+     <Compile Include="Assets\Test\HandSystemTests\DisplayCardScript.cs" />
+     <Compile Include="Assets\Test\HandSystemTests\HandButtonScript.cs" />
+     <Compile Include="Assets\Test\HandSystemTests\HandCounterScript.cs" />
+     <Compile Include="Assets\Test\HandSystemTests\HandTestDriver.cs" />
      <Compile Include="Assets\Test\InputTest\InputTester.cs" />
      <Compile Include="Assets\Test\NetworkSystemTests\NetTestDriver.cs" />
      <Compile Include="Assets\Test\NetworkSystemTests\TSqueueTesting\TSqueueTestDriver.cs" />

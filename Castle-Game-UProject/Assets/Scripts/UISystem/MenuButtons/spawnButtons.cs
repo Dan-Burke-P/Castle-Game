@@ -20,22 +20,20 @@ public class spawnButtons : MonoBehaviour{
 
     public void Start(){
         // This is just a place holder until the input system gets refined more
-        FInput.Instance.RegisterCallback("BDown:Fire1",true, onClick);
     }
 
     public void spawnSoldier(){
-        spawningMode = true;
+        FInput.Instance.RegisterCallback("BDown:Fire1",true, onClick);
     }
 
     public void onClick(){
-        if (spawningMode){
-            
-            //print("Spawning unit!");
-            Vector2Int location = FInput.Instance.MouseOverTile;
-            BaseUnit bu = UnitFactory.Instance().CreateUnit<UNIT_Soldier>(location);
-            BADBS.addUnitAt(bu, location);
-            spawningMode = false;
-        }
+
+        print("Spawning unit!");
+        Vector2Int location = FInput.Instance.MouseOverTile;
+        BaseUnit bu = UnitFactory.Instance().CreateUnit<UNIT_Soldier>(location);
+        BADBS.addUnitAt(bu, location);
+        spawningMode = false;
+        
 
             
     }

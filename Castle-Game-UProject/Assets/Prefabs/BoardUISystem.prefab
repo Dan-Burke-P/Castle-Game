@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 581197003866663660}
   - component: {fileID: 581197003866663651}
   - component: {fileID: 1476629555685355189}
+  - component: {fileID: 1333030324}
   m_Layer: 0
   m_Name: BoardUISystem
   m_TagString: GameBoard
@@ -50,8 +51,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitTemplate: {fileID: 566620772628620449, guid: b5fc5562465bfb44da05d0e29ca48151,
     type: 3}
-  boardWidth: 4
-  boardHeight: 4
+  boardWidth: 20
+  boardHeight: 20
   latestUID: 0
 --- !u!114 &581197003866663662
 MonoBehaviour:
@@ -147,3 +148,18 @@ MonoBehaviour:
   boardRoot: {fileID: 581197003866663656}
   unitObjPrefab: {fileID: 6095363280184904286, guid: 73530cac9523cf3469926aee2a82d35c,
     type: 3}
+--- !u!114 &1333030324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581197003866663650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06f768a046bbbc646a6d80f87b65eb5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BADBS: {fileID: 581197003866663663}
+  test: {fileID: 0}
+  selection: {fileID: 0}
