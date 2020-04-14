@@ -1,0 +1,3 @@
+# Persona for Castle Game
+
+Let's describe a potential player, who we'll call "Bill." Bill is a longtime fan of the 4X genre of games. He's been playing Sid Meyer's games since Civilization IV was brand new. He has a passing interest in TCG games such as Magic: The Gathering and Hearthstone, but very little experience with MOBA style games, though he understands the concepts behind the basic gameplay. Bill enjoys strategic combat, but sometimes wants a shorter experience compared to the marathon games of Civilization that he has committed entire days to in the past. Bill's platform of choice is a Windows PC.
