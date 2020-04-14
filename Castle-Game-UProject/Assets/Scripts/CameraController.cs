@@ -46,13 +46,33 @@ public class CameraController : MonoBehaviour{
 
     public void checkTranslation(){
         if (Input.mousePosition.x >= Screen.width - edgeDistance){
-            trns.position += trns.right * translateSpeed;
-        }else if (Input.mousePosition.x <= edgeDistance){
-            trns.position -= trns.right * translateSpeed;
-        }else if (Input.mousePosition.y >= Screen.height - edgeDistance){
-            trns.position += trns.forward * translateSpeed;
-        }else if (Input.mousePosition.y <= edgeDistance){
-            trns.position -= trns.forward * translateSpeed;
+            // Right hand movement
+            Vector3 targetPos = trns.position + trns.right * translateSpeed;
+            if (targetPos.x > horzBounds.x && targetPos.x < horzBounds.y){
+                trns.position = targetPos;
+            }
+        }else if (Input.mousePosition.x <= edgeDistance && trns.position.x > horzBounds.x){
+            // Lefthand movement
+            Vector3 targetPos = trns.position - trns.right * translateSpeed;
+            if (targetPos.x > horzBounds.x && targetPos.x < horzBounds.y){
+                trns.position = targetPos;
+            }
+        }
+        
+        if (Input.mousePosition.y >= Screen.height - edgeDistance){
+            // Forward movement
+            Vector3 targetPos = trns.position + trns.forward * translateSpeed;
+
+            if (targetPos.z > vertBounds.x && targetPos.z < vertBounds.y){
+                trns.position = targetPos;
+            }
+        }else if (Input.mousePosition.y <= edgeDistance && trns.position.z > vertBounds.x){
+            // Backward movement
+            Vector3 targetPos = trns.position - trns.forward * translateSpeed;
+
+            if (targetPos.z > vertBounds.x && targetPos.z < vertBounds.y){
+                trns.position = targetPos;
+            }
         }
     }
 
