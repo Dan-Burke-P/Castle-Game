@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.InputSystem;
+using UnityEngine;
 
 namespace GameManagers{
     public class GameMaster : MonoBehaviour{
@@ -9,6 +10,8 @@ namespace GameManagers{
         public PlayerManager player1;
         public PlayerManager player2;
 
+        public int testState = 0;
+        
         public gameSetup gameMode;
         public enum gameSetup{
             HOTSEAT,
@@ -17,15 +20,16 @@ namespace GameManagers{
             NETDEDICATED
         }
         
-        public enum GameState
+        public enum TurnPhase
         {
-            CardPhase1, 
-            UnitPhase1, 
-            CardPhase2, 
-            UnitPhase2
+            PreTurn, 
+            Renewal, 
+            MainPhase, 
+            Cleanup,
+            PrePass
         }
 
-        public static GameState state;
+        public static TurnPhase state;
     
         
         private static GameMaster _instance;
@@ -52,7 +56,9 @@ namespace GameManagers{
         // Start is called before the first frame update
         void Start()
         {
-            state = GameState.CardPhase1;
+            FInput fInput = FInput.Instance;
+            fInput.RegisterKeyToPoll(KeyCode.Space);
+            fInput.RegisterCallback("KDown:Space", false, ProgressState);
         }
 
         // Update is called once per frame
@@ -69,6 +75,7 @@ namespace GameManagers{
         public void createHotSeatGame(){
             
             gameMode = gameSetup.HOTSEAT;
+            
             player1.setPlayer(ScriptableObject.CreateInstance<PlayerData>());
             player1.setPlayerNumber(1);
             
@@ -119,6 +126,10 @@ namespace GameManagers{
         /// </summary>
         public void changePlayerTurn(){
             _playerTurn = _playerTurn == 1 ? 2 : 1;
+        }
+
+        public void ProgressState(){
+            changePlayerTurn();
         }
     }
 }
