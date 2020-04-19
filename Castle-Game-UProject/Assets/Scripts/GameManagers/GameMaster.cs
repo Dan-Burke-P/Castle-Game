@@ -3,12 +3,15 @@
 namespace GameManagers{
     public class GameMaster : MonoBehaviour{
 
+        public SetupSystemData setupData;
          
         private int _playerTurn = 1;
         private int _activePlayer = 1;
         public PlayerManager player1;
         public PlayerManager player2;
 
+        public BoardSpace bs;
+        
         public gameSetup gameMode;
         public enum gameSetup{
             HOTSEAT,
@@ -50,8 +53,9 @@ namespace GameManagers{
         }
 
         // Start is called before the first frame update
-        void Start()
-        {
+        void Start(){
+            setupData = ScriptableObject.CreateInstance<SetupSystemData>();
+
             state = GameState.CardPhase1;
         }
 
