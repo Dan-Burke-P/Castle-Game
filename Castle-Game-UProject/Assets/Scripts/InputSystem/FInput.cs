@@ -13,7 +13,16 @@ namespace Assets.Scripts.InputSystem
     {
         #region Members
 
+        /// <summary>
+        /// A list of names for mouse buttons used for mouse input polling
+        /// </summary>
+        private string[] MOUSE_BUTTON_NAMES = new string[] { "Primary", "Secondary", "Middle" };
+
+        /// <summary>
+        /// a private instance to fulfull the singleton standards
+        /// </summary>
         private static FInput _instance;
+
         /// <summary>
         /// This is the static instance of this class, used to invoke the non-static methods and 
         /// maintain a single instance.
@@ -36,6 +45,12 @@ namespace Assets.Scripts.InputSystem
         /// The tile the mouse is currently hovering over - updates every frame.
         /// </summary>
         public Vector2Int MouseOverTile = new Vector2Int();
+
+        /// <summary>
+        /// A bool to state if the mouse is currently ONLY hovering over the board
+        /// (no interference objects)
+        /// </summary>
+        public bool IsMouseOverBoard = false;
 
 
         /// <summary>
@@ -181,7 +196,7 @@ namespace Assets.Scripts.InputSystem
         /// </summary>
         void LateUpdate()
         {
-            //run through all keys to poll for input events
+            // run through all keys to poll for input events
             for (int i = 0; i < keysToPoll.Count; i++)
             {
                 if (Input.GetKeyDown(keysToPoll[i]))
@@ -192,7 +207,7 @@ namespace Assets.Scripts.InputSystem
                     ActivateCallback("KUp:" + keysToPoll[i].ToString());
             }
 
-            //run through all buttons to poll for input events
+            // run through all buttons to poll for input events
             for (int i = 0; i < buttonsToPoll.Count; i++)
             {
                 if (Input.GetButtonDown(buttonsToPoll[i]))
@@ -203,18 +218,38 @@ namespace Assets.Scripts.InputSystem
                     ActivateCallback("BUp:" + buttonsToPoll[i].ToString());
             }
 
-            //mouse picking (finding where the mouse intersects the board at)
-            //get a plane to represent the board (since it will always be a plane)
+            // run through all mouse buttons to poll
+            for (int i = 0; i < MOUSE_BUTTON_NAMES.Length; i++)
+            {
+                if (Input.GetMouseButtonDown(i))
+                    ActivateCallback("MDown:" + MOUSE_BUTTON_NAMES[i]);
+                else if (Input.GetMouseButton(i))
+                    ActivateCallback("MHold:" + MOUSE_BUTTON_NAMES[i]);
+                else if (Input.GetMouseButtonUp(i))
+                    ActivateCallback("MUp:" + MOUSE_BUTTON_NAMES[i]);
+            }
+
+            // mouse picking (finding where the mouse intersects the board at)
+            // get a plane to represent the board (since it will always be a plane)
             Plane board = new Plane(Vector3.up, 0);
-            //get a ray to represent the angle of the mouse if it were coming through the camera
+
+            // get a ray to represent the angle of the mouse if it were coming through the camera
             Ray r = Camera.main.ScreenPointToRay(Input.mousePosition);
-            //to store the distance to the board plane
+
+            // to store the distance to the board plane
             float distance;
             board.Raycast(r, out distance);
-            //calculate the intersect position in world space
+
+            // calculate the intersect position in world space
             Vector3 worldIntersect = r.origin + r.direction * distance;
-            //reformulate the world intersection point to be in tile coords
+
+            // reformulate the world intersection point to be in tile coords
             MouseOverTile = new Vector2Int((int)worldIntersect.x, (int)Math.Abs(worldIntersect.z));
+
+            // check if the mouse was actually ONLY hovering over the board (not any other layer)
+            RaycastHit hitInfo;
+            Physics.Raycast(r, out hitInfo, Mathf.Infinity);
+            IsMouseOverBoard = hitInfo.collider.gameObject.layer.Equals("GameBoard");
         }
 
         #endregion Input Polling
