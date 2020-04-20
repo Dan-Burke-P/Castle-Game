@@ -45,8 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1f128c9bf1e30a46820e7a248c613ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  setupData: {fileID: 0}
   player1: {fileID: 165887699868693545}
   player2: {fileID: 6291038867805411032}
+  bs: {fileID: 0}
+  gameMode: 0
 --- !u!1001 &2265818747970540459
 PrefabInstance:
   m_ObjectHideFlags: 0

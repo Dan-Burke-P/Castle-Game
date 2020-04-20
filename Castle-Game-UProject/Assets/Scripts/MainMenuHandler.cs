@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -21,6 +22,9 @@ public class MainMenuHandler : MonoBehaviour{
     /// </summary>
     public GameObject networkDemoList;
 
+    public GameObject playPanel;
+
+    public GameObject optionPanel;
 
     private void OnEnable(){
         openMainMenu();
@@ -31,11 +35,11 @@ public class MainMenuHandler : MonoBehaviour{
     /// displaying a single panel
     /// </summary>
     public void hideAllPanels(){
-        
         mainMenu.SetActive(false);
         debugMenu.SetActive(false);
         networkDemoList.SetActive(false);
-        
+        playPanel.SetActive(false);
+        optionPanel.SetActive(false);
     }
 
     /// <summary>
@@ -58,7 +62,23 @@ public class MainMenuHandler : MonoBehaviour{
         hideAllPanels();
         mainMenu.SetActive(true);
     }
+
+    public void openPlayMenu(){
+        hideAllPanels();
+        playPanel.SetActive(true);
+    }
+
+    public void openOptionsMenu(){
+        hideAllPanels();
+        optionPanel.SetActive(true);
+    }
     
+    public void exitGame(){
+        #if UNITY_EDITOR
+        EditorApplication.ExitPlaymode();    
+        #endif
+        Application.Quit();
+    }
     /// <summary>
     /// Load the network message demo scene 
     /// </summary>
