@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace GameManagers{
-    public class GameMaster : MonoBehaviour{
+    public partial class GameMaster : MonoBehaviour{
         
         /// <summary>
         /// The id number of the local player used for denoting control flow
@@ -22,6 +22,7 @@ namespace GameManagers{
         /// <summary>
         /// What player is currently taking their turn
         /// </summary>
+        [SerializeField]
         private int _playerTurn = 1;
         
         /// <summary>
@@ -56,6 +57,9 @@ namespace GameManagers{
             NETDEDICATED
         }
         
+        /// <summary>
+        /// The phases of a turn, they progress states in descending order
+        /// </summary>
         public enum TurnPhase
         {
             PreTurn, 
@@ -77,6 +81,7 @@ namespace GameManagers{
         {
             get
             {
+                
                 if (_instance == null)
                 {
                     GameObject t = new GameObject();
@@ -93,7 +98,7 @@ namespace GameManagers{
         void Start(){
             setupData = ScriptableObject.CreateInstance<SetupSystemData>();
 
-            state = GameState.CardPhase1;
+            state = TurnPhase.PreTurn;
             
         }
 
@@ -150,6 +155,10 @@ namespace GameManagers{
             return _playerTurn;
         }
 
+        public TurnPhase getGamePhase(){
+            return state;
+        }
+
         /// <summary>
         /// Changes active player to that of the opposite player
         /// </summary>
@@ -162,7 +171,6 @@ namespace GameManagers{
         /// </summary>
         public void changePlayerTurn(){
             _playerTurn = _playerTurn == 1 ? 2 : 1;
-            turnCount++;
         }
 
         /// <summary>
@@ -170,38 +178,80 @@ namespace GameManagers{
         /// should be allowed to input state altering data
         /// </summary>
         /// <returns></returns>
-        public bool canActiveControl(){
-            if (gameMode == gameSetup.HOTSEAT){
-                // If we are currently in hotseat mode then all inputs will be recognized
-                // and it is up to the players to determine whose turn it actually is
+        public bool isPlayerActive(int player){
+            if (player == _activePlayer){
                 return true;
             }
-            
-            // if it is not hot seat we just need to check that the local player is the same as the active player
-            if (_activePlayer == _localPlayer){
-                return true;
+            else{
+                return false;
             }
             
             // otherwise we can return false
             return false;
         }
 
-        
         /// <summary>
         /// Progresses the game to the next state
         /// </summary>
         public void progressGame(){
-            switch (state){
-                case GameState.CardPhase1:
-                    
+            
+            priorityCheck(state);
+            
+            Debug.Log("Current phase: " + state + " Active player: " + _activePlayer + " Player Turn: " + _playerTurn);
+        }
+
+        /// <summary>
+        /// Just a simple function to help us know the order of events without having to hard code in transitions
+        /// </summary>
+        /// <param name="p">
+        /// The state we want to find the next state from
+        /// </param>
+        /// <returns>
+        /// The state that occurs after p
+        /// </returns>
+        private TurnPhase nextPhase(TurnPhase p){
+            switch (p){
+                case TurnPhase.PreTurn:
+                    return TurnPhase.Renewal;
                     break;
-                case GameState.CardPhase2:
+                case TurnPhase.Renewal:
+                    return TurnPhase.MainPhase;
                     break;
+                case TurnPhase.MainPhase:
+                    return TurnPhase.Cleanup;
+                    break;
+                case TurnPhase.Cleanup:
+                    return TurnPhase.PrePass;
+                    break;
+                case TurnPhase.PrePass:
+                    return TurnPhase.PreTurn;
+                    break;
+            }
+
+            return TurnPhase.PreTurn;
+        }
+
+        /// <summary>
+        /// checks if the priority has been given to the opposing player before the turn passes
+        /// </summary>
+        /// <param name="tp">
+        /// the current turn phase
+        /// </param>
+        private void priorityCheck(TurnPhase tp){
+            if (_activePlayer == _playerTurn){
+                changeActivePlayer();
+            }
+            else{
+                changeActivePlayer();
+                // Run the function for exiting this state
+                runExitingStateFunction(tp);
+                // Progress to the next phase
+                state = nextPhase(tp);
+                // Run the function for entering the new state
+                runEnteringStateFunction(state);
             }
         }
 
-        public void ProgressState(){
-            changePlayerTurn();
-        }
+        
     }
 }

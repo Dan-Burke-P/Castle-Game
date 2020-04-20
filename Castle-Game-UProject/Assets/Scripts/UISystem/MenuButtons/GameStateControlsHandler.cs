@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using GameManagers;
 using UnityEngine;
 
 public class GameStateControlsHandler : MonoBehaviour
 {
     public void passTurn(){
-        Debug.Log("Passing turn");
+        GameMaster.Instance.progressGame();
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using EventSystem;
+using GameManagers;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Networking.NetworkSystem;
@@ -56,12 +57,16 @@ namespace UISystem{
         /// Sets up buttons on the UI to be used to display and call actions in the system
         /// </summary>
         public void loadActionList(){
-            
-            for (int i = 0; i < selection.actions.Count; i++){
-                if (i > 3) break; // This is an incomplete method and this just serves to prevent errors until the method is improved
-                actionObjects[i].gameObject.SetActive(true);
-                actionObjects[i].setAction(selection.actions[i]);
+
+            // Check if the owner is the active player before presenting the options to the player
+            if (GameMaster.Instance.isPlayerActive(selection.ownerID)){
+                for (int i = 0; i < selection.actions.Count; i++){
+                    if (i > 3) break; // This is an incomplete method and this just serves to prevent errors until the method is improved
+                    actionObjects[i].gameObject.SetActive(true);
+                    actionObjects[i].setAction(selection.actions[i]);
+                } 
             }
+            
             
         }
         
