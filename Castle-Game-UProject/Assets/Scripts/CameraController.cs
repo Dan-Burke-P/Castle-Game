@@ -56,6 +56,8 @@ public class CameraController : MonoBehaviour{
     // Start is called before the first frame update
     void Start(){
         trns = gameObject.GetComponent<Transform>();
+        rotationArm.Rotate(45,0,0);
+        yAxisRotation += 45;
     }
 
     // Update is called once per frame

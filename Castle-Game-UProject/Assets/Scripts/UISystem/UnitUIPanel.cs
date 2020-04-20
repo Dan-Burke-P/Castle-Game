@@ -88,6 +88,10 @@ namespace UISystem{
         /// Hides the UI elements and suspends updating UI elements 
         /// </summary>
         public void hideUI(){
+            for (int i = 0; i < actionObjects.Count; i++){
+                if (i > 3) break; // This is an incomplete method and this just serves to prevent errors until the method is improved
+                actionObjects[i].gameObject.SetActive(false);
+            } 
             panelObject.SetActive(false);
         }
 
