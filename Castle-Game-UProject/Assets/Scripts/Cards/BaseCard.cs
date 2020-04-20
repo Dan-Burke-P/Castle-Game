@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseCard: MonoBehaviour
-{
+public abstract class BaseCard: ScriptableObject{
+    public string cardTitle;
+    public string cardDescription;
+    public int goldCost;
 
-    public Card cardData;
-    
-    public void setCardData(Card c)
-    {
-        cardData = c;
-        gameObject.name = c.title;
-    }
+    public GameObject displayObject;
+
+    public abstract void playCard();
+
 
 }

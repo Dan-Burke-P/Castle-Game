@@ -25,9 +25,9 @@ public class HandTestDriver : MonoBehaviour
     {
         Dictionary<string, object> prms = new Dictionary<string, object>();
         
-        Card c = ScriptableObject.CreateInstance<CRD_SU_soldier>();
+        //Card c = ScriptableObject.CreateInstance<CRD_SU_soldier>();
 
-        prms.Add("Card", c);
+        //prms.Add("Card", c);
         prms.Add("Hand", hand);
         
         HandEventHandler.Instance().addEvent.raise(0, this, prms);

@@ -21,7 +21,7 @@ public class CardTest : MonoBehaviour
 
     public void testAddSoldier()
     {
-        soldierTest = ScriptableObject.CreateInstance<CRD_SU_soldier>();
+        //soldierTest = ScriptableObject.CreateInstance<CRD_SU_soldier>();
         //testHand.addCardToHand(soldierTest);
     }
 
