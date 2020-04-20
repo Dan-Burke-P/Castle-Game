@@ -16,6 +16,10 @@ namespace UISystem{
         /// </summary>
         public void setAction(UnitTask ut){
             
+            actionButton.gameObject.SetActive(true);
+            actionTitleText.gameObject.SetActive(true);
+            apCostText.gameObject.SetActive(true);
+            
             // Make sure nothing else is on the listener to avoid repeated usage
             actionButton.onClick.RemoveAllListeners();
             
@@ -28,7 +32,12 @@ namespace UISystem{
             // Set the onclick to call back to the function 
             actionButton.onClick.AddListener(ut.ua);
         }
-        
+
+        public void hide(){
+            actionButton.gameObject.SetActive(false);
+            actionTitleText.gameObject.SetActive(false);
+            apCostText.gameObject.SetActive(false);
+        }
         
     }
 }

@@ -31,7 +31,7 @@ public class AttackHandler
 		Debug.Log(attacker.unitName + " makes an attack on " + defender.unitName + "...");
 		float damage = CalculateDamage(attacker, defender);
 		Debug.Log(defender.unitName + " takes " + damage + " points of damage.");
-		if (damage > defender.currHP) {
+		if (damage >= defender.currHP) {
 			if(attacker.RNG == 1) {
 				MovementHandler.Instance().moveEvent.raise(0, this, new Dictionary<string, object> {
 												{"Unit", attacker},
@@ -41,6 +41,7 @@ public class AttackHandler
 			}
 			Debug.Log(defender.unitName + " dies in battle.");
 			defender.currHP = 0;
+			defender.onDeath();
 			return;
 		}
 		defender.currHP -= damage;
@@ -50,13 +51,15 @@ public class AttackHandler
 		if (counterRoll >= 100 - defender.CTR * 100) {
 			Debug.Log(defender.unitName + " makes a counter attack...");
 			damage = CalculateDamage(defender, attacker);
-			attacker.currHP -= damage;
 			Debug.Log(attacker.unitName + " takes " + damage + " points in damage.");
-		}
-		
-		if (attacker.currHP <= 0) {
-			Debug.Log(attacker.unitName + " dies in battle.");
-			return;
+			if (damage >= attacker.currHP)
+			{
+				Debug.Log(attacker.unitName + " dies in battle.");
+				attacker.currHP = 0;
+				attacker.onDeath();
+				return;
+			}
+			attacker.currHP -= damage;
 		}
 	}
 

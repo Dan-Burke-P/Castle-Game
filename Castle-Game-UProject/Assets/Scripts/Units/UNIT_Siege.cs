@@ -8,9 +8,6 @@ public class UNIT_Siege : UNIT_Ranged {
 	public UNIT_Siege() {
 		unitType = UnitType.Siege;
 		unitName = "Siege";
-		maxAP = 1;
-		currAP = 1;
-		RNG = 3;
 		DEF = 40;
 		vsSoldier = 0.8f;
 		vsSiege = 0.8f;
