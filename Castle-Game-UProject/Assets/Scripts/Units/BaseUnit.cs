@@ -149,7 +149,7 @@ public abstract class BaseUnit : ScriptableObject{
 			return;
 		}
 		int dist = System.Math.Abs(defender.xPos - this.xPos) + System.Math.Abs(defender.yPos - this.yPos);
-		if(dist <= this.RNG) {
+		if(dist <= this.RNG && this.currAP >= this.attackCost) {
 			AttackHandler.Instance().attackEvent.raise(0, this, new Dictionary<string, object> {
 											{"Attacker", this},
 											{"Defender", defender}
