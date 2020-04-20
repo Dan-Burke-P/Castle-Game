@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using EventSystem;
+using GameManagers;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Hand")]
@@ -8,39 +10,34 @@ using UnityEngine;
 public class Hand : ScriptableObject
 {
     public List<Card> cards; // All the cards in the hand
+    public bool shouldDisplay; // Does the UI need to display this hand or not
     public int currentIndex; // Index of the card in the hand that's currently being selected
 
-    //public EventListener addToHand;
-    //public EventListener removeFromHand;
-    
     public Hand()
     {
         cards = new List<Card>();
+        shouldDisplay = false;
         currentIndex = -1;
     }
 
     public void init()
     {
         cards.Clear();
-        //addToHand.registerAction(addCardToHand);
     }
     
-    //Expecting param "card", which contains a Card object
-    public void addCardToHand(Dictionary<string, object> varg)
+    // Adds a given card to the hand
+    public void addCardToHand(Card c)
     {
-        object obj;
-        if(!varg.TryGetValue("card", out obj))
-        {
-            throw new ApplicationException("Raised add card without a card field");    
-        }
-        if (!(obj is Card))
-        {
-            throw new ApplicationException("Card field in add card event was not a card");
-        }
-
-        Card c = obj as Card;
-
         cards.Add(c);
+        
+        // Signal Hand UI to redisplay Hand
+        if (shouldDisplay)
+        {
+            EventDefinition handUI = new EventDefinition(SysTarget.UI, "displayHand");
+            handUI.raise(0, this, new Dictionary<string, object>(){
+                {"Hand", this}
+            });
+        }
 
         // If you no longer have an empty hand, show the first card in your hand
         if (cards.Count == 1)
@@ -49,27 +46,25 @@ public class Hand : ScriptableObject
         }
     }
 
-    // Expecting param "index", an int specifying the index of the card in the hand to be removed (from 0 to cards.Count - 1)
-    public void removeCardFromHand(Dictionary<string, object> varg)
+    // Removes the card in the hand at the given index (from 0 to cards.Count - 1)
+    public void removeCardFromHand(int index)
     {
-        object obj;
-        if(!varg.TryGetValue("index", out obj))
-        {
-            throw new ApplicationException("Raised remove card without an index field");    
-        }
-        if (!(obj is int))
-        {
-            throw new ApplicationException("Index field in add card event was not an int");
-        }
-
-        int index = (int) obj;
-
         if (index >= cards.Count || index < 0)
         {
             throw new ApplicationException("\"index\" value passed to remove function not a valid index in the hand");
         }
 
+        Destroy(cards[index].renderedObject);
         cards.RemoveAt(index);
+
+        // Signal Hand UI to redisplay Hand
+        if (shouldDisplay)
+        {
+            EventDefinition handUI = new EventDefinition(SysTarget.UI, "displayHand");
+            handUI.raise(0, this, new Dictionary<string, object>(){
+                {"Hand", this}
+            });
+        }
 
         // If you were looking at the last card in the hand, make sure you're still doing that after the size decreases
         if (currentIndex == cards.Count)

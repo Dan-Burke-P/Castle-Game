@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class CardObjectDisplay : MonoBehaviour{
 
-    public DATACardUI content;
-
     public Text title;
     public Text desc;
     public Text cost;
@@ -18,15 +16,13 @@ public class CardObjectDisplay : MonoBehaviour{
         desc.text = cnt.cardText;
         cost.text = $"{cnt.cost}";
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        setContent(content);
+    
+    public void setContent(Card crd){
+        title.text = crd.title;
+        //desc.text = crd.cardText;
+        desc.text = "Card Description Text";
+        //cost.text = $"{crd.cost}";
+        cost.text = "int x";
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }
