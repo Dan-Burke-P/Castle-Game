@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.InputSystem;
 using EventSystem;
+using GameManagers;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -37,6 +38,7 @@ public abstract class BaseUnit : ScriptableObject{
     public bool shouldHighlight;
     public BoardSpace boardSpace;
     public GameObject displayObject;
+    public UnitDisplayObject udo;
 
     public List<UnitTask> actions = new List<UnitTask>();
     //public Transform transform;
@@ -58,6 +60,7 @@ public abstract class BaseUnit : ScriptableObject{
 
     public void hurtMe(){
 	    currHP -= 10;
+	    onDeath();
     }
 
     public void healMe(){
@@ -112,8 +115,9 @@ public abstract class BaseUnit : ScriptableObject{
 		}
     }
 
-	public void attack()
-	{
+	public void attack(){
+		
+		GameMaster.Instance.selectionMode = false;
 		if(!registeredAttack)
 		{
 			FInput.Instance.RegisterCallback("BDown:Fire1", false, () =>
@@ -128,6 +132,8 @@ public abstract class BaseUnit : ScriptableObject{
 					unitUIpanel.raise(0, this, new Dictionary<string, object>(){
 						{"BaseUnit", this}
 					});
+					
+					GameMaster.Instance.selectionMode = true;
 				}
 			});
 
@@ -154,9 +160,10 @@ public abstract class BaseUnit : ScriptableObject{
 
 	public void onDeath()
 	{
-		if (currHP <= 0)
-		{
-			Destroy(this.displayObject);
+		if (currHP <= 0){
+			udo.removeDisplayObject();
+			boardSpace.removeUnitAt(xPos, yPos);
+			ScriptableObject.Destroy(this);
 		}
 	}
 

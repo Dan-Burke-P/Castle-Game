@@ -22,6 +22,7 @@ public class UnitDisplayObject : MonoBehaviour{
     public UnitOwnerDisplay ownerDisplay;
     public void setContent(BaseUnit uid){
         content = uid;
+        content.udo = this;
         setContent();
     }
     public void setContent(){
@@ -61,5 +62,10 @@ public class UnitDisplayObject : MonoBehaviour{
 
     private void Update(){
         display();
+    }
+
+    public void removeDisplayObject(){
+        print("Destroying display object");
+        Destroy(gameObject);
     }
 }

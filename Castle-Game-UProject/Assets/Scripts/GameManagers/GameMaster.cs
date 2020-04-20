@@ -3,6 +3,12 @@ using UnityEngine;
 
 namespace GameManagers{
     public partial class GameMaster : MonoBehaviour{
+
+        
+        /// <summary>
+        /// Used to tell other game systems if selection mode is active or not
+        /// </summary>
+        public bool selectionMode = true;
         
         /// <summary>
         /// The id number of the local player used for denoting control flow
