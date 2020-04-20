@@ -845,11 +845,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameStateDisplayCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 4961587108862657747, guid: ca1785fb19629a442b44649335692b82,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4961587108862657751, guid: ca1785fb19629a442b44649335692b82,
         type: 3}
       propertyPath: m_LocalPosition.x
