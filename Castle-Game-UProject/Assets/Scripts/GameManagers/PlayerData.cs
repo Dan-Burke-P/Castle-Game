@@ -23,6 +23,8 @@ namespace GameManagers{
         /// This players deck of cards
         /// </summary>
         public Deck playerDeck;
+
+        public int goldRes = 0;
         
         private void OnEnable(){
             Debug.Log("Creating new player");

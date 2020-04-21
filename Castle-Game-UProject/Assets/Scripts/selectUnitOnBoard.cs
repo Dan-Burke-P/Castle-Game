@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.InputSystem;
 using EventSystem;
+using GameManagers;
 using UnityEngine;
 
 public class selectUnitOnBoard : MonoBehaviour{
@@ -21,7 +22,7 @@ public class selectUnitOnBoard : MonoBehaviour{
 
     public void clickCallBack(){
 
-        if (!UIHOVERSTATUS.hovered){
+        if (!UIHOVERSTATUS.hovered && GameMaster.Instance.selectionMode){
             // If we are not interacting with the UI
             Vector2Int location = new Vector2Int(FInput.Instance.MouseOverTile.x, FInput.Instance.MouseOverTile.y);
             //print("Selected unit at : " + location);

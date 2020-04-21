@@ -16,10 +16,13 @@ public class UnitDisplayObject : MonoBehaviour{
     public GameObject highlightObject;
     
     public RadialProgBar rpb;
-    
 
+    public Color player1;
+    public Color player2;
+    public UnitOwnerDisplay ownerDisplay;
     public void setContent(BaseUnit uid){
         content = uid;
+        content.udo = this;
         setContent();
     }
     public void setContent(){
@@ -33,6 +36,14 @@ public class UnitDisplayObject : MonoBehaviour{
         }
 
         rpb.max = content.maxHP;
+
+        if (content.ownerID == 1){
+            ownerDisplay.setDisplayColor(player1);
+        }
+        else{
+            ownerDisplay.setDisplayColor(player2);
+        }
+        
     }
     public void display(){
         rpb.max = content.maxHP;
@@ -51,5 +62,10 @@ public class UnitDisplayObject : MonoBehaviour{
 
     private void Update(){
         display();
+    }
+
+    public void removeDisplayObject(){
+        print("Destroying display object");
+        Destroy(gameObject);
     }
 }

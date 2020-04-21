@@ -22,6 +22,6 @@ public class GameStateTestDriver : MonoBehaviour
 
         prms.Add("state", state);
         
-        GameStateChangeScript.Instance().changeGameState(prms);
+        //GameStateChangeScript.Instance().changeGameState(prms);
     }
 }
