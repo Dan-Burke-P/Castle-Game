@@ -184,6 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handData: {fileID: 11400000, guid: 70cd43787ecadf34f95b931953e03648, type: 2}
+  hand: {fileID: 11400000, guid: c55d079fb8faa0f42b846815ce46089c, type: 2}
   cardTemplate: {fileID: 1956994882679520038, guid: 82805d46d16d72a499683a9ec4a4b20f,
     type: 3}
   cardObjectParent: {fileID: 3392996108380262817}
