@@ -35,12 +35,12 @@ public class HandEventHandler
         {
             throw new ApplicationException("Raised 'add card to hand' without a card field");    
         }
-        if (!(obj is Card))
+        if (!(obj is BaseCard))
         {
-            throw new ApplicationException("Card field in 'add card to hand' event was not a card");
+            throw new ApplicationException("Card field in 'add card to hand' event was not a BaseCard");
         }
 
-        Card c = obj as Card;
+        BaseCard c = obj as BaseCard;
         
         if(!prms.TryGetValue("Hand", out obj))
         {

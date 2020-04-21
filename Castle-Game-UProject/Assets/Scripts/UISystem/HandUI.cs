@@ -31,12 +31,12 @@ public class HandUI : MonoBehaviour{
 
         if (hand)
         {
-            foreach (Card crd in hand.cards){
-                if (crd.renderedObject == null)
+            foreach (BaseCard crd in hand.cards){
+                if (crd.displayObject == null)
                 {
                     GameObject obj = createNewCardObject(crd);
                     obj.transform.SetParent(cardObjectParent.transform);
-                    crd.renderedObject = obj;
+                    crd.displayObject = obj;
                 }
             }
         }
@@ -46,7 +46,7 @@ public class HandUI : MonoBehaviour{
         }
     }
 
-    public GameObject createNewCardObject(Card crd){
+    public GameObject createNewCardObject(BaseCard crd){
         GameObject obj = Instantiate(cardTemplate);
         CardObjectDisplay cod = obj.GetComponent<CardObjectDisplay>();
         cod.setContent(crd);

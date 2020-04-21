@@ -25,9 +25,9 @@ public class HandTestDriver : MonoBehaviour
     {
         Dictionary<string, object> prms = new Dictionary<string, object>();
         
-        //Card c = ScriptableObject.CreateInstance<CRD_SU_soldier>();
+        BaseCard c = ScriptableObject.CreateInstance<CRD_SU_soldier>();
 
-        //prms.Add("Card", c);
+        prms.Add("Card", c);
         prms.Add("Hand", hand);
         
         HandEventHandler.Instance().addEvent.raise(0, this, prms);
@@ -36,14 +36,14 @@ public class HandTestDriver : MonoBehaviour
 	// Adds a Siege card into the test hand
     public void testAddSiegeToHand()
     {
-        Dictionary<string, object> prms = new Dictionary<string, object>();
+        /*Dictionary<string, object> prms = new Dictionary<string, object>();
         
         Card c = ScriptableObject.CreateInstance<CRD_SU_siege>();
 
         prms.Add("Card", c);
         prms.Add("Hand", hand);
 
-        HandEventHandler.Instance().addEvent.raise(0, this, prms);
+        HandEventHandler.Instance().addEvent.raise(0, this, prms);*/
     }
 
 	// Removes whatever card you were just looking at
