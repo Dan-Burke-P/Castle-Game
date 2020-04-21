@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UIHMonitor : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler{
+public class UIHMonitor : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler {
    
     public bool hovered = false;
     
@@ -15,5 +15,9 @@ public class UIHMonitor : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void OnPointerExit(PointerEventData eventData){
         hovered = false;
         UIHOVERSTATUS.hovered = false;
+    }
+
+    public void OnPointerClick(PointerEventData eventData){
+        print("Panel has been clicked: " + gameObject.name);
     }
 }

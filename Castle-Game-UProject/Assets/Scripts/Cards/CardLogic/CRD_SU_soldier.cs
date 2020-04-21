@@ -13,6 +13,7 @@ public class CRD_SU_soldier :  BaseCard
         cardTitle = "Create Soldier";
         goldCost = 100;
         cardDescription = "Create a new soldier to fight for the king";
+        img = Resources.Load("Images/SoldierArt.png") as Sprite;
     }
 
     public override void playCard(){
