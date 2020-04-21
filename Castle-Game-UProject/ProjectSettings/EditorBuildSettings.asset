@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Test/NetworkSystemTests/TicTacNETDEMO/TicTacTestScene.unity
     guid: 7e507292a71d69c4f8a36bb4e8c6f99d
+  - enabled: 1
+    path: Assets/Scenes/PlayScene.unity
+    guid: 691a6ff416602e6438e0192b63614908
   m_configObjects: {}

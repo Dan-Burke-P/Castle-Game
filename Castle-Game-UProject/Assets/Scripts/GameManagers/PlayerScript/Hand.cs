@@ -9,13 +9,13 @@ using UnityEngine;
 
 public class Hand : ScriptableObject
 {
-    public List<Card> cards; // All the cards in the hand
+    public List<BaseCard> cards; // All the cards in the hand
     public bool shouldDisplay; // Does the UI need to display this hand or not
     public int currentIndex; // Index of the card in the hand that's currently being selected
 
     public Hand()
     {
-        cards = new List<Card>();
+        cards = new List<BaseCard>();
         shouldDisplay = false;
         currentIndex = -1;
     }
@@ -26,7 +26,7 @@ public class Hand : ScriptableObject
     }
     
     // Adds a given card to the hand
-    public void addCardToHand(Card c)
+    public void addCardToHand(BaseCard c)
     {
         cards.Add(c);
         
@@ -54,7 +54,7 @@ public class Hand : ScriptableObject
             throw new ApplicationException("\"index\" value passed to remove function not a valid index in the hand");
         }
 
-        Destroy(cards[index].renderedObject);
+        Destroy(cards[index].displayObject);
         cards.RemoveAt(index);
 
         // Signal Hand UI to redisplay Hand

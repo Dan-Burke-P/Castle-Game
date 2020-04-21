@@ -1,4 +1,5 @@
-﻿using System;
+﻿/*
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using GameManagers;
@@ -63,3 +64,4 @@ public class GameStateChangeScript : MonoBehaviour
         return _instance;
     }
 }
+*/

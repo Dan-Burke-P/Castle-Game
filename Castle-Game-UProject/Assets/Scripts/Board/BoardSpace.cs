@@ -134,6 +134,14 @@ public class BoardSpace : MonoBehaviour
             return null;
         }
     }
+
+    public void removeUnitAt(int x, int y){
+        if (x >= 0 && y>= 0 && x < boardWidth && y < boardHeight){
+            BoardSlot bs = getSlot(new Vector2Int(x,y));
+            bs.unit = null;
+        }
+        
+    } 
     
     /*
      * Override the to string to we can properly parse and display the object for
