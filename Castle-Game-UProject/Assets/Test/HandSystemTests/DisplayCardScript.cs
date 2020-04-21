@@ -25,7 +25,7 @@ public class DisplayCardScript : MonoBehaviour
     {
         // Check if the test hand is empty
         if(HandTestDriver.hand.currentIndex != -1) {
-            cardInfo.text = "Card Name: " + HandTestDriver.hand.cards[HandTestDriver.hand.currentIndex].title;
+            cardInfo.text = "Card Name: " + HandTestDriver.hand.cards[HandTestDriver.hand.currentIndex].cardTitle;
         }
         else {
             cardInfo.text = "No card selected";

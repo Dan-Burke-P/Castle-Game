@@ -2,31 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class CardObjectDisplay : MonoBehaviour{
+public class CardObjectDisplay : MonoBehaviour, IPointerClickHandler
+{
 
-    public DATACardUI content;
+    public BaseCard content;
 
     public Text title;
     public Text desc;
     public Text cost;
-    
-    
 
-    public void setContent(DATACardUI cnt){
-        title.text = cnt.title;
-        desc.text = cnt.cardText;
-        cost.text = $"{cnt.cost}";
-    }
-    // Start is called before the first frame update
-    void Start()
+    public void setContent(BaseCard crd)
     {
-        setContent(content);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        content = crd;
         
+        title.text = crd.cardTitle;
+        desc.text = crd.cardDescription;
+        cost.text = $"{crd.goldCost}";
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        content.playCard();
     }
 }

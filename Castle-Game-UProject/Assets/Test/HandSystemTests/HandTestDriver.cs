@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EventSystem;
 
 public class HandTestDriver : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class HandTestDriver : MonoBehaviour
     void Start()
     {
         hand = ScriptableObject.CreateInstance<Hand>();
+        hand.shouldDisplay = true;
     }
 
     // Update is called once per frame
@@ -23,33 +25,31 @@ public class HandTestDriver : MonoBehaviour
     {
         Dictionary<string, object> prms = new Dictionary<string, object>();
         
-        Card c = ScriptableObject.CreateInstance<CRD_SU_soldier>();
+        BaseCard c = ScriptableObject.CreateInstance<CRD_SU_soldier>();
 
-        prms.Add("card", c);
-
-        hand.addCardToHand(prms);
+        prms.Add("Card", c);
+        prms.Add("Hand", hand);
+        
+        HandEventHandler.Instance().addEvent.raise(0, this, prms);
     }
     
 	// Adds a Siege card into the test hand
     public void testAddSiegeToHand()
     {
-        Dictionary<string, object> prms = new Dictionary<string, object>();
+        /*Dictionary<string, object> prms = new Dictionary<string, object>();
         
         Card c = ScriptableObject.CreateInstance<CRD_SU_siege>();
 
-        prms.Add("card", c);
+        prms.Add("Card", c);
+        prms.Add("Hand", hand);
 
-        hand.addCardToHand(prms);
+        HandEventHandler.Instance().addEvent.raise(0, this, prms);*/
     }
 
 	// Removes whatever card you were just looking at
     public void testRemoveCardFromHand()
     {
-        Dictionary<string, object> prms = new Dictionary<string, object>();
-
-        prms.Add("index", hand.currentIndex);
-
-        hand.removeCardFromHand(prms);
+	    hand.removeCardFromHand(hand.currentIndex);
     }
 
 	// View the next card in the test hand
