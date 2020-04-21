@@ -32,34 +32,41 @@ public class AttackHandler
 		float damage = CalculateDamage(attacker, defender);
 		Debug.Log(defender.unitName + " takes " + damage + " points of damage.");
 		if (damage >= defender.currHP) {
-			if(attacker.RNG == 1) {
-				MovementHandler.Instance().moveEvent.raise(0, this, new Dictionary<string, object> {
-												{"Unit", attacker},
-												{"x", defender.xPos},
-												{"y", defender.yPos}
-												});
-			}
+			Vector2Int nPos = new Vector2Int(defender.xPos, defender.yPos);
 			Debug.Log(defender.unitName + " dies in battle.");
 			defender.currHP = 0;
 			defender.onDeath();
+			if (attacker.RNG == 1 && attacker.boardSpace.movePiece(new Vector2Int(attacker.xPos, attacker.yPos), nPos))
+				{
+					// We succeeded a move on the board space so we can update the SO now
+					MovementHandler.Instance().moveEvent.raise(0, this, new Dictionary<string, object> {
+					{"Unit", attacker},
+					{"x", nPos.x},
+					{"y", nPos.y}
+					});
+				}
 			return;
 		}
 		defender.currHP -= damage;
-		
+
 		// Check to see if the defender gets a counter attack
-		int counterRoll = dice.Next(0,100);
-		if (counterRoll >= 100 - defender.CTR * 100) {
-			Debug.Log(defender.unitName + " makes a counter attack...");
-			damage = CalculateDamage(defender, attacker);
-			Debug.Log(attacker.unitName + " takes " + damage + " points in damage.");
-			if (damage >= attacker.currHP)
+		int dist = (attacker.xPos - defender.xPos) + (attacker.yPos - attacker.yPos);
+		if(dist <= defender.RNG) {
+			int counterRoll = dice.Next(0,100);
+			if (counterRoll >= 100 - defender.CTR * 100)
 			{
-				Debug.Log(attacker.unitName + " dies in battle.");
-				attacker.currHP = 0;
-				attacker.onDeath();
-				return;
+				Debug.Log(defender.unitName + " makes a counter attack...");
+				damage = CalculateDamage(defender, attacker);
+				Debug.Log(attacker.unitName + " takes " + damage + " points in damage.");
+				if (damage >= attacker.currHP)
+				{
+					Debug.Log(attacker.unitName + " dies in battle.");
+					attacker.currHP = 0;
+					attacker.onDeath();
+					return;
+				}
+				attacker.currHP -= damage;
 			}
-			attacker.currHP -= damage;
 		}
 	}
 
