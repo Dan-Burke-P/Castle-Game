@@ -347,6 +347,7 @@ MonoBehaviour:
   unitDisplayObject: {fileID: 0}
   highlightObject: {fileID: 255227346765896469}
   rpb: {fileID: 6095363279037488527}
+  debug: {fileID: 21300000, guid: 8025e74504705504c882a516e641c12c, type: 3}
   player1: {r: 0.18187074, g: 0.6320754, b: 0.32065564, a: 0}
   player2: {r: 0.5807576, g: 0, b: 0.6132076, a: 0}
   ownerDisplay: {fileID: 3335381168513606224}

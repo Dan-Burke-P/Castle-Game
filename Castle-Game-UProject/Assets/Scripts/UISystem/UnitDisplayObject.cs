@@ -16,7 +16,6 @@ public class UnitDisplayObject : MonoBehaviour{
     public GameObject highlightObject;
     
     public RadialProgBar rpb;
-
     public Color player1;
     public Color player2;
     public UnitOwnerDisplay ownerDisplay;
