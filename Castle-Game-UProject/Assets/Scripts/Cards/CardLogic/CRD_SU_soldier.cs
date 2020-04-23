@@ -9,11 +9,15 @@ using GameManagers;
 [CreateAssetMenu(menuName="ScriptableObjects/Soldier")]
 public class CRD_SU_soldier :  BaseCard
 {
+    private void Awake(){
+        img = badDB.soldierArt;
+    }
+
     private void OnEnable(){
         cardTitle = "Create Soldier";
         goldCost = 100;
         cardDescription = "Create a new soldier to fight for the king";
-        img = Resources.Load("Images/SoldierArt.png") as Sprite;
+        img = badDB.soldierArt;
     }
 
     public override void playCard(){

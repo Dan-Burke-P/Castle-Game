@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +13,7 @@ public class CardObjectDisplay : MonoBehaviour, IPointerClickHandler
     public Text title;
     public Text desc;
     public Text cost;
-
+    public Image img;
     public void setContent(BaseCard crd)
     {
         content = crd;
@@ -20,6 +21,14 @@ public class CardObjectDisplay : MonoBehaviour, IPointerClickHandler
         title.text = crd.cardTitle;
         desc.text = crd.cardDescription;
         cost.text = $"{crd.goldCost}";
+
+        img.sprite = content.img;
+    }
+
+    private void Start(){
+        if (content){
+            setContent(content);
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)

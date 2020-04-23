@@ -249,11 +249,8 @@ namespace Assets.Scripts.InputSystem
             // check if the mouse was actually ONLY hovering over the board (not any other layer)
             RaycastHit hitInfo;
             Physics.Raycast(r, out hitInfo, Mathf.Infinity);
-<<<<<<< HEAD
             IsMouseOverBoard = (hitInfo.collider == null) ? false : hitInfo.collider.gameObject.GetComponent<BoardRenderer>() != null;
-=======
-            IsMouseOverBoard = hitInfo.collider.gameObject.layer.Equals("GameBoard");
->>>>>>> master
+
         }
 
         #endregion Input Polling
