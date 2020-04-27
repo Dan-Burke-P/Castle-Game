@@ -27,7 +27,7 @@ public class CardTest : MonoBehaviour
 
     public void testAddSiege()
     {
-        siegeTest = ScriptableObject.CreateInstance<CRD_SU_siege>();
+        //siegeTest = ScriptableObject.CreateInstance<CRD_SU_siege>();
         //testHand.addCardToHand(siegeTest);
     }
 

@@ -4,16 +4,16 @@ using Cards;
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(menuName="ScriptableObjects/Siege")]
-public class CRD_SU_siege : BaseCard
+[CreateAssetMenu(menuName="ScriptableObjects/Medic")]
+public class CRD_SU_medic : BaseCard
 {
 
     private void OnEnable(){
         badDB = CardImageDB.Instance();
-        cardTitle = "Siege";
-        goldCost = 300;
-        cardDescription = "A war machine that excels at damaging enemy buildings";
-        img = badDB.siegeArt;
+        cardTitle = "Create Medic";
+        goldCost = 200;
+        cardDescription = "Call in a licensed professional to heal your wounded";
+        img = badDB.medicArt;
     }
 
     public override void playCard(BoardSpace bs)

@@ -4,36 +4,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Assets.Scripts.InputSystem;
+using Cards;
 using GameManagers;
 
 [CreateAssetMenu(menuName="ScriptableObjects/Soldier")]
 public class CRD_SU_soldier :  BaseCard
 {
-    private void Awake(){
-        img = badDB.soldierArt;
-    }
-
     private void OnEnable(){
+        badDB = CardImageDB.Instance();
         cardTitle = "Create Soldier";
         goldCost = 100;
-        cardDescription = "Create a new soldier to fight for the king";
+        cardDescription = "Recruit a new soldier to fight for the king";
         img = badDB.soldierArt;
     }
 
-    public override void playCard(){
-        spawnSoldier();
+    public override void playCard(BoardSpace bs){
+        spawnSoldier(bs);
     }
     
-    public void spawnSoldier(){
-        FInput.Instance.RegisterCallback("BDown:Fire1",true, onClick);
+    public void spawnSoldier(BoardSpace bs){
+        FInput.Instance.RegisterCallback("BDown:Fire1",true, onClick(bs));
     }
 
-    public void onClick(){
+    public Action onClick(BoardSpace bs){ // Get rid of the bs parameter after finding the BoardSpace of the GameMaster
 
         Debug.Log("Spawning unit!");
         Vector2Int location = FInput.Instance.MouseOverTile;
         BaseUnit bu = UnitFactory.Instance().CreateUnit<UNIT_Soldier>(location);
-        GameMaster.Instance.bs.addUnitAt(bu, location);
-        
+        bs.addUnitAt(bu, location); // Get rid of this after making the following line work
+        //GameMaster.Instance.bs.addUnitAt(bu, location);
+        return null;
+
     }
 }

@@ -36,14 +36,53 @@ public class HandTestDriver : MonoBehaviour
 	// Adds a Siege card into the test hand
     public void testAddSiegeToHand()
     {
-        /*Dictionary<string, object> prms = new Dictionary<string, object>();
+        Dictionary<string, object> prms = new Dictionary<string, object>();
         
-        Card c = ScriptableObject.CreateInstance<CRD_SU_siege>();
+        BaseCard c = ScriptableObject.CreateInstance<CRD_SU_siege>();
 
         prms.Add("Card", c);
         prms.Add("Hand", hand);
 
-        HandEventHandler.Instance().addEvent.raise(0, this, prms);*/
+        HandEventHandler.Instance().addEvent.raise(0, this, prms);
+    }
+    
+    // Adds a Ranger card into the test hand
+    public void testAddRangerToHand()
+    {
+	    Dictionary<string, object> prms = new Dictionary<string, object>();
+        
+	    BaseCard c = ScriptableObject.CreateInstance<CRD_SU_ranger>();
+
+	    prms.Add("Card", c);
+	    prms.Add("Hand", hand);
+
+	    HandEventHandler.Instance().addEvent.raise(0, this, prms);
+    }
+    
+    // Adds a Medic card into the test hand
+    public void testAddMedicToHand()
+    {
+	    Dictionary<string, object> prms = new Dictionary<string, object>();
+        
+	    BaseCard c = ScriptableObject.CreateInstance<CRD_SU_medic>();
+
+	    prms.Add("Card", c);
+	    prms.Add("Hand", hand);
+
+	    HandEventHandler.Instance().addEvent.raise(0, this, prms);
+    }
+    
+    // Adds a Calvary card into the test hand
+    public void testAddCalvaryToHand()
+    {
+	    Dictionary<string, object> prms = new Dictionary<string, object>();
+        
+	    BaseCard c = ScriptableObject.CreateInstance<CRD_SU_calvary>();
+
+	    prms.Add("Card", c);
+	    prms.Add("Hand", hand);
+
+	    HandEventHandler.Instance().addEvent.raise(0, this, prms);
     }
 
 	// Removes whatever card you were just looking at

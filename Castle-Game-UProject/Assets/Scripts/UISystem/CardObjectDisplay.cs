@@ -14,6 +14,7 @@ public class CardObjectDisplay : MonoBehaviour, IPointerClickHandler
     public Text desc;
     public Text cost;
     public Image img;
+    public BoardSpace bs; // Get rid of the bs parameter after finding the BoardSpace of the GameMaster in CRD_SU_Soldier
     public void setContent(BaseCard crd)
     {
         content = crd;
@@ -21,8 +22,7 @@ public class CardObjectDisplay : MonoBehaviour, IPointerClickHandler
         title.text = crd.cardTitle;
         desc.text = crd.cardDescription;
         cost.text = $"{crd.goldCost}";
-
-        img.sprite = content.img;
+        img.sprite = crd.img;
     }
 
     private void Start(){
@@ -33,6 +33,6 @@ public class CardObjectDisplay : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        content.playCard();
+        content.playCard(bs); // Get rid of the bs parameter after finding the BoardSpace of the GameMaster in CRD_SU_Soldier
     }
 }
